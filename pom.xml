@@ -41,7 +41,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.5</version>
                 <configuration>
-                    <mainClass>isen.java2.App</mainClass>
+                    <mainClass>isen.project.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>
