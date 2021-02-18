@@ -1,5 +1,6 @@
 package isen.project.view;
 
+import isen.project.App;
 import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Person;
 import isen.project.util.PersonListViewCell;
@@ -85,7 +86,7 @@ public class HomeScreenController {
      */
     @FXML
     public void handleAddButton() throws IOException {
-        showAddContact();
+        App.showView("AddContactView");
     }
 
 
@@ -96,29 +97,12 @@ public class HomeScreenController {
     }
 
 
-    private void showAddContact() {
-        formPane.setVisible(true);
-    }
 
-    private void resetView(){
-        formPane.setVisible(false);
 
-    }
 
-    /**
-     * Save the person in the DB when you click on the add button
-     * delete the form to add a person
-     */
-    @FXML
-    public void handleValidateButton(){
-        personDao.addPerson(new Person(birthDatePicker.getValue()));
-        formPane.setVisible(false);
-        refreshList();
-    };
 
     @FXML
     private void initialize() {
-        resetView();
         refreshList();
         contactListView.setCellFactory(contactListView -> new PersonListViewCell());
 

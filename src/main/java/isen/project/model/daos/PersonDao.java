@@ -33,7 +33,7 @@ public class PersonDao {
                                 results.getString("phone_number"),
                                 results.getString("address"),
                                 results.getString("email_address"),
-                                results.getDate("birth_date").toLocalDate());
+                                results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null);
                         persons.add(person);
                     }
                     return persons;
@@ -59,7 +59,7 @@ public class PersonDao {
                 statement.setString(4,person.getPhoneNumber());
                 statement.setString(5,person.getAddress());
                 statement.setString(6,person.getEmailAddress());
-                statement.setDate(7,Date.valueOf(person.getBirthDate()));
+                statement.setDate(7, person.getBirthDate()!=null ? Date.valueOf(person.getBirthDate()) : null);
                 statement.executeUpdate();
                 try (ResultSet keys = statement.getGeneratedKeys()) {
                     keys.next();
@@ -71,8 +71,8 @@ public class PersonDao {
         }catch (SQLException e) {
             // Manage Exception
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
 }

@@ -27,6 +27,16 @@ public class Person {
         this.birthDate = birthDate;
     }
 
+    public Person( String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.nickName = nickName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.emailAddress = emailAddress;
+        this.birthDate = birthDate;
+    }
+
     public Person(LocalDate date) {
         this.lastName = "Coucou";
         this.firstName = "Coucou";
