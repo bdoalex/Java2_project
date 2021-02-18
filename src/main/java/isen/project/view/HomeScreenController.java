@@ -4,11 +4,11 @@ import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Person;
 import isen.project.util.PersonListViewCell;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -34,6 +34,39 @@ public class HomeScreenController {
     @FXML
     private AnchorPane rightAnchorPane;
 
+    @FXML
+    private AnchorPane formPane;
+
+    @FXML
+    private TextField firstNameTextField;
+
+    @FXML
+    private TextField lastNameTextField;
+
+    @FXML
+    private TextField addressTextField;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private TextField nickNameTextField;
+
+    @FXML
+    private DatePicker birthDateTextField;
+
+    @FXML
+    private TextField PhoneTextField;
+
+    @FXML
+    private Button validateButton;
+
+    @FXML
+    private DatePicker birthDatePicker;
+
+    private Person currentPerson;
+
+
     private ObservableList<Person> contactObservableList = FXCollections.observableArrayList();
 
 
@@ -52,28 +85,43 @@ public class HomeScreenController {
      */
     @FXML
     public void handleAddButton() throws IOException {
-        showViewSplitPane(1, "AddContactView");
+        showAddContact();
     }
 
+
+
+    public void refreshList(){
+        populateList();
+        contactListView.setItems(contactObservableList);
+    }
+
+
+    private void showAddContact() {
+        formPane.setVisible(true);
+    }
+
+    private void resetView(){
+        formPane.setVisible(false);
+
+    }
 
     /**
-     * @param index element index in the splitpane
-     * @param fxml name of the view to display
-     * @throws IOException
+     * Save the person in the DB when you click on the add button
+     * delete the form to add a person
      */
-    public void showViewSplitPane(int index, String fxml) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/isen/project/view/" + fxml + ".fxml"));
-        rightAnchorPane = loader.load();
-        homeScreenPane.getItems().set(index, rightAnchorPane);
-    }
-
+    @FXML
+    public void handleValidateButton(){
+        personDao.addPerson(new Person(birthDatePicker.getValue()));
+        formPane.setVisible(false);
+        refreshList();
+    };
 
     @FXML
     private void initialize() {
-        populateList();
-        contactListView.setItems(contactObservableList);
+        resetView();
+        refreshList();
         contactListView.setCellFactory(contactListView -> new PersonListViewCell());
+
 
     }
 }

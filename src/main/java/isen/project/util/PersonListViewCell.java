@@ -26,15 +26,18 @@ public class PersonListViewCell extends ListCell<Person>{
     @FXML
     private Text textListCell;
 
+
+
     /**
      * @param person to display in the cell
      * @param empty cell or not
      */
     @Override
     protected void updateItem(Person person, boolean empty) {
+
+
+
         super.updateItem(person, empty);
-
-
 
         if(empty || person==null){
             setText(null);
