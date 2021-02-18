@@ -12,6 +12,10 @@ import javafx.util.Callback;
 import java.io.IOException;
 
 
+/**
+ * @author Alexandre BARBOSA DE OLIVEIRA & Flavien DESSE
+ * allows you to customize the display of cells in the listview
+ */
 public class PersonListViewCell extends ListCell<Person>{
 
     private FXMLLoader mLLoader;
@@ -22,6 +26,10 @@ public class PersonListViewCell extends ListCell<Person>{
     @FXML
     private Text textListCell;
 
+    /**
+     * @param person to display in the cell
+     * @param empty cell or not
+     */
     @Override
     protected void updateItem(Person person, boolean empty) {
         super.updateItem(person, empty);

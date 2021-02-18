@@ -8,6 +8,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * @author Alexandre BARBOSA DE OLIVEIRA
+ * Controller of the AddContactView
+ */
 public class AddContactViewController{
 
     PersonDao personDao = new PersonDao();
@@ -39,6 +43,10 @@ public class AddContactViewController{
     @FXML
     private DatePicker birthDatePicker;
 
+    /**
+     * Save the person in the DB when you click on the add button
+     * delete the form to add a person
+     */
     @FXML
     public void handleValidateButton(){
         personDao.addPerson(new Person(birthDatePicker.getValue()));

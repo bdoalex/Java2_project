@@ -7,6 +7,9 @@ import java.sql.SQLException;
 
 public class DataSourceFactory {
 
+    /**
+     * Connection to the DB
+     */
     private DataSourceFactory() {
 
         throw new IllegalStateException("This is a static class that should not be instantiated");
