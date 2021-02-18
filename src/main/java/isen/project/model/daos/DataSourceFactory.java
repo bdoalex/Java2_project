@@ -14,8 +14,6 @@ public class DataSourceFactory {
 
     public static Connection getConnection() throws SQLException {
         Connection cnx = DriverManager.getConnection("jdbc:sqlite:sqlite.db");
-        // Magically, java static analysis can ensure you that cnx is never null, so no need to check
-        DatabaseMetaData meta = cnx.getMetaData();
         return cnx;
     }
 

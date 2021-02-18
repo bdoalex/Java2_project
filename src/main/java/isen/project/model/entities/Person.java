@@ -1,6 +1,7 @@
 package isen.project.model.entities;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class Person {
 
@@ -11,7 +12,116 @@ public class Person {
     private String phoneNumber;
     private String address;
     private String emailAddress;
-    private Date birthDate;
+    private LocalDate birthDate;
     private Category category;
 
+
+    public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate) {
+        this.personId = personId;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.nickName = nickName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.emailAddress = emailAddress;
+        this.birthDate = birthDate;
+    }
+
+    public Person(LocalDate date) {
+        this.lastName = "Coucou";
+        this.firstName = "Coucou";
+        this.nickName = "Coucou";
+        this.phoneNumber = "Coucou";
+        this.phoneNumber = "0612027120";
+        this.address = "coucou";
+        this.emailAddress = "coucou";
+        this.birthDate = date;
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "personId=" + personId +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", birthDate=" + birthDate +
+                ", category=" + category +
+                '}';
+    }
 }

@@ -7,18 +7,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.36789297658862874" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane fx:id="homeScreenPane" dividerPositions="0.36789297658862874" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="isen.project.view.HomeScreenController">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="322.0">
+    <AnchorPane fx:id="leftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="322.0">
          <children>
-            <ListView layoutY="56.0" prefHeight="458.0" prefWidth="389.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+            <ListView fx:id="contactListView" layoutY="56.0" prefHeight="458.0" prefWidth="389.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
             <Text layoutX="-1.0" layoutY="44.58203125" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes contacts" textAlignment="CENTER" wrappingWidth="290.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button fx:id="addButton" layoutX="224.0" layoutY="11.0" mnemonicParsing="false" text="add" />
+            <Button fx:id="addButton" layoutX="224.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleAddButton" text="add" />
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="151.0" />
+    <AnchorPane fx:id="rightAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="151.0" />
   </items>
 </SplitPane>
