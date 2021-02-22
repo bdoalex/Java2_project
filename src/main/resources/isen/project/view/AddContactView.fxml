@@ -4,18 +4,23 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="formPane" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.AddContactViewController">
    <children>
-      <Text layoutX="159.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter contact" />
-      <TextField fx:id="firstNameTextField" layoutX="142.0" layoutY="85.0" promptText="Firstname" />
-      <TextField fx:id="lastNameTextField" layoutX="135.0" layoutY="138.0" promptText="lastname" />
-      <TextField fx:id="nickNameTextField" layoutX="135.0" layoutY="195.0" promptText="nickname" />
-      <TextField fx:id="addressTextField" layoutX="135.0" layoutY="250.0" promptText="address" />
-      <TextField fx:id="emailTextField" layoutX="135.0" layoutY="298.0" promptText="email" />
-      <DatePicker fx:id="birthDatePicker" layoutX="123.0" layoutY="392.0" promptText="birthdate" />
-      <TextField fx:id="phoneTextField" layoutX="135.0" layoutY="349.0" promptText="phone" />
-      <Button fx:id="validateButton" layoutX="320.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleValidateButton" text="Valider" />
+      <Text layoutX="145.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a contact" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font></Text>
+      <TextField fx:id="firstNameTextField" layoutX="126.0" layoutY="85.0" promptText="Firstname" />
+      <TextField fx:id="lastNameTextField" layoutX="125.0" layoutY="129.0" promptText="lastname" />
+      <TextField fx:id="nickNameTextField" layoutX="125.0" layoutY="175.0" promptText="nickname" />
+      <TextField fx:id="addressTextField" layoutX="125.0" layoutY="217.0" prefHeight="51.0" prefWidth="149.0" promptText="address" />
+      <TextField fx:id="emailTextField" layoutX="126.0" layoutY="283.0" promptText="email" />
+      <DatePicker fx:id="birthDatePicker" layoutX="125.0" layoutY="367.0" promptText="birthdate" />
+      <TextField fx:id="phoneTextField" layoutX="126.0" layoutY="325.0" promptText="phone" />
+      <Button fx:id="validateButton" layoutX="237.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleValidateButton" text="Add" />
+      <Button fx:id="backButton" layoutX="139.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
    </children>
 </AnchorPane>

@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="isen.project.view.LauncherScreenController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: #454545;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.LauncherScreenController">
    <children>
-      <Text fx:id="titleTextField" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="63.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre projet" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="741.6484375" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="61.0">
+      <Text fx:id="titleTextField" boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="63.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Java Contact" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="741.6484375" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="49.5">
          <font>
-            <Font name="Yu Gothic Light" size="24.0" />
+            <Font name="Elephant" size="39.0" />
          </font>
       </Text>
-      <Button fx:id="launchButton" layoutX="335.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleLaunchButton" prefHeight="25.0" prefWidth="197.0" text="Lancer projet" AnchorPane.topAnchor="211.0" />
-      <Button fx:id="creditButton" layoutX="335.0" layoutY="273.0" mnemonicParsing="false" onAction="#handleCreditButton" prefHeight="25.0" prefWidth="197.0" text="Crédit" AnchorPane.topAnchor="273.0" />
+      <Button fx:id="launchButton" layoutX="335.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleLaunchButton" prefHeight="32.0" prefWidth="197.0" text="Lancer projet" AnchorPane.topAnchor="211.0" />
+      <Button fx:id="creditButton" layoutX="335.0" layoutY="273.0" mnemonicParsing="false" onAction="#handleCreditButton" prefHeight="32.0" prefWidth="197.0" text="Crédit" AnchorPane.topAnchor="273.0" />
    </children>
+   <effect>
+      <ColorAdjust />
+   </effect>
 </AnchorPane>

@@ -10,6 +10,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
+
 public class AddContactViewController {
 
     PersonDao personDao = new PersonDao();
@@ -63,5 +65,12 @@ public class AddContactViewController {
         }
     }
 
-    ;
+    /**
+     * Display the view to add a contact
+     * @throws IOException
+     */
+    @FXML
+    public void handleBackButton() throws IOException {
+        App.showView("HomeScreen");
+    }
 }

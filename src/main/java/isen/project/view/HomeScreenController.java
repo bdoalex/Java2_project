@@ -63,6 +63,9 @@ public class HomeScreenController {
     private Button validateButton;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     private DatePicker birthDatePicker;
 
     private Person currentPerson;
@@ -87,6 +90,15 @@ public class HomeScreenController {
     @FXML
     public void handleAddButton() throws IOException {
         App.showView("AddContactView");
+    }
+
+    /**
+     * Display the view of Launcher Screen
+     * @throws IOException
+     */
+    @FXML
+    public void handleBackButton() throws IOException {
+        App.showView("LauncherScreen");
     }
 
 
