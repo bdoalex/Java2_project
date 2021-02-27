@@ -72,7 +72,7 @@ public class AddContactViewController {
                 //if not we throw an exception
 
                 String nameOfSaveFile = Constant.DEFAULT_IMAGE;
-                if(fileProfilIcon == null){
+                if(fileProfilIcon != null   ){
                     nameOfSaveFile = model.SaveFile(fileProfilIcon);
                 }
 
@@ -81,11 +81,9 @@ public class AddContactViewController {
                 personDao.addPerson(newPerson);
                 App.showView("HomeScreen");
             } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText("Erreur");//toDo : gérer en fonction de l'erreur renvoyé
+                e.printStackTrace();
                 //todo we have to delete the image if we can't add into the database
-                alert.showAndWait();
+
             }
 
 
@@ -115,10 +113,14 @@ public class AddContactViewController {
         fc.getExtensionFilters().add(imageFilter);
         //We open the file Chooser
         fileProfilIcon = fc.showOpenDialog(null);
+        if(fileProfilIcon != null){
+            Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
+            iconProfilImageView.setImage(imageProfilIcon);
+        }
         //We get the image from the file chooser
-        Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
+
         //We display the image
-        iconProfilImageView.setImage(imageProfilIcon);
+
 
     }
 }

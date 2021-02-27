@@ -22,7 +22,7 @@ public class PersonDaoTestCase {
     public void initDb() throws Exception {
         Connection connection = DataSourceFactory.getConnection();
         Statement stmt = connection.createStatement();
-
+    stmt.executeUpdate("DROP TABLE person");
         stmt.executeUpdate(
                 "CREATE TABLE IF NOT EXISTS person (" +
                         "person_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , " +
@@ -33,17 +33,18 @@ public class PersonDaoTestCase {
                         "address VARCHAR(200) NOT NULL," +
                         "email_address VARCHAR(150) NOT NULL," +
                         "birth_date DATE NULL," +
-                        "category VARCHAR(45) NOT NULL);");
+                        "category VARCHAR(45)  NULL,"+
+                        "name_file_icon VARCHAR(50) NOT NULL);");
 
 
 
         stmt.executeUpdate("DELETE FROM person");
-        stmt.executeUpdate("INSERT INTO person(person_id,lastname,firstname,nickname,phone_number,address,email_address,birth_date,category) " +
-                "VALUES (1, 'Barbo',  'Alexandre' , 'ElDeus','06060606','La vilette' ,'moi@moi.fr', '2020-2-25 12:00:00.000' , 'travail' )");
+        stmt.executeUpdate("INSERT INTO person(person_id,lastname,firstname,nickname,phone_number,address,email_address,birth_date,category,name_file_icon) " +
+                "VALUES (1, 'Barbo',  'Alexandre' , 'ElDeus','06060606','La vilette' ,'moi@moi.fr', '2020-2-25 12:00:00.000' , 'travail','defaultImage.jpg' )");
 
 
-        stmt.executeUpdate("INSERT INTO person(person_id,lastname,firstname,nickname,phone_number,address,email_address,birth_date,category) " +
-                "VALUES (2,'Jeannnnin',  'Louis' , 'ElPetou','01020304','Montpellier' ,'toi@toi.fr', '2010-1-25 12:00:00.000' , 'ecole' )");
+        stmt.executeUpdate("INSERT INTO person(person_id,lastname,firstname,nickname,phone_number,address,email_address,birth_date,category,name_file_icon) " +
+                "VALUES (2,'Jeannnnin',  'Louis' , 'ElPetou','01020304','Montpellier' ,'toi@toi.fr', '2010-1-25 12:00:00.000' , 'ecole','defaultImage.jpg' )");
 
 
 
@@ -56,12 +57,12 @@ public class PersonDaoTestCase {
     @Test
     public void ShouldGetPersonByID() {
         Person personById = personDao.GetPersonById(1);
-        Person excepted = new Person(1, "Barbo",  "Alexandre" , "ElDeus","06060606","La vilette" ,"moi@moi.fr", LocalDate.of(2020, 2, 25) );
+        Person excepted = new Person(1, "Barbo",  "Alexandre" , "ElDeus","06060606","La vilette" ,"moi@moi.fr", LocalDate.of(2020, 2, 25),"defaultImage.jpg" );
         
         assertThat(personById).isEqualToComparingFieldByField(excepted);
 
         personById = personDao.GetPersonById(2);
-        excepted = new Person(2,"Jeannnnin",  "Louis" , "ElPetou","01020304","Montpellier" ,"toi@toi.fr",  LocalDate.of(2010, 1, 25)  );
+        excepted = new Person(2,"Jeannnnin",  "Louis" , "ElPetou","01020304","Montpellier" ,"toi@toi.fr",  LocalDate.of(2010, 1, 25),"defaultImage.jpg"  );
 
         assertThat(personById).isEqualToComparingFieldByField(excepted);
 
@@ -69,7 +70,7 @@ public class PersonDaoTestCase {
 
     @Test
     public void ShouldModifyPerson() {
-        Person modified = new Person(1, "Flavien",  "Flavien2" , "ElDeus","06060606","La vilette" ,"moi@moi.fr", LocalDate.of(2020, 2, 25) );
+        Person modified = new Person(1, "Flavien",  "Flavien2" , "ElDeus","06060606","La vilette" ,"moi@moi.fr", LocalDate.of(2020, 2, 25),"defaultImage.jpg" );
         Boolean modifiedPerson = personDao.ModifyPerson(modified);
         Person exceptedById = personDao.GetPersonById(1);
 

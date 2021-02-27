@@ -64,7 +64,8 @@ public class PersonDao {
                             results.getString("phone_number"),
                             results.getString("address"),
                             results.getString("email_address"),
-                            results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null);
+                            results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null,
+                            results.getString("name_file_icon"));
                 }
             }
 

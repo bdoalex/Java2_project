@@ -1,5 +1,6 @@
 package isen.project;
 
+import isen.project.model.daos.DataSourceFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +10,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * JavaFX App
@@ -20,7 +24,12 @@ public class App extends Application {
     private static BorderPane mainLayout;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, SQLException {
+        Connection connection = DataSourceFactory.getConnection();
+        Statement stmt = connection.createStatement();
+        
+
+
         stage.setTitle("Projet Java 2");
 
         mainLayout = loadFXML("MainLayout");
