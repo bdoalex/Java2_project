@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS person
     address       VARCHAR(200) NULL,
     email_address VARCHAR(150) NULL,
     birth_date    DATE         NULL,
-    category      VARCHAR(45)  NULL
+    category      VARCHAR(45)  NULL,
+    name_file_icon VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS category

@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="formPane" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.AddContactViewController">
-   <children>
-      <Text layoutX="145.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a contact" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font></Text>
-      <TextField fx:id="firstNameTextField" layoutX="126.0" layoutY="85.0" promptText="Firstname" />
-      <TextField fx:id="lastNameTextField" layoutX="125.0" layoutY="129.0" promptText="lastname" />
-      <TextField fx:id="nickNameTextField" layoutX="125.0" layoutY="175.0" promptText="nickname" />
-      <TextField fx:id="addressTextField" layoutX="125.0" layoutY="217.0" prefHeight="51.0" prefWidth="149.0" promptText="address" />
-      <TextField fx:id="emailTextField" layoutX="126.0" layoutY="283.0" promptText="email" />
-      <DatePicker fx:id="birthDatePicker" layoutX="125.0" layoutY="367.0" promptText="birthdate" />
-      <TextField fx:id="phoneTextField" layoutX="126.0" layoutY="325.0" promptText="phone" />
-      <Button fx:id="validateButton" layoutX="237.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleValidateButton" text="Add" />
-      <Button fx:id="backButton" layoutX="139.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
-   </children>
-</AnchorPane>
+
+<ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.AddContactViewController">
+   <content>
+      <AnchorPane fx:id="formPane" prefHeight="900.0" prefWidth="400.0">
+         <children>
+            <Text layoutX="145.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a contact" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <TextField fx:id="firstNameTextField" layoutX="126.0" layoutY="85.0" promptText="Firstname" />
+            <TextField fx:id="lastNameTextField" layoutX="125.0" layoutY="129.0" promptText="lastname" />
+            <TextField fx:id="nickNameTextField" layoutX="125.0" layoutY="175.0" promptText="nickname" />
+            <TextField fx:id="addressTextField" layoutX="125.0" layoutY="217.0" prefHeight="51.0" prefWidth="149.0" promptText="address" />
+            <TextField fx:id="emailTextField" layoutX="126.0" layoutY="283.0" promptText="email" />
+            <TextField fx:id="phoneTextField" layoutX="126.0" layoutY="325.0" promptText="phone" />
+            <DatePicker fx:id="birthDatePicker" layoutX="125.0" layoutY="367.0" prefHeight="25.0" prefWidth="149.0" promptText="birthdate" />
+            <Button layoutX="127.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleChangeIconProfil" prefHeight="25.0" prefWidth="149.0" text="Ajouter une icône" />
+            <ImageView fx:id="iconProfilImageView" fitHeight="150.0" fitWidth="150.0" layoutX="125.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="validateButton" layoutX="231.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleValidateButton" text="Add" />
+            <Button fx:id="backButton" layoutX="133.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

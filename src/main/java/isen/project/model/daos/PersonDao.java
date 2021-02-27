@@ -33,7 +33,8 @@ public class PersonDao {
                                 results.getString("phone_number"),
                                 results.getString("address"),
                                 results.getString("email_address"),
-                                results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null);
+                                results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null,
+                                results.getString("name_file_icon"));
                         persons.add(person);
                     }
                     return persons;
@@ -50,7 +51,7 @@ public class PersonDao {
      */
     public Person addPerson(Person person) {
         try (Connection connection = DataSourceFactory.getConnection()) {
-            String sqlQuery = "INSERT INTO person(lastname, firstname, nickname, phone_number, address, email_address, birth_date) VALUES(?,?,?,?,?,?,?)";
+            String sqlQuery = "INSERT INTO person(lastname, firstname, nickname, phone_number, address, email_address, birth_date,name_file_icon) VALUES(?,?,?,?,?,?,?,?)";
             try (PreparedStatement statement = connection.prepareStatement(
                     sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1,person.getLastName());
@@ -60,6 +61,8 @@ public class PersonDao {
                 statement.setString(5,person.getAddress());
                 statement.setString(6,person.getEmailAddress());
                 statement.setDate(7, person.getBirthDate()!=null ? Date.valueOf(person.getBirthDate()) : null);
+                statement.setString(8,person.getNameFileIcon());
+
                 statement.executeUpdate();
                 try (ResultSet keys = statement.getGeneratedKeys()) {
                     keys.next();

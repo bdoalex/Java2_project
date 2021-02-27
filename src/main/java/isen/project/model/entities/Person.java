@@ -16,7 +16,9 @@ public class Person {
     private Category category;
 
 
-    public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate) {
+    private String nameFileIcon;
+
+    public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon) {
         this.personId = personId;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -25,9 +27,10 @@ public class Person {
         this.address = address;
         this.emailAddress = emailAddress;
         this.birthDate = birthDate;
+        this.nameFileIcon = nameFileIcon;
     }
 
-    public Person( String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate) {
+    public Person(String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.nickName = nickName;
@@ -35,6 +38,7 @@ public class Person {
         this.address = address;
         this.emailAddress = emailAddress;
         this.birthDate = birthDate;
+        this.nameFileIcon = nameFileIcon;
     }
 
     public Person(LocalDate date) {
@@ -118,6 +122,14 @@ public class Person {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getNameFileIcon() {
+        return nameFileIcon;
+    }
+
+    public void setNameFileIcon(String nameFileIcon) {
+        this.nameFileIcon = nameFileIcon;
     }
 
     @Override
