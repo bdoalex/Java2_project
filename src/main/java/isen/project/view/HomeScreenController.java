@@ -1,14 +1,10 @@
 package isen.project.view;
 
 import isen.project.App;
-import isen.project.model.daos.PersonDao;
+import isen.project.model.HomeScreenModel;
 import isen.project.model.entities.Person;
 import isen.project.util.PersonListViewCell;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
@@ -21,7 +17,9 @@ import java.io.IOException;
  */
 public class HomeScreenController {
 
-    PersonDao personDao = new PersonDao();
+
+    @FXML
+    public TextField textFieldFilter;
 
     @FXML
     public SplitPane homeScreenPane;
@@ -68,23 +66,23 @@ public class HomeScreenController {
     @FXML
     private DatePicker birthDatePicker;
 
-    private Person currentPerson;
+
+    HomeScreenModel homeScreenModel = new HomeScreenModel();
 
 
-    private ObservableList<Person> contactObservableList = FXCollections.observableArrayList();
+    @FXML
+    public void handleFilterButton() throws IOException {
 
+    }
 
     /**
      * Complete the list
      */
-    public void populateList() {
-        if (personDao.getPersons() != null) {
-            contactObservableList = personDao.getPersons();
-        }
-    }
+
 
     /**
      * Display the view to add a contact
+     *
      * @throws IOException
      */
     @FXML
@@ -94,6 +92,7 @@ public class HomeScreenController {
 
     /**
      * Display the view of Launcher Screen
+     *
      * @throws IOException
      */
     @FXML
@@ -101,23 +100,14 @@ public class HomeScreenController {
         App.showView("LauncherScreen");
     }
 
-
-
-    public void refreshList(){
-        populateList();
-        contactListView.setItems(contactObservableList);
-    }
-
-
-
-
-
-
     @FXML
     private void initialize() {
-        refreshList();
+        contactListView.setItems(homeScreenModel.getContactShown());
         contactListView.setCellFactory(contactListView -> new PersonListViewCell());
-
+        textFieldFilter.textProperty().addListener((observable, oldValue, newValue) -> {
+            homeScreenModel.Filter(observable, oldValue, newValue);
+            contactListView.setItems(homeScreenModel.getContactShown());
+        });
 
     }
 }
