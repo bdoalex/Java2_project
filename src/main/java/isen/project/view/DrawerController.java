@@ -23,10 +23,15 @@ public class DrawerController {
     @FXML
     VBox container;
 
+    //the clip is for the overflow
     private Rectangle clip;
     private Boolean isOpen = false;
 
-
+    /**
+     * Animation for the drawer
+     * we change the width and the clip ( which correspond to the overflow)
+     * @param newSize
+     */
     public void AnimationChangeWidthContainer(int newSize) {
 
 
@@ -39,7 +44,9 @@ public class DrawerController {
         timeline.play();
     }
 
-
+    /**
+     * Click on the menu
+     */
     public void ClickOnHamburger() {
 
 
@@ -57,6 +64,7 @@ public class DrawerController {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         clip = new Rectangle(Constant.WIDTH_DRAWER_CLOSE, screenBounds.getHeight());
         container.setPrefWidth(Constant.WIDTH_DRAWER_CLOSE);
+
         container.setClip(clip);
 
     }
@@ -65,6 +73,8 @@ public class DrawerController {
         parentController.HandleAddContact();
     }
 
+    //Allow the drawer to change the content of the main view
+    //That's why we need to get the parent
     public void SetParentController(HomeScreenController parentController) {
         this.parentController = parentController;
     }

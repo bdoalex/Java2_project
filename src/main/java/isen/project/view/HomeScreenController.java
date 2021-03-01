@@ -24,7 +24,6 @@ public class HomeScreenController {
     private DrawerController drawerController;
 
 
-
     @FXML
     private AnchorPane containerAnchorPane;
 
