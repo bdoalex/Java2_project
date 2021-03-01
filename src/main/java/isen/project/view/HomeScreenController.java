@@ -1,12 +1,13 @@
 package isen.project.view;
 
+import com.jfoenix.controls.JFXDrawer;
 import isen.project.App;
-import isen.project.model.HomeScreenModel;
-import isen.project.model.entities.Person;
-import isen.project.util.PersonListViewCell;
+import isen.project.model.AllContactModel;
+import isen.project.util.Constant;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -17,67 +18,15 @@ import java.io.IOException;
  */
 public class HomeScreenController {
 
+    public AnchorPane drawer;
 
     @FXML
-    public TextField textFieldFilter;
+    private DrawerController drawerController;
 
-    @FXML
-    public SplitPane homeScreenPane;
-
-    @FXML
-    private ListView contactListView;
-
-    @FXML
-    private AnchorPane leftAnchorPane;
-
-    @FXML
-    private AnchorPane rightAnchorPane;
-
-    @FXML
-    private AnchorPane formPane;
-
-    @FXML
-    private TextField firstNameTextField;
-
-    @FXML
-    private TextField lastNameTextField;
-
-    @FXML
-    private TextField addressTextField;
-
-    @FXML
-    private TextField emailTextField;
-
-    @FXML
-    private TextField nickNameTextField;
-
-    @FXML
-    private DatePicker birthDateTextField;
-
-    @FXML
-    private TextField PhoneTextField;
-
-    @FXML
-    private Button validateButton;
-
-    @FXML
-    private Button backButton;
-
-    @FXML
-    private DatePicker birthDatePicker;
-
-
-    HomeScreenModel homeScreenModel = new HomeScreenModel();
 
 
     @FXML
-    public void handleFilterButton() throws IOException {
-
-    }
-
-    /**
-     * Complete the list
-     */
+    private AnchorPane containerAnchorPane;
 
 
     /**
@@ -86,8 +35,15 @@ public class HomeScreenController {
      * @throws IOException
      */
     @FXML
-    public void handleAddButton() throws IOException {
-        App.showView("AddContactView");
+    public void HandleAddContact() throws IOException {
+
+        ChangeView("AddContactView");
+    }
+
+
+    public void ChangeView(String fxml) throws IOException {
+        containerAnchorPane.getChildren().clear();
+        containerAnchorPane.getChildren().add(App.loadFXML(fxml));
     }
 
     /**
@@ -101,13 +57,11 @@ public class HomeScreenController {
     }
 
     @FXML
-    private void initialize() {
-        contactListView.setItems(homeScreenModel.getContactShown());
-        contactListView.setCellFactory(contactListView -> new PersonListViewCell());
-        textFieldFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-            homeScreenModel.Filter(observable, oldValue, newValue);
-            contactListView.setItems(homeScreenModel.getContactShown());
-        });
+    private void initialize() throws IOException {
+        drawerController.SetParentController(this);
+        AnchorPane.setLeftAnchor(containerAnchorPane, (double) Constant.WIDTH_DRAWER_CLOSE);
+
+        ChangeView("AllContactView");
 
     }
 }

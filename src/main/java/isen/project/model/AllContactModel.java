@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 
-public class HomeScreenModel {
+public class AllContactModel {
 
     PersonDao personDao = new PersonDao();
     private Person currentPerson;
@@ -20,7 +20,7 @@ public class HomeScreenModel {
     private ObservableList<Person> contactShown = FXCollections.observableArrayList();
 
 
-    public HomeScreenModel(){
+    public AllContactModel(){
         PopulateList();
     }
 
