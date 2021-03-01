@@ -18,6 +18,10 @@ public class Person {
 
     private String nameFileIcon;
 
+    public Person() {
+
+    }
+
     public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon) {
         this.personId = personId;
         this.lastName = lastName;
