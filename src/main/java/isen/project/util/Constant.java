@@ -12,4 +12,6 @@ public  class Constant {
 
     public static  int WIDTH_DRAWER_CLOSE= 50;
     public static  int WIDTH_DRAWER_OPEN= 150;
+
+    public static  int HEIGHT_LIST_CELL= 50;
 }

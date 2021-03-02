@@ -19,32 +19,72 @@
                       <FontIcon iconLiteral="fa-bars" iconSize="32" onMouseClicked="#ClickOnHamburger" text="" />
                   </children>
               </HBox>
-              <HBox alignment="CENTER_LEFT" onMouseClicked="#HandleAddContact" prefHeight="50.0">
-                  <FontIcon iconLiteral="fa-user-plus" iconSize="32">
-                      <HBox.margin>
-                          <Insets left="8.0" right="8.0" />
-                      </HBox.margin>
-                  </FontIcon>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add contact" wrappingWidth="93.13671875">
-                      <font>
-                          <Font size="10.0" />
-                      </font>
-                  </Text>
-              </HBox>
-              <HBox alignment="CENTER_LEFT" prefHeight="50.0">
-                  <children>
-                      <FontIcon iconLiteral="fa-cogs" iconSize="32">
-                          <HBox.margin>
-                              <Insets left="8.0" right="8.0" />
-                          </HBox.margin>
-                      </FontIcon>
-                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" wrappingWidth="93.13671875">
-                          <font>
+            <AnchorPane prefHeight="50.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontIcon iconLiteral="fa-home" iconSize="32" selectionFill="BLACK">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </FontIcon>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HOME" wrappingWidth="93.13671875">
+                           <font>
                               <Font size="10.0" />
-                          </font>
-                      </Text>
-                  </children>
-              </HBox>
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="50.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontIcon iconLiteral="fa-user-plus" iconSize="32" selectionFill="BLACK">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </FontIcon>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADD CONTACT" wrappingWidth="93.13671875">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="50.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontIcon iconLiteral="fa-cogs" iconSize="32" selectionFill="BLACK">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </FontIcon>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS" wrappingWidth="93.13671875">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
           </children>
       </VBox>
    </children>

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" >
-   <children>
-      <Text fx:id="textListCell" strokeType="OUTSIDE" strokeWidth="0.0" text="TEXTE" />
-   </children>
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Text fx:id="nameContact" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="5.0" />
+        <ImageView fx:id="imageContact" fitHeight="50.0" fitWidth="50.0" layoutX="-87.0" layoutY="-50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="-0.0" AnchorPane.topAnchor="0.0" />
+        <Text fx:id="telContact" layoutX="10.0" layoutY="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="80.0" />
+        <FontIcon iconLiteral="fa-caret-right" iconSize="50" layoutX="207.0" layoutY="42.0" AnchorPane.bottomAnchor="0.8571434020996094" AnchorPane.rightAnchor="14.14285659790039" AnchorPane.topAnchor="-0.8571434020996094" />
+    </children>
 </AnchorPane>
