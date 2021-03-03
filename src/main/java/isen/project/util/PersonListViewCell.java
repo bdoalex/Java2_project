@@ -5,11 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 import java.io.IOException;
+import java.net.URL;
 
 
 /**
@@ -21,10 +24,23 @@ public class PersonListViewCell extends ListCell<Person>{
     private FXMLLoader mLLoader;
 
     @FXML
+    private ListView parentListView;
+
+    @FXML
     private AnchorPane anchorPane;
 
     @FXML
-    private Text textListCell;
+    private Text nameContact;
+
+    @FXML
+    private Text telContact;
+
+    @FXML
+    private ImageView imageContact;
+
+    public PersonListViewCell(ListView list) {
+        parentListView = list;
+    }
 
 
 
@@ -52,7 +68,14 @@ public class PersonListViewCell extends ListCell<Person>{
                 e.printStackTrace();
             }
 
-            textListCell.setText(person.getFirstName());
+            Image image = new Image("file:\\"+Constant.URL_TO_IMAGE+person.getNameFileIcon());
+
+
+            imageContact.setImage(image);
+            nameContact.setText(person.getFirstName());
+            telContact.setText(person.getPhoneNumber());
+            anchorPane.prefWidthProperty().bind(parentListView.widthProperty().subtract(50));
+
             setGraphic(anchorPane);
         }
 

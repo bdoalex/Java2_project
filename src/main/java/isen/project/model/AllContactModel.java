@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 
-public class HomeScreenModel {
+public class AllContactModel {
 
     PersonDao personDao = new PersonDao();
     private Person currentPerson;
@@ -20,13 +20,12 @@ public class HomeScreenModel {
     private ObservableList<Person> contactShown = FXCollections.observableArrayList();
 
 
-    public HomeScreenModel(){
+    public AllContactModel() {
         PopulateList();
     }
 
 
-
-    public InvalidationListener Filter(Observable observable,String oldValue,String newValue) {
+    public InvalidationListener Filter(Observable observable, String oldValue, String newValue) {
 
 
         FilteredList<Person> filteredData = new FilteredList<>(allContact, p -> true);
@@ -39,10 +38,14 @@ public class HomeScreenModel {
             // Compare first name and last name of every person with filter text.
             String lowerCaseFilter = newValue.toLowerCase();
 
-            if (person.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
+            if (person.getFirstName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getFirstName().toLowerCase())) {
                 return true; // Filter matches first name.
-            } else if (person.getLastName().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (person.getLastName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getLastName().toLowerCase())) {
                 return true; // Filter matches last name.
+            } else if (person.getPhoneNumber().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getPhoneNumber().toLowerCase())) {
+                return true;
+            } else if (person.getAddress().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getAddress().toLowerCase())) {
+                return true;
             }
             return false; // Does not match.
         });
@@ -51,15 +54,12 @@ public class HomeScreenModel {
     }
 
 
-
     public void PopulateList() {
         if (personDao.getPersons() != null) {
             allContact = personDao.getPersons();
             contactShown = personDao.getPersons();
         }
     }
-
-
 
 
     public ObservableList<Person> getContactShown() {
