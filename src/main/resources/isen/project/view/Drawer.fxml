@@ -16,14 +16,14 @@
       
               <HBox alignment="CENTER" prefHeight="50.0">
                   <children>
-                      <FontIcon iconLiteral="fa-bars" iconSize="32" onMouseClicked="#ClickOnHamburger" text="" />
+                      <FontIcon iconLiteral="fas-bars" iconSize="32" onMouseClicked="#ClickOnHamburger" text="" />
                   </children>
               </HBox>
             <AnchorPane prefHeight="50.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <FontIcon iconLiteral="fa-home" iconSize="32" selectionFill="BLACK">
+                        <FontIcon iconLiteral="fas-home" iconSize="32" selectionFill="BLACK">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -45,7 +45,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <FontIcon iconLiteral="fa-user-plus" iconSize="32" selectionFill="BLACK">
+                        <FontIcon iconLiteral="fas-user-plus" iconSize="32" selectionFill="BLACK">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -67,7 +67,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <FontIcon iconLiteral="fa-cogs" iconSize="32" selectionFill="BLACK">
+                        <FontIcon iconLiteral="fas-file-import" iconSize="32" selectionFill="BLACK">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -76,7 +76,29 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS" wrappingWidth="93.13671875">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IMPORT" wrappingWidth="93.13671875">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="50.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontIcon iconLiteral="fas-file-export" iconSize="32" selectionFill="BLACK">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </FontIcon>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EXPORT" wrappingWidth="93.13671875">
                            <font>
                               <Font size="10.0" />
                            </font>
