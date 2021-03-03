@@ -21,7 +21,7 @@
               </HBox>
             <AnchorPane prefHeight="50.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <FontIcon iconLiteral="fas-home" iconSize="32" selectionFill="BLACK">
                            <VBox.margin>
@@ -29,6 +29,9 @@
                            </VBox.margin>
                         </FontIcon>
                      </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -51,6 +54,9 @@
                            </VBox.margin>
                         </FontIcon>
                      </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -65,7 +71,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="50.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <FontIcon iconLiteral="fas-file-import" iconSize="32" selectionFill="BLACK">
                            <VBox.margin>
@@ -73,6 +79,9 @@
                            </VBox.margin>
                         </FontIcon>
                      </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -87,7 +96,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="50.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <FontIcon iconLiteral="fas-file-export" iconSize="32" selectionFill="BLACK">
                            <VBox.margin>
@@ -95,6 +104,9 @@
                            </VBox.margin>
                         </FontIcon>
                      </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
                      <children>
