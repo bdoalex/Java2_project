@@ -45,6 +45,7 @@ public class HomeScreenController {
         containerAnchorPane.getChildren().add(App.loadFXML(fxml));
     }
 
+
     /**
      * Display the view of Launcher Screen
      *

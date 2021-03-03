@@ -16,14 +16,14 @@
       
               <HBox alignment="CENTER" prefHeight="50.0">
                   <children>
-                      <FontIcon iconLiteral="fa-bars" iconSize="32" onMouseClicked="#ClickOnHamburger" text="" />
+                      <FontIcon iconColor="#4285f4" iconLiteral="fa-bars" iconSize="32" onMouseClicked="#ClickOnHamburger" text="" />
                   </children>
               </HBox>
-            <AnchorPane prefHeight="50.0">
+            <AnchorPane onMouseClicked="#HomeMouseClicked" prefHeight="50.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <FontIcon iconLiteral="fa-home" iconSize="32" selectionFill="BLACK">
+                        <FontIcon iconColor="#4285f4" iconLiteral="fa-home" iconSize="32" selectionFill="BLACK" text="">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -41,11 +41,11 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="50.0">
+            <AnchorPane onMouseClicked="#AddContactMouseClicked" prefHeight="50.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <FontIcon iconLiteral="fa-user-plus" iconSize="32" selectionFill="BLACK">
+                        <FontIcon iconColor="#4285f4" iconLiteral="fa-user-plus" iconSize="32" selectionFill="BLACK" text="">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -67,7 +67,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <FontIcon iconLiteral="fa-cogs" iconSize="32" selectionFill="BLACK">
+                        <FontIcon iconColor="#4285f4" iconLiteral="fa-cogs" iconSize="32" selectionFill="BLACK">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
