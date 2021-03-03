@@ -18,7 +18,7 @@ import java.io.IOException;
 public class DrawerController {
 
     @FXML
-    private HomeScreenController parentController;
+    private HomeScreenController HomeScreenParentController;
 
     @FXML
     VBox container;
@@ -69,13 +69,25 @@ public class DrawerController {
 
     }
 
+    @FXML
+    public void HomeMouseClicked() throws IOException {
+        HomeScreenParentController.ChangeView("AllContactView");
+    }
+
+    @FXML
+    public void AddContactMouseClicked() throws IOException {
+        HomeScreenParentController.ChangeView("AddContactView");
+
+    }
+
+
     public void HandleAddContact(MouseEvent mouseEvent) throws IOException {
-        parentController.HandleAddContact();
+        HomeScreenParentController.HandleAddContact();
     }
 
     //Allow the drawer to change the content of the main view
     //That's why we need to get the parent
     public void SetParentController(HomeScreenController parentController) {
-        this.parentController = parentController;
+        this.HomeScreenParentController = parentController;
     }
 }
