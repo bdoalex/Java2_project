@@ -79,12 +79,21 @@ public class AddContactViewController {
                 //if not we throw an exception
 
                 String nameOfSaveFile = Constant.DEFAULT_IMAGE;
+                Category category = new Category();
                 if (fileProfilIcon != null) {
                     nameOfSaveFile = model.SaveFile(fileProfilIcon);
                 }
+                if (comboBoxCategory.getValue()!=null) {
+                    category = categoryDao.getCategory(comboBoxCategory.getValue());
+
+                }
+
+                System.out.println(category.getCategory_name());
+                System.out.println(category.getCategory_id());
 
 
-                Person newPerson = new Person(lastNameTextField.getText(), firstNameTextField.getText(), nickNameTextField.getText(), phoneTextField.getText(), addressTextField.getText(), emailTextField.getText(), birthDatePicker.getValue(), nameOfSaveFile);
+
+                Person newPerson = new Person(lastNameTextField.getText(), firstNameTextField.getText(), nickNameTextField.getText(), phoneTextField.getText(), addressTextField.getText(), emailTextField.getText(), birthDatePicker.getValue(), nameOfSaveFile, category.getCategory_id() );
                 personDao.addPerson(newPerson);
                 App.showView("HomeScreen");
             } catch (Exception e) {

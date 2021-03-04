@@ -5,6 +5,10 @@ package isen.project.model.entities;
  */
 public class Category {
 
+    public Category() {
+    this.category_name = "unknown";
+    }
+
     public int getCategory_id() {
         return category_id;
     }

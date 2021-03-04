@@ -13,7 +13,7 @@ public class Person {
     private String address;
     private String emailAddress;
     private LocalDate birthDate;
-    private Category category;
+    private int categoryId;
 
 
     private String nameFileIcon;
@@ -22,7 +22,7 @@ public class Person {
 
     }
 
-    public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon) {
+    public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon, int categoryId) {
         this.personId = personId;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -32,10 +32,12 @@ public class Person {
         this.emailAddress = emailAddress;
         this.birthDate = birthDate;
         this.nameFileIcon = nameFileIcon;
+        this.categoryId = categoryId;
+
     }
 
-    public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon, Category category) {
-        this.personId = personId;
+
+    public Person(String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon, int categoryId) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.nickName = nickName;
@@ -44,18 +46,7 @@ public class Person {
         this.emailAddress = emailAddress;
         this.birthDate = birthDate;
         this.nameFileIcon = nameFileIcon;
-        this.category = category;
-    }
-
-    public Person(String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.nickName = nickName;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.emailAddress = emailAddress;
-        this.birthDate = birthDate;
-        this.nameFileIcon = nameFileIcon;
+        this.categoryId = categoryId;
     }
 
     public Person(LocalDate date) {
@@ -69,76 +60,77 @@ public class Person {
         this.birthDate = date;
     }
 
+
     public int getPersonId() {
         return personId;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public Category getCategory() {
-        return category;
     }
 
     public void setPersonId(int personId) {
         this.personId = personId;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getNameFileIcon() {
@@ -147,20 +139,5 @@ public class Person {
 
     public void setNameFileIcon(String nameFileIcon) {
         this.nameFileIcon = nameFileIcon;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "personId=" + personId +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
-                ", birthDate=" + birthDate +
-                ", category=" + category +
-                '}';
     }
 }
