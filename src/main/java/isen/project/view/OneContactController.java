@@ -8,8 +8,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -21,19 +26,19 @@ public class OneContactController extends ParentController {
     Person actualPerson;
 
     @FXML
-    JFXButton buttonBack;
+    Circle iconProfilCircle;
 
     @FXML
-    ImageView profilIcon;
+    JFXButton buttonBack;
+
+
 
     @FXML
     Text phoneNumber;
 
     @FXML
-    Text lastName;
+    Text name;
 
-    @FXML
-    Text firstName;
 
     @FXML
     Text nickName;
@@ -53,9 +58,12 @@ public class OneContactController extends ParentController {
     public void setActualPerson(Person actualPerson) {
         this.actualPerson = actualPerson;
 
+
+
+
         phoneNumber.setText(actualPerson.getPhoneNumber());
-        lastName.setText(actualPerson.getLastName());
-        firstName.setText(actualPerson.getFirstName());
+        name.setText(actualPerson.getFirstName() + " " +actualPerson.getLastName());
+
         nickName.setText(actualPerson.getNickName());
         adress.setText(actualPerson.getAddress());
         email.setText(actualPerson.getEmailAddress());
@@ -70,8 +78,7 @@ public class OneContactController extends ParentController {
         }
 
         Image image = new Image("file:\\" + Constant.URL_TO_IMAGE + actualPerson.getNameFileIcon());
-        profilIcon.setImage(image);
-
+        iconProfilCircle.setFill(new ImagePattern(image));
 
 
 
