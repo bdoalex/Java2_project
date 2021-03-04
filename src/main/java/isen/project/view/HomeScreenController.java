@@ -1,5 +1,6 @@
 package isen.project.view;
 
+import com.jfoenix.controls.JFXSnackbar;
 import isen.project.App;
 import isen.project.ParentController;
 import isen.project.model.HomeScreenModel;
@@ -62,6 +63,10 @@ public class HomeScreenController {
         containerAnchorPane.getChildren().add(load);
     }
 
+    public void reloadFromDb() {
+        homeScreenModel.populateList();
+    }
+
 
     public void changeViewToAllContact() throws IOException {
         containerAnchorPane.getChildren().clear();
@@ -109,5 +114,12 @@ public class HomeScreenController {
 
         changeViewToAllContact();
 
+    }
+
+    public void showSuccessSnackBar(String success) {
+        JFXSnackbar bar = new JFXSnackbar(containerAnchorPane);
+        String css = this.getClass().getResource("/isen/project/css/SnackBarSuccess.css").toExternalForm();
+        bar.getStylesheets().add(css);
+        bar.enqueue(new JFXSnackbar.SnackbarEvent(success));
     }
 }

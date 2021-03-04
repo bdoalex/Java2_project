@@ -4,12 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -17,23 +13,32 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../css/OneContactView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.OneContactController">
     <children>
-        <AnchorPane prefHeight="200.0" prefWidth="0.0" style="-fx-background-color: #737479;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <AnchorPane prefHeight="200.0" prefWidth="0.0" style="-fx-background-color: #4285f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Pane prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #4285f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
-                <Text fx:id="name" fill="WHITE" layoutX="200.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NAME" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="50.0">
+                <Pane prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #0E1B33;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
+                <Text fx:id="name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="NAME" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="20.0">
                <font>
-                  <Font name="Font Awesome 5 Brands Regular" size="18.0" />
+                  <Font name="Franklin Gothic Medium" size="18.0" />
                </font></Text>
-                <Text fx:id="phoneNumber" fill="WHITE" layoutX="194.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PHONE" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="70.0">
+                <Text fx:id="phoneNumber" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PHONE" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="60.0">
                <font>
-                  <Font name="Verdana" size="13.0" />
+                  <Font name="Franklin Gothic Medium" size="16.0" />
                </font></Text>
+                  <Text fx:id="nickName" fill="#c3c3c3" strokeType="OUTSIDE" strokeWidth="0.0" text="NICK NAME" textAlignment="RIGHT" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="40.0">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="13.0" />
+               </font>
+            </Text>
             <Circle fx:id="iconProfilCircle" radius="60.0" strokeType="INSIDE" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="40.0">
                <effect>
                   <DropShadow />
                </effect>
             </Circle>
-            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="60.0">
+                  <Text fx:id="adress" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ADRESS" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="110.0" />
+                  <Text fx:id="email" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="EMAIL" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="130.0" />
+                  <Text fx:id="birthDate" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="BIRTH DATE" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="150.0" />
+                  <Text fx:id="category" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="CATEGORY" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="170.0" />
+            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="70.0">
                <children>
                   <FontIcon iconColor="WHITE" iconLiteral="far-edit" iconSize="16" text="">
                      <HBox.margin>
@@ -49,45 +54,11 @@
             </HBox>
             </children>
         </AnchorPane>
-        <GridPane prefHeight="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <VBox alignment="TOP_RIGHT" prefWidth="100.0" spacing="5.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nick Name" textAlignment="RIGHT" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adress" textAlignment="RIGHT" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" textAlignment="RIGHT" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" textAlignment="RIGHT" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" textAlignment="RIGHT" />
-                    </children>
-                    <padding>
-                        <Insets right="20.0" />
-                    </padding>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1">
-                    <children>
-                        <Text fx:id="nickName" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
-                        <Text fx:id="adress" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
-                        <Text fx:id="email" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
-                        <Text fx:id="birthDate" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
-                        <Text fx:id="category" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
-                    </children>
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                </VBox>
-            </children>
-        </GridPane>
         <JFXButton id="buttonBack" fx:id="buttonBack" buttonType="RAISED" graphicTextGap="8.0" onAction="#handleButtonBack" prefHeight="25.0" prefWidth="75.0" text="Back" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
             <graphic>
                 <FontIcon fill="WHITE" iconLiteral="fas-long-arrow-alt-left" iconSize="16" wrappingWidth="14.0" />
             </graphic>
         </JFXButton>
+      <FontIcon onMouseClicked="#handleClickOnTrash" iconColor="RED" iconLiteral="far-trash-alt" iconSize="16" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
     </children>
 </AnchorPane>

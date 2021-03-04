@@ -1,0 +1,16 @@
+.jfx-snackbar-content {
+    -fx-background-color: GREEN;
+    -fx-pref-width: 150px;
+    -fx-border-radius:30;
+    -fx-background-radius:30
+
+
+}
+
+.jfx-snackbar-toast {
+    -fx-text-fill: WHITE;
+    -fx-alignment: center;
+    -fx-pref-height: 20px;
+
+    -fx-font-size: 14px;
+}

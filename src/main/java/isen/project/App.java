@@ -1,14 +1,19 @@
 package isen.project;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import isen.project.model.daos.DataSourceFactory;
 import isen.project.util.Constant;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -16,6 +21,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * JavaFX App
@@ -23,6 +30,9 @@ import java.sql.Statement;
 public class App extends Application {
 
     private static Scene scene;
+
+    private static JFXDialog dialog;
+
 
     private static AnchorPane mainLayout;
 
@@ -36,6 +46,10 @@ public class App extends Application {
         stage.setTitle("Projet Java 2");
 
         mainLayout = loadFXML("MainLayout");
+
+
+
+
 
         scene = new Scene(mainLayout, 850, 500);
 
@@ -51,21 +65,16 @@ public class App extends Application {
         });
 
 
-
-
         stage.heightProperty().addListener((obs, oldVal, newVal) -> {
             // Do whatever you want
         });
 
 
+        mainLayout.getChildren().add(loadFXML("LauncherScreen"));
 
-        App.showView("LauncherScreen");
 
     }
 
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
 
     public static <T> T loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/" + fxml + ".fxml"));
@@ -92,6 +101,31 @@ public class App extends Application {
             // exception as an argument allows that !
             throw new IllegalArgumentException(e);
         }
+    }
+
+
+    public static void showDialog(JFXDialogLayout content,List<Button> allActions){
+        StackPane stackPane = new StackPane();
+        AnchorPane.setLeftAnchor(stackPane,0.0);
+        AnchorPane.setRightAnchor(stackPane,0.0);
+        AnchorPane.setTopAnchor(stackPane,0.0);
+        AnchorPane.setBottomAnchor(stackPane,0.0);
+
+        App.getMainLayout().getChildren().add(stackPane);
+        dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+
+        content.setActions(allActions);
+
+        dialog.show();
+    }
+
+    public static void closeDialog(){
+        dialog.close();
+        mainLayout.getChildren().remove(dialog.getDialogContainer());
+    }
+
+    public static AnchorPane getMainLayout() {
+        return mainLayout;
     }
 
     public static void main(String[] args) {
