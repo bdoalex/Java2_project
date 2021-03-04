@@ -41,7 +41,7 @@ public class PersonDao {
                 }
             }
         } catch (SQLException e) {
-            return null; //toDo : bien gérer les exceptions
+            throw new RuntimeException("Error", e);
         }
     }
     /**
@@ -71,8 +71,8 @@ public class PersonDao {
 
         }catch (SQLException e) {
             // Manage Exception
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Error", e);
+
         }
     }
 
@@ -99,8 +99,7 @@ public class PersonDao {
 
         }catch (SQLException e) {
             // Manage Exception
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("Error", e);
         }
     }
 
@@ -132,8 +131,7 @@ public class PersonDao {
 
         }catch (SQLException e) {
             // Manage Exception
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Error", e);
         }
     }
 

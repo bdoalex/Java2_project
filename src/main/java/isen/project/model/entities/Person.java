@@ -34,6 +34,19 @@ public class Person {
         this.nameFileIcon = nameFileIcon;
     }
 
+    public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon, Category category) {
+        this.personId = personId;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.nickName = nickName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.emailAddress = emailAddress;
+        this.birthDate = birthDate;
+        this.nameFileIcon = nameFileIcon;
+        this.category = category;
+    }
+
     public Person(String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon) {
         this.lastName = lastName;
         this.firstName = firstName;
