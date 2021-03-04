@@ -38,7 +38,7 @@ public class PersonDao {
                                 results.getString("email_address"),
                                 results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null,
                                 results.getString("name_file_icon"),
-                                category.getCategory_id());
+                                category);
                         ;
                         persons.add(person);
                     }
@@ -73,7 +73,7 @@ public class PersonDao {
                             results.getString("email_address"),
                             results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null,
                             results.getString("name_file_icon"),
-                            category.getCategory_id());
+                            category);
 
                 }
             }
@@ -100,7 +100,7 @@ public class PersonDao {
                 statement.setString(5,person.getAddress());
                 statement.setString(6,person.getEmailAddress());
                 statement.setDate(7, person.getBirthDate()!=null ? Date.valueOf(person.getBirthDate()) : null);
-                statement.setInt(8,person.getCategoryId());
+                statement.setInt(8,person.getCategory().getCategory_id());
                 statement.setInt(9, person.getPersonId());
                 statement.executeUpdate();
                 return true;
@@ -130,7 +130,7 @@ public class PersonDao {
                 statement.setString(6,person.getEmailAddress());
                 statement.setDate(7, person.getBirthDate()!=null ? Date.valueOf(person.getBirthDate()) : null);
                 statement.setString(8,person.getNameFileIcon());
-                statement.setInt(9, person.getCategoryId());
+                statement.setInt(9, person.getCategory().getCategory_id());
 
 
                 statement.executeUpdate();

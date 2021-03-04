@@ -11,9 +11,9 @@ import org.junit.Test;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
-
 
 
 public class CategoryDaosTestCase {
@@ -44,8 +44,6 @@ public class CategoryDaosTestCase {
     }
 
 
-
-
     @Test
     public void shouldAddCategories() throws Exception {
         // WHEN
@@ -69,4 +67,5 @@ public class CategoryDaosTestCase {
         Assertions.assertThat(category.getCategory_id()).isEqualTo(2);
         Assertions.assertThat(category.getCategory_name()).isEqualTo("Family");
     }
+
 }

@@ -42,7 +42,7 @@ public class IOContacts {
                                 results.getString("email_address"),
                                 results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null,
                                 results.getString("name_file_icon"),
-                                category.getCategory_id());
+                                category);
                         ;
                         persons.add(person);
                     }

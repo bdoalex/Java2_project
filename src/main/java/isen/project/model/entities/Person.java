@@ -13,7 +13,7 @@ public class Person {
     private String address;
     private String emailAddress;
     private LocalDate birthDate;
-    private int categoryId;
+    private Category category;
 
 
     private String nameFileIcon;
@@ -22,7 +22,7 @@ public class Person {
 
     }
 
-    public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon, int categoryId) {
+    public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon, Category category) {
         this.personId = personId;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -32,12 +32,11 @@ public class Person {
         this.emailAddress = emailAddress;
         this.birthDate = birthDate;
         this.nameFileIcon = nameFileIcon;
-        this.categoryId = categoryId;
-
+        this.category = category;
     }
 
 
-    public Person(String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon, int categoryId) {
+    public Person(String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon, Category category) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.nickName = nickName;
@@ -46,7 +45,7 @@ public class Person {
         this.emailAddress = emailAddress;
         this.birthDate = birthDate;
         this.nameFileIcon = nameFileIcon;
-        this.categoryId = categoryId;
+        this.category = category;
     }
 
     public Person(LocalDate date) {
@@ -125,12 +124,12 @@ public class Person {
         this.birthDate = birthDate;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getNameFileIcon() {

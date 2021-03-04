@@ -93,7 +93,7 @@ public class AddContactViewController {
 
 
 
-                Person newPerson = new Person(lastNameTextField.getText(), firstNameTextField.getText(), nickNameTextField.getText(), phoneTextField.getText(), addressTextField.getText(), emailTextField.getText(), birthDatePicker.getValue(), nameOfSaveFile, category.getCategory_id() );
+                Person newPerson = new Person(lastNameTextField.getText(), firstNameTextField.getText(), nickNameTextField.getText(), phoneTextField.getText(), addressTextField.getText(), emailTextField.getText(), birthDatePicker.getValue(), nameOfSaveFile, category );
                 personDao.addPerson(newPerson);
                 App.showView("HomeScreen");
             } catch (Exception e) {
