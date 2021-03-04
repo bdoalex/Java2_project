@@ -1,6 +1,23 @@
 .list-cell{ /* <=== changed to even */
     -fx-background-color: white;
 }
+.list-cell:filled:hover{ /* <=== changed to even */
+    -fx-background-color: #4285f4;
+}
+.list-cell:filled:hover #nameContact{ /* <=== changed to even */
+    -fx-fill: white;
+}
+.list-cell:filled:hover{ /* <=== changed to even */
+    -fx-background-color: #4285f4;
+}
+.list-cell:filled:hover #telContact{ /* <=== changed to even */
+    -fx-fill: white;
+}
+.list-cell:filled:hover #iconCaret{ /* <=== changed to even */
+    iconColor: white;
+    -fx-icon-color: white;
+}
+
 
 .table-row-cell:empty {
     -fx-background-color: white;
@@ -9,3 +26,4 @@
 .table-row-cell:empty .table-cell {
     -fx-border-width: 0px;
 }
+

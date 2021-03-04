@@ -1,5 +1,6 @@
 package isen.project.view;
 
+import isen.project.ParentController;
 import isen.project.util.Constant;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -15,10 +16,9 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class DrawerController {
+public class DrawerController  extends ParentController {
 
-    @FXML
-    private HomeScreenController HomeScreenParentController;
+
 
     @FXML
     VBox container;
@@ -32,7 +32,7 @@ public class DrawerController {
      * we change the width and the clip ( which correspond to the overflow)
      * @param newSize
      */
-    public void AnimationChangeWidthContainer(int newSize) {
+    public void animationChangeWidthContainer(int newSize) {
 
 
         Duration cycleDuration = Duration.millis(500);
@@ -47,14 +47,14 @@ public class DrawerController {
     /**
      * Click on the menu
      */
-    public void ClickOnHamburger() {
+    public void clickOnHamburger() {
 
 
         isOpen = !isOpen;
         if (isOpen) {
-            AnimationChangeWidthContainer(Constant.WIDTH_DRAWER_OPEN);
+            animationChangeWidthContainer(Constant.WIDTH_DRAWER_OPEN);
         } else {
-            AnimationChangeWidthContainer(Constant.WIDTH_DRAWER_CLOSE);
+            animationChangeWidthContainer(Constant.WIDTH_DRAWER_CLOSE);
 
         }
     }
@@ -70,24 +70,22 @@ public class DrawerController {
     }
 
     @FXML
-    public void HomeMouseClicked() throws IOException {
-        HomeScreenParentController.ChangeView("AllContactView");
+    public void homeMouseClicked() throws IOException {
+        homeScreenParentController.changeViewToAllContact();
     }
 
     @FXML
-    public void AddContactMouseClicked() throws IOException {
-        HomeScreenParentController.ChangeView("AddContactView");
+    public void addContactMouseClicked() throws IOException {
+        homeScreenParentController.changeView("AddContactView");
 
     }
 
 
-    public void HandleAddContact(MouseEvent mouseEvent) throws IOException {
-        HomeScreenParentController.HandleAddContact();
+    public void handleAddContact(MouseEvent mouseEvent) throws IOException {
+        homeScreenParentController.HandleAddContact();
     }
 
     //Allow the drawer to change the content of the main view
     //That's why we need to get the parent
-    public void SetParentController(HomeScreenController parentController) {
-        this.HomeScreenParentController = parentController;
-    }
+
 }

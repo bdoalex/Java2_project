@@ -1,13 +1,14 @@
 package isen.project.view;
 
-import com.jfoenix.controls.JFXDrawer;
 import isen.project.App;
-import isen.project.model.AllContactModel;
+import isen.project.ParentController;
+import isen.project.model.HomeScreenModel;
+import isen.project.model.entities.Person;
 import isen.project.util.Constant;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -23,6 +24,7 @@ public class HomeScreenController {
     @FXML
     private DrawerController drawerController;
 
+    private HomeScreenModel homeScreenModel;
 
     @FXML
     private AnchorPane containerAnchorPane;
@@ -36,13 +38,56 @@ public class HomeScreenController {
     @FXML
     public void HandleAddContact() throws IOException {
 
-        ChangeView("AddContactView");
+        changeView("AddContactView");
+    }
+
+    /**
+     * @param fxml         the name of the file of the view
+     * @param actualPerson the person which we want to see the sheet
+     * @throws IOException
+     */
+    public void changeViewToOneContact(String fxml, Person actualPerson) throws IOException {
+        containerAnchorPane.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/" + fxml + ".fxml"));
+
+
+        Node load = fxmlLoader.load();
+
+
+        OneContactController controller = fxmlLoader.getController();
+        controller.setParentController(this);
+        controller.setActualPerson(actualPerson);
+
+
+        containerAnchorPane.getChildren().add(load);
     }
 
 
-    public void ChangeView(String fxml) throws IOException {
+    public void changeViewToAllContact() throws IOException {
         containerAnchorPane.getChildren().clear();
-        containerAnchorPane.getChildren().add(App.loadFXML(fxml));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/AllContactView.fxml"));
+
+
+        Node load = fxmlLoader.load();
+
+
+        AllContactController controller = fxmlLoader.getController();
+        controller.setParentController(this);
+        controller.setAllContact(homeScreenModel.getAllContact());
+
+        containerAnchorPane.getChildren().add(load);
+    }
+
+
+    public void changeView(String fxml) throws IOException {
+        containerAnchorPane.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/" + fxml + ".fxml"));
+
+
+        Node load = fxmlLoader.load();
+
+
+        containerAnchorPane.getChildren().add(load);
     }
 
 
@@ -58,10 +103,11 @@ public class HomeScreenController {
 
     @FXML
     private void initialize() throws IOException {
-        drawerController.SetParentController(this);
+        homeScreenModel = new HomeScreenModel();
+        drawerController.setParentController(this);
         AnchorPane.setLeftAnchor(containerAnchorPane, (double) Constant.WIDTH_DRAWER_CLOSE);
 
-        ChangeView("AllContactView");
+        changeViewToAllContact();
 
     }
 }

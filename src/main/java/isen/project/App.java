@@ -72,6 +72,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
+
     public static void showView(String rootElement) {
         try {
             // We can only set the center of a borderPane, not a Parent, so we rely on

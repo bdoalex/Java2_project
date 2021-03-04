@@ -11,17 +11,15 @@ import javafx.collections.transformation.SortedList;
 
 public class AllContactModel {
 
-    PersonDao personDao = new PersonDao();
     private Person currentPerson;
 
+
     private ObservableList<Person> allContact = FXCollections.observableArrayList();
-
-
     private ObservableList<Person> contactShown = FXCollections.observableArrayList();
 
 
-    public AllContactModel() {
-        PopulateList();
+    public AllContactModel(ObservableList<Person> allPerson) {
+        contactShown = allPerson;
     }
 
 
@@ -54,12 +52,7 @@ public class AllContactModel {
     }
 
 
-    public void PopulateList() {
-        if (personDao.getPersons() != null) {
-            allContact = personDao.getPersons();
-            contactShown = personDao.getPersons();
-        }
-    }
+
 
 
     public ObservableList<Person> getContactShown() {

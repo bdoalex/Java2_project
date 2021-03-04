@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane stylesheets="@../css/OneContactView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.OneContactController">
+    <children>
+      
+        <VBox alignment="CENTER" layoutX="242.0" prefHeight="150.0" prefWidth="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <ImageView fx:id="profilIcon" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            </children>
+        </VBox>
+        <GridPane prefHeight="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <VBox alignment="TOP_RIGHT" prefWidth="100.0" spacing="5.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number" textAlignment="RIGHT" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" textAlignment="RIGHT" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" textAlignment="RIGHT" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nick Name" textAlignment="RIGHT" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adress" textAlignment="RIGHT" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" textAlignment="RIGHT" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" textAlignment="RIGHT" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" textAlignment="RIGHT" />
+                    </children>
+                    <padding>
+                        <Insets right="20.0" />
+                    </padding>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1">
+                    <children>
+                        <Text fx:id="phoneNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
+                        <Text fx:id="lastName" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
+                        <Text fx:id="firstName" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
+                        <Text fx:id="nickName" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
+                        <Text fx:id="adress" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
+                        <Text fx:id="email" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
+                        <Text fx:id="birthDate" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
+                        <Text fx:id="category" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST" />
+                    </children>
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </GridPane>
+      <JFXButton id="buttonBack" fx:id="buttonBack" buttonType="RAISED" graphicTextGap="8.0" onAction="#handleButtonBack" prefHeight="25.0" prefWidth="75.0" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+          <graphic>
+              <FontIcon fill="WHITE" iconLiteral="fas-long-arrow-alt-left" iconSize="16" wrappingWidth="14.0" />
+          </graphic>
+      </JFXButton>
+    </children>
+</AnchorPane>
