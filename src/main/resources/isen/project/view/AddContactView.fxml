@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.AddContactViewController">
+<ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.AddContactViewController">
    <content>
       <AnchorPane fx:id="formPane" prefHeight="900.0" prefWidth="400.0">
          <children>
@@ -30,7 +26,7 @@
             <ImageView fx:id="iconProfilImageView" fitHeight="150.0" fitWidth="150.0" layoutX="125.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="validateButton" layoutX="231.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleValidateButton" text="Add" />
             <Button fx:id="backButton" layoutX="133.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
-            <JFXComboBox fx:id="comboBoxCategory" editable="true" layoutX="126.0" layoutY="62.0" prefHeight="25.0" prefWidth="150.0" promptText="Category" />
+            <JFXComboBox fx:id="comboBoxCategory" layoutX="126.0" layoutY="62.0" prefHeight="25.0" prefWidth="150.0" promptText="Category" />
          </children>
       </AnchorPane>
    </content>

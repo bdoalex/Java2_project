@@ -35,6 +35,7 @@ public class CategoryDao {
 
     /**
      * adds a new category
+     *
      * @param name
      */
     public void addCategory(String name) {
@@ -44,9 +45,27 @@ public class CategoryDao {
                 stmt.executeUpdate();
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Something went horribly wrong with our DB and you cannot do much about it !",
+            throw new RuntimeException("Something went horribly wrong with our DB",
                     e);
         }
+    }
+
+    public Category getCategory(String name) {
+        try (Connection connection = DataSourceFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM category WHERE category_name = ?")) {
+                statement.setString(1, name);
+                try (ResultSet results = statement.executeQuery()) {
+                    if (results.next()) {
+                        return new Category(results.getInt("category_id"), results.getString("category_name"));
+                    }
+
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Something went horribly wrong with our DB",
+                    e);
+        }
+        return null;
     }
 
 

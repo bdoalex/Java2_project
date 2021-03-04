@@ -4,6 +4,7 @@ import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.DataSourceFactory;
 import isen.project.model.entities.Category;
 import javafx.collections.ObservableList;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -60,5 +61,12 @@ public class CategoryDaosTestCase {
         resultSet.close();
         statement.close();
         connection.close();
+    }
+
+    @Test
+    public void shouldGetCategoryByName() {
+        Category category = this.categoryDao.getCategory("Family");
+        Assertions.assertThat(category.getCategory_id()).isEqualTo(2);
+        Assertions.assertThat(category.getCategory_name()).isEqualTo("Family");
     }
 }
