@@ -2,15 +2,17 @@ package isen.project.view;
 
 import isen.project.App;
 import isen.project.model.AddContactModel;
+import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.PersonDao;
+import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.scene.image.ImageView;
 
@@ -22,6 +24,7 @@ import java.net.URISyntaxException;
 public class AddContactViewController {
 
     PersonDao personDao = new PersonDao();
+    CategoryDao categoryDao = new CategoryDao();
 
     AddContactModel model = new AddContactModel();
 
@@ -54,6 +57,10 @@ public class AddContactViewController {
     @FXML
     private Button validateButton;
 
+    @FXML
+    private ComboBox<String> comboBoxCategory;
+
+
     /**
      * Save the person in the DB when you click on the add button
      * delete the form to add a person
@@ -72,7 +79,7 @@ public class AddContactViewController {
                 //if not we throw an exception
 
                 String nameOfSaveFile = Constant.DEFAULT_IMAGE;
-                if(fileProfilIcon != null   ){
+                if (fileProfilIcon != null) {
                     nameOfSaveFile = model.SaveFile(fileProfilIcon);
                 }
 
@@ -113,7 +120,7 @@ public class AddContactViewController {
         fc.getExtensionFilters().add(imageFilter);
         //We open the file Chooser
         fileProfilIcon = fc.showOpenDialog(null);
-        if(fileProfilIcon != null){
+        if (fileProfilIcon != null) {
             Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
             iconProfilImageView.setImage(imageProfilIcon);
         }
@@ -121,6 +128,24 @@ public class AddContactViewController {
 
         //We display the image
 
+    }
+
+
+    /**
+     * Fill combo box category.
+     */
+    public void fillComboBoxCategory() {
+        ObservableList<Category> categories = FXCollections.observableArrayList();
+        categories = categoryDao.listCategories();
+
+        for (Category category : categories) {
+            comboBoxCategory.getItems().add(category.getCategory_name());
+        }
+    }
+
+    @FXML
+    private void initialize() throws IOException {
+        fillComboBoxCategory();
 
     }
 }

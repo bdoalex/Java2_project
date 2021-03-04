@@ -22,7 +22,7 @@ public class PersonDaoTestCase {
     public void initDb() throws Exception {
         Connection connection = DataSourceFactory.getConnection();
         Statement stmt = connection.createStatement();
-    stmt.executeUpdate("DROP TABLE person");
+        stmt.executeUpdate("DROP TABLE person");
         stmt.executeUpdate(
                 "CREATE TABLE IF NOT EXISTS person (" +
                         "person_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , " +

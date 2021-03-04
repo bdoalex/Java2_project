@@ -23,6 +23,7 @@ public class CategoryDaosTestCase {
     public void initDatabase() throws Exception {
         Connection connection = DataSourceFactory.getConnection();
         Statement stmt = connection.createStatement();
+        stmt.executeUpdate("DROP TABLE category");
         stmt.executeUpdate("CREATE TABLE IF NOT EXISTS category(category_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, category_name VARCHAR(45) NOT NULL);");
         stmt.executeUpdate("DELETE FROM category");
         stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (1,'Friends')");
@@ -47,14 +48,14 @@ public class CategoryDaosTestCase {
     @Test
     public void shouldAddCategories() throws Exception {
         // WHEN
-        categoryDao.addCategory("Friend");
+        categoryDao.addCategory("School");
         // THEN
         Connection connection = DataSourceFactory.getConnection();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM category WHERE category_name='Friend'");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM category WHERE category_name='School'");
         assertThat(resultSet.next()).isTrue();
         assertThat(resultSet.getInt("category_id")).isNotNull();
-        assertThat(resultSet.getString("category_name")).isEqualTo("Friend");
+        assertThat(resultSet.getString("category_name")).isEqualTo("School");
         assertThat(resultSet.next()).isFalse();
         resultSet.close();
         statement.close();
