@@ -70,7 +70,7 @@
                <children>
                   <HBox alignment="CENTER" prefWidth="0.0">
                      <children>
-                        <FontIcon iconLiteral="fas-map-marker-alt" iconSize="16">
+                        <FontIcon iconColor="#4285f4" iconLiteral="fas-map-marker-alt" iconSize="18" text="">
                            <font>
                               <Font size="1.0" />
                            </font>
@@ -78,7 +78,10 @@
                               <Insets right="8.0" />
                            </HBox.margin>
                         </FontIcon>
-                              <Text fx:id="adress" strokeType="OUTSIDE" strokeWidth="0.0" text="ADDRESS" />
+                              <Text fx:id="adress" strokeType="OUTSIDE" strokeWidth="0.0" text="ADDRESS">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Text>
                      </children>
                      <padding>
                         <Insets bottom="10.0" />
@@ -86,12 +89,15 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
                      <children>
-                        <FontIcon iconLiteral="far-envelope" iconSize="16">
+                        <FontIcon iconColor="#4285f4" iconLiteral="far-envelope" iconSize="18">
                            <HBox.margin>
                               <Insets right="8.0" />
                            </HBox.margin>
                         </FontIcon>
-                              <Text fx:id="email" strokeType="OUTSIDE" strokeWidth="0.0" text="EMAIL" />
+                              <Text fx:id="email" strokeType="OUTSIDE" strokeWidth="0.0" text="EMAIL">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Text>
                      </children>
                      <padding>
                         <Insets bottom="10.0" />
@@ -99,12 +105,15 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
                      <children>
-                        <FontIcon iconLiteral="fas-birthday-cake" iconSize="16">
+                        <FontIcon iconColor="#4285f4" iconLiteral="fas-birthday-cake" iconSize="18" text="">
                            <HBox.margin>
                               <Insets right="8.0" />
                            </HBox.margin>
                         </FontIcon>
-                              <Text fx:id="birthDate" strokeType="OUTSIDE" strokeWidth="0.0" text="BIRTH DATE" />
+                              <Text fx:id="birthDate" strokeType="OUTSIDE" strokeWidth="0.0" text="BIRTH DATE">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Text>
                      </children>
                      <padding>
                         <Insets bottom="10.0" />
@@ -123,7 +132,7 @@
             </VBox>
          </children>
       </AnchorPane>
-        <JFXButton id="buttonBack" fx:id="buttonBack" buttonType="RAISED" graphicTextGap="8.0" onAction="#handleButtonBack" prefHeight="25.0" prefWidth="75.0" text="Back" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <JFXButton id="buttonBack" fx:id="buttonBack" buttonType="RAISED" graphicTextGap="8.0" onAction="#handleButtonBack" prefHeight="25.0" prefWidth="75.0" text="Back" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <graphic>
                 <FontIcon fill="WHITE" iconLiteral="fas-long-arrow-alt-left" iconSize="16" wrappingWidth="14.0" />
             </graphic>

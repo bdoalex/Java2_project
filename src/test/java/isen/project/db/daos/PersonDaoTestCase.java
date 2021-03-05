@@ -57,7 +57,7 @@ public class PersonDaoTestCase {
 
     @Test
     public void ShouldGetPersonByID() {
-        Person person = personDao.GetPersonById(1);
+        Person person = personDao.getPersonById(1);
 
         assertThat(person.getPersonId() == 1);
         assertThat(person.getFirstName()).isEqualTo("Alexandre");
