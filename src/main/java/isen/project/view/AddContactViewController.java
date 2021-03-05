@@ -80,13 +80,16 @@ public class AddContactViewController {
 
                 String nameOfSaveFile = Constant.DEFAULT_IMAGE;
                 Category category = new Category();
-                if (fileProfilIcon != null) {
-                    nameOfSaveFile = model.SaveFile(fileProfilIcon);
-                }
-                if (comboBoxCategory.getValue()!=null) {
-                    category = categoryDao.getCategory(comboBoxCategory.getValue());
 
+                if (fileProfilIcon != null) nameOfSaveFile = model.SaveFile(fileProfilIcon);
+
+                if (comboBoxCategory.getValue() == null) {
+                    category = categoryDao.getCategory(category.getCategory_name());
+                } else {
+                    category = categoryDao.getCategory(comboBoxCategory.getValue());
                 }
+
+
 
                 System.out.println(category.getCategory_name());
                 System.out.println(category.getCategory_id());

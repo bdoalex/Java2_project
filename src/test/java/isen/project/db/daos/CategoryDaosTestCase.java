@@ -27,9 +27,11 @@ public class CategoryDaosTestCase {
         stmt.executeUpdate("DROP TABLE category");
         stmt.executeUpdate("CREATE TABLE IF NOT EXISTS category(category_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, category_name VARCHAR(45) NOT NULL);");
         stmt.executeUpdate("DELETE FROM category");
-        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (1,'Friends')");
-        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (2,'Family')");
-        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (3,'Work')");
+        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (1,'Unknown')");
+        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (2,'Friends')");
+        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (3,'Family')");
+        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (4,'Work')");
+
         stmt.close();
         connection.close();
     }
@@ -38,9 +40,9 @@ public class CategoryDaosTestCase {
     public void shouldListCategories() {
         ObservableList<Category> categories = categoryDao.listCategories();
 
-        assertThat(categories).hasSize(3);
-        assertThat(categories).extracting("category_id", "category_name").containsOnly(tuple(1, "Friends"), tuple(2, "Family"),
-                tuple(3, "Work"));
+        assertThat(categories).hasSize(4);
+        assertThat(categories).extracting("category_id", "category_name").containsOnly(tuple(1, "Unknown"),tuple(2, "Friends"), tuple(3, "Family"),
+                tuple(4, "Work"));
     }
 
 
@@ -64,7 +66,7 @@ public class CategoryDaosTestCase {
     @Test
     public void shouldGetCategoryByName() {
         Category category = this.categoryDao.getCategory("Family");
-        Assertions.assertThat(category.getCategory_id()).isEqualTo(2);
+        Assertions.assertThat(category.getCategory_id()).isEqualTo(3);
         Assertions.assertThat(category.getCategory_name()).isEqualTo("Family");
     }
 

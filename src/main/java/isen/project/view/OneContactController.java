@@ -26,6 +26,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,15 +68,36 @@ public class OneContactController extends ParentController {
     public void setActualPerson(Person actualPerson) {
         this.actualPerson = actualPerson;
 
+        if (actualPerson.getPhoneNumber().equals("")){
+            phoneNumber.setText("Unknown");
+        }else{
+            phoneNumber.setText(actualPerson.getPhoneNumber());
+        }
 
-        phoneNumber.setText(actualPerson.getPhoneNumber());
+        if (actualPerson.getAddress().equals("")){
+            adress.setText("Unknown");
+        }else{
+            adress.setText(actualPerson.getAddress());
+        }
+
+        System.out.println(actualPerson.getEmailAddress());
+        if (actualPerson.getEmailAddress().equals("")){
+            email.setText("Unknown");
+        }else{
+            email.setText(actualPerson.getEmailAddress());
+        }
+
+        if (actualPerson.getBirthDate()==null){
+            birthDate.setText("Unknown");
+        }else{
+            birthDate.setText(actualPerson.getBirthDate().toString());
+        }
+
+
         name.setText(actualPerson.getFirstName() + " " + actualPerson.getLastName());
-
         nickName.setText(actualPerson.getNickName());
-        adress.setText(actualPerson.getAddress());
-        email.setText(actualPerson.getEmailAddress());
-        birthDate.setText(actualPerson.getBirthDate() == null ? "" : actualPerson.getBirthDate().toString());
         category.setText(actualPerson.getCategory().getCategory_name());
+
 
         FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/ContactListCell.fxml"));
         mLLoader.setController(this);
