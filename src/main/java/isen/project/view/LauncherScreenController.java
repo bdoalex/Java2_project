@@ -26,7 +26,7 @@ public class LauncherScreenController {
      */
     @FXML
     private void handleCreditButton(){
-
+        App.showView("CreditView");
     }
 
 }
