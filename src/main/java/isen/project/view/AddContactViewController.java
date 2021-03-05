@@ -88,8 +88,7 @@ public class AddContactViewController {
 
                 }
 
-                System.out.println(category.getCategory_name());
-                System.out.println(category.getCategory_id());
+
 
 
 
@@ -148,7 +147,7 @@ public class AddContactViewController {
         categories = categoryDao.listCategories();
 
         for (Category category : categories) {
-            comboBoxCategory.getItems().add(category.getCategory_name());
+            comboBoxCategory.getItems().add(category.getName());
         }
     }
 

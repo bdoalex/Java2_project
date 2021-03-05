@@ -75,7 +75,7 @@ public class OneContactController extends ParentController {
         adress.setText(actualPerson.getAddress());
         email.setText(actualPerson.getEmailAddress());
         birthDate.setText(actualPerson.getBirthDate() == null ? "" : actualPerson.getBirthDate().toString());
-        category.setText(actualPerson.getCategory().getCategory_name());
+        category.setText(actualPerson.getCategory().getName());
 
         FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/ContactListCell.fxml"));
         mLLoader.setController(this);
