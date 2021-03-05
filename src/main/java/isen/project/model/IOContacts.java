@@ -2,6 +2,7 @@ package isen.project.model;
 
 import isen.project.model.daos.DataSourceFactory;
 import isen.project.model.daos.PersonDao;
+import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
 import javafx.collections.FXCollections;
@@ -22,13 +23,15 @@ import java.util.Scanner; // Import the Scanner class to read text files
 
 public class IOContacts {
 
-    private ObservableList<Person> getData() {
+    public ObservableList<Person> getData() {
         ObservableList<Person> persons = FXCollections.observableArrayList();
 
         try (Connection connection = DataSourceFactory.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM person")) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM person JOIN category ON person.category_id = category.category_id")) {
                 try (ResultSet results = statement.executeQuery()) {
                     while (results.next()) {
+                        Category category = new Category(results.getInt("category_id"),results.getString("category_name")) ;
+
                         Person person = new Person(
                                 results.getInt("person_id"),
                                 results.getString("lastname"),
@@ -38,14 +41,16 @@ public class IOContacts {
                                 results.getString("address"),
                                 results.getString("email_address"),
                                 results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null,
-                                results.getString("name_file_icon"));
+                                results.getString("name_file_icon"),
+                                category);
+                        ;
                         persons.add(person);
                     }
                     return persons;
                 }
             }
         } catch (SQLException e) {
-            return null; //toDo : bien gérer les exceptions
+            throw new RuntimeException("Error", e);
         }
     }
 

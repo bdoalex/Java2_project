@@ -1,5 +1,6 @@
 package isen.project.model.daos;
 
+import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -22,9 +23,11 @@ public class PersonDao {
         ObservableList<Person> persons = FXCollections.observableArrayList();
 
         try (Connection connection = DataSourceFactory.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM person")) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM person JOIN category ON person.category_id = category.category_id")) {
                 try (ResultSet results = statement.executeQuery()) {
                     while (results.next()) {
+                        Category category = new Category(results.getInt("category_id"),results.getString("category_name")) ;
+
                         Person person = new Person(
                                 results.getInt("person_id"),
                                 results.getString("lastname"),
@@ -33,15 +36,18 @@ public class PersonDao {
                                 results.getString("phone_number"),
                                 results.getString("address"),
                                 results.getString("email_address"),
-                                results.getDate("birth_date") != null ? results.getDate("birth_date").toLocalDate() : null,
-                                results.getString("name_file_icon"));
+
+                                results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null,
+                                results.getString("name_file_icon"),
+                                category);
+                        ;
                         persons.add(person);
                     }
                     return persons;
                 }
             }
         } catch (SQLException e) {
-            return null; //toDo : bien gérer les exceptions
+            throw new RuntimeException("Error", e);
         }
     }
 
@@ -51,12 +57,14 @@ public class PersonDao {
      */
     public Person getPersonById(int id) {
         try (Connection connection = DataSourceFactory.getConnection()) {
-            String sqlQuery = "SELECT * FROM person WHERE person_id = ?";
+            String sqlQuery = "SELECT * FROM person JOIN category ON person.category_id = category.category_id WHERE person_id = ?";
             try (PreparedStatement statement = connection.prepareStatement(
                     sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setInt(1, id);
                 try (ResultSet results = statement.executeQuery()) {
                     results.next();
+                    Category category = new Category(results.getInt("category_id"),results.getString("category_name")) ;
+
                     return new Person(
                             results.getInt("person_id"),
                             results.getString("lastname"),
@@ -65,15 +73,18 @@ public class PersonDao {
                             results.getString("phone_number"),
                             results.getString("address"),
                             results.getString("email_address"),
-                            results.getDate("birth_date") != null ? results.getDate("birth_date").toLocalDate() : null,
-                            results.getString("name_file_icon"));
+
+                            results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null,
+                            results.getString("name_file_icon"),
+                            category);
+
                 }
             }
 
         } catch (SQLException e) {
             // Manage Exception
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Error", e);
+
         }
     }
 
@@ -101,16 +112,18 @@ public class PersonDao {
      */
     public Boolean ModifyPerson(Person person) {
         try (Connection connection = DataSourceFactory.getConnection()) {
-            String sqlQuery = "UPDATE person SET lastname = ? , firstname = ? , nickname = ? , phone_number = ?, address = ? , email_address = ?, birth_date = ?  WHERE person_id = ?";
+            String sqlQuery = "UPDATE person SET lastname = ? , firstname = ? , nickname = ? , phone_number = ?, address = ? , email_address = ?, birth_date = ?, category_id = ?  WHERE person_id = ?";
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
-                statement.setString(1, person.getLastName());
-                statement.setString(2, person.getFirstName());
-                statement.setString(3, person.getNickName());
-                statement.setString(4, person.getPhoneNumber());
-                statement.setString(5, person.getAddress());
-                statement.setString(6, person.getEmailAddress());
-                statement.setDate(7, person.getBirthDate() != null ? Date.valueOf(person.getBirthDate()) : null);
-                statement.setInt(8, person.getPersonId());
+
+                statement.setString(1,person.getLastName());
+                statement.setString(2,person.getFirstName());
+                statement.setString(3,person.getNickName());
+                statement.setString(4,person.getPhoneNumber());
+                statement.setString(5,person.getAddress());
+                statement.setString(6,person.getEmailAddress());
+                statement.setDate(7, person.getBirthDate()!=null ? Date.valueOf(person.getBirthDate()) : null);
+                statement.setInt(8,person.getCategory().getCategory_id());
+                statement.setInt(9, person.getPersonId());
                 statement.executeUpdate();
                 return true;
 
@@ -118,8 +131,7 @@ public class PersonDao {
 
         } catch (SQLException e) {
             // Manage Exception
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("Error", e);
         }
     }
 
@@ -129,17 +141,20 @@ public class PersonDao {
      */
     public Person addPerson(Person person) {
         try (Connection connection = DataSourceFactory.getConnection()) {
-            String sqlQuery = "INSERT INTO person(lastname, firstname, nickname, phone_number, address, email_address, birth_date,name_file_icon) VALUES(?,?,?,?,?,?,?,?)";
+            String sqlQuery = "INSERT INTO person(lastname, firstname, nickname, phone_number, address, email_address, birth_date,name_file_icon, category_id) VALUES(?,?,?,?,?,?,?,?,?)";
             try (PreparedStatement statement = connection.prepareStatement(
                     sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
-                statement.setString(1, person.getLastName());
-                statement.setString(2, person.getFirstName());
-                statement.setString(3, person.getNickName());
-                statement.setString(4, person.getPhoneNumber());
-                statement.setString(5, person.getAddress());
-                statement.setString(6, person.getEmailAddress());
-                statement.setDate(7, person.getBirthDate() != null ? Date.valueOf(person.getBirthDate()) : null);
-                statement.setString(8, person.getNameFileIcon());
+
+                statement.setString(1,person.getLastName());
+                statement.setString(2,person.getFirstName());
+                statement.setString(3,person.getNickName());
+                statement.setString(4,person.getPhoneNumber());
+                statement.setString(5,person.getAddress());
+                statement.setString(6,person.getEmailAddress());
+                statement.setDate(7, person.getBirthDate()!=null ? Date.valueOf(person.getBirthDate()) : null);
+                statement.setString(8,person.getNameFileIcon());
+                statement.setInt(9, person.getCategory().getCategory_id());
+
 
                 statement.executeUpdate();
                 try (ResultSet keys = statement.getGeneratedKeys()) {
@@ -151,8 +166,7 @@ public class PersonDao {
 
         } catch (SQLException e) {
             // Manage Exception
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Error", e);
         }
     }
 
