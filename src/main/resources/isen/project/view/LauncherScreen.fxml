@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefWidth="868.0" style="-fx-background-color: #454545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.LauncherScreenController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.LauncherScreenController" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
    <children>
-      <BorderPane>
-         <center>
-            <Text fx:id="titleTextField" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Java Contact" textAlignment="CENTER" textOrigin="CENTER" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton onAction="#handleLaunchButton" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #4285F4;" text="Launch" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Roboto Medium" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton onAction="#handleCreditButton" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #4285F4;" text="Credit" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="20.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Text fx:id="titleTextField" fill="#4285f4" strokeType="OUTSIDE" strokeWidth="0.0" text="Java Contact" textAlignment="CENTER" textOrigin="CENTER">
                <font>
                   <Font name="Elephant" size="39.0" />
                </font>
-               <BorderPane.margin>
-                  <Insets top="20.0" />
-               </BorderPane.margin>
             </Text>
-         </center>
-      </BorderPane>
-      <BorderPane>
-         <center>
-            <Button fx:id="launchButton" mnemonicParsing="false" onAction="#handleLaunchButton" prefHeight="32.0" prefWidth="197.0" text="Lancer projet" BorderPane.alignment="CENTER" />
-         </center>
-         <VBox.margin>
-            <Insets top="50.0" />
-         </VBox.margin>
-      </BorderPane>
-      <BorderPane>
-         <center>
-            <Button fx:id="creditButton" mnemonicParsing="false" onAction="#handleCreditButton" prefHeight="32.0" prefWidth="197.0" text="Crédit" BorderPane.alignment="CENTER" />
-         </center>
-         <VBox.margin>
-            <Insets top="50.0" />
-         </VBox.margin>
-      </BorderPane>
+         </children>
+      </VBox>
    </children>
-</VBox>
+</AnchorPane>
