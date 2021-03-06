@@ -39,7 +39,7 @@ public class CategoryDaosTestCase {
         ObservableList<Category> categories = categoryDao.listCategories();
 
         assertThat(categories).hasSize(3);
-        assertThat(categories).extracting("category_id", "category_name").containsOnly(tuple(1, "Friends"), tuple(2, "Family"),
+        assertThat(categories).extracting("id", "name").containsOnly(tuple(1, "Friends"), tuple(2, "Family"),
                 tuple(3, "Work"));
     }
 
