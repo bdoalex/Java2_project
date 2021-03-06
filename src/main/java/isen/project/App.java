@@ -5,15 +5,20 @@ import com.jfoenix.controls.JFXDialog;
 import isen.project.model.daos.DataSourceFactory;
 import isen.project.util.Constant;
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -121,6 +126,38 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static String saveProfilIcon(File fileProfilIcon) throws IOException {
+        //We load our file into Image
+        Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
+        String fileName = fileProfilIcon.getName();
+        String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, fileProfilIcon.getName().length());
+
+        //We transform our image to saveable file
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageProfilIcon, null);
+        String nameOfSaveFile = java.util.UUID.randomUUID().toString() +"."+fileExtension;
+        //We generate random id
+        File fileToSave = new File(Constant.URL_TO_IMAGE +  nameOfSaveFile);
+        //We save our file into fileIcon
+        ImageIO.write(bufferedImage, "png", fileToSave);
+
+        return nameOfSaveFile;
+
+    }
+
+    public static Boolean deleteProfilIcon(String nameFile) throws IOException {
+        //We load our file into Image
+        File file = new File(Constant.URL_TO_IMAGE + nameFile);
+
+        if(file.delete())
+        {
+          return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

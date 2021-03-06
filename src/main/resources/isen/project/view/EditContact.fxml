@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import com.jfoenix.controls.JFXDatePicker?>
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.EditContactController">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modification" />
-      <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" fx:id="containerGridPane">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MODIFICATION">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Text>
+      <GridPane fx:id="containerGridPane" alignment="CENTER" hgap="20.0" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -33,60 +35,88 @@
             <RowConstraints minHeight="10.0" prefHeight="50.0" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" textAlignment="CENTER" GridPane.halignment="RIGHT">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nick Name" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nick Name" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Text>
-            <JFXTextField fx:id="textFieldLastName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.valignment="CENTER" />
-            <JFXTextField fx:id="textFieldFirstName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <JFXTextField fx:id="textFieldLNickName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-             <JFXTextField fx:id="textFieldAddress" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <JFXTextField fx:id="textFieldPhone" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-             <JFXTextField fx:id="textFieldEmail" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <JFXTextField fx:id="textFieldLNickName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <JFXTextField fx:id="textFieldAddress" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <JFXTextField fx:id="textFieldPhone" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+             <JFXTextField fx:id="textFieldEmail" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-             <JFXTextField fx:id="textFieldCategory" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+             <JFXTextField fx:id="textFieldCategory" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+             <JFXDatePicker fx:id="datePickerBirth" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+             <ImageView fx:id="imageViewProfilIcon" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#handleClickOnView" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
-             <ImageView  fx:id="imageViewProfilIcon" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-
-             <JFXButton buttonType="RAISED" onAction="#handleButtonCancel" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="BOTTOM">
+             <JFXButton buttonType="RAISED" onAction="#handleButtonCancel" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </JFXButton>
-            <JFXButton buttonType="RAISED" onAction="#handleButtonAccept" text="Validate" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="BOTTOM" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profil Icon" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+            <JFXButton buttonType="RAISED" onAction="#handleButtonAccept" text="Validate" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="BOTTOM" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profil Icon" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+            <GridPane hgap="20.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" textAlignment="CENTER" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Text>
+                  <JFXTextField fx:id="textFieldLastName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+            <GridPane hgap="20.0" GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" GridPane.halignment="LEFT">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Text>
+                  <JFXTextField fx:id="textFieldFirstName" maxWidth="150.0" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+            <JFXButton text="Default" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets left="60.0" />
+               </GridPane.margin>
+            </JFXButton>
+
 
 
          </children>

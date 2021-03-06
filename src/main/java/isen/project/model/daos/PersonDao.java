@@ -112,7 +112,7 @@ public class PersonDao {
      */
     public Boolean modifyPerson(Person person) {
         try (Connection connection = DataSourceFactory.getConnection()) {
-            String sqlQuery = "UPDATE person SET lastname = ? , firstname = ? , nickname = ? , phone_number = ?, address = ? , email_address = ?, birth_date = ?, category_id = ?  WHERE person_id = ?";
+            String sqlQuery = "UPDATE person SET lastname = ? , firstname = ? , nickname = ? , phone_number = ?, address = ? , email_address = ?, birth_date = ?, category_id = ? , name_file_icon = ?  WHERE person_id = ?";
             try (PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
 
                 statement.setString(1,person.getLastName());
@@ -123,7 +123,8 @@ public class PersonDao {
                 statement.setString(6,person.getEmailAddress());
                 statement.setDate(7, person.getBirthDate()!=null ? Date.valueOf(person.getBirthDate()) : null);
                 statement.setInt(8,person.getCategory().getCategory_id());
-                statement.setInt(9, person.getPersonId());
+                statement.setString(9,person.getNameFileIcon());
+                statement.setInt(10, person.getPersonId());
                 statement.executeUpdate();
                 return true;
 

@@ -8,11 +8,15 @@ import isen.project.model.entities.Person;
 import isen.project.util.Constant;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import org.apache.commons.io.FilenameUtils;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.IOException;
+
 public class EditContactController {
 
     @FXML
@@ -30,12 +34,14 @@ public class EditContactController {
     public JFXTextField textFieldAddress;
     @FXML
     public JFXTextField textFieldPhone;
-
+    @FXML
     public JFXDatePicker datePickerBirth;
     @FXML
     public JFXTextField textFieldEmail;
     @FXML
     public ImageView imageViewProfilIcon;
+
+    File fileProfilIcon;
 
     int posInGlobalList;
     Person actualPerson;
@@ -48,10 +54,7 @@ public class EditContactController {
         textFieldFirstName.setText(actualPerson.getFirstName());
         //textFieldCategory.setText(actualPerson.getCategory().get);
 
-        JFXDatePicker datePickerBirth = new JFXDatePicker();
 
-
-        containerGridPane.add(datePickerBirth,1,7);
 
         if (actualPerson.getBirthDate() != null) {
             datePickerBirth.setValue(actualPerson.getBirthDate());
@@ -80,14 +83,46 @@ public class EditContactController {
         App.closeDialog();
     }
 
-    public void handleButtonAccept(ActionEvent actionEvent) {
+    public void handleButtonAccept(ActionEvent actionEvent) throws IOException {
+        String nameOfSaveFile = Constant.DEFAULT_IMAGE;
+        System.out.println(actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE));
+        System.out.println(actualPerson.getNameFileIcon());
+        if (fileProfilIcon != null) {
+            if(!actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE)){
+                if(App.deleteProfilIcon(actualPerson.getNameFileIcon())){
+
+                    nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
+                }
+                else{
+                    //todo print red toast
+                    return;
+                }
+            }
+            else{
+                nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
+            }
 
 
-        Person newPerson = new Person( actualPerson.getPersonId(),textFieldLastName.getText(),textFieldFirstName.getText(),textFieldLNickName.getText(),textFieldPhone.getText(),textFieldAddress.getText(),textFieldEmail.getText(),datePickerBirth.getValue(),FilenameUtils.getName(imageViewProfilIcon.getImage().getUrl()),actualPerson.getCategory());
+        }
+        Person newPerson = new Person( actualPerson.getPersonId(),textFieldLastName.getText(),textFieldFirstName.getText(),textFieldLNickName.getText(),textFieldPhone.getText(),textFieldAddress.getText(),textFieldEmail.getText(),datePickerBirth.getValue(),nameOfSaveFile,actualPerson.getCategory());
         parentController.setActualPerson(newPerson);
         parentController.getHomeScreenParentController().getHomeScreenModel().modifyOneContact(posInGlobalList,newPerson);
         PersonDao dao = new PersonDao();
         dao.modifyPerson(newPerson);
         App.closeDialog();
+    }
+
+    public void handleClickOnView(MouseEvent mouseEvent) {
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+
+
+        fc.getExtensionFilters().add(imageFilter);
+        //We open the file Chooser
+        fileProfilIcon = fc.showOpenDialog(null);
+        if (fileProfilIcon != null) {
+            Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
+            imageViewProfilIcon.setImage(imageProfilIcon);
+        }
     }
 }
