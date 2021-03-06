@@ -7,21 +7,34 @@ import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import org.apache.commons.io.FilenameUtils;
 public class EditContactController {
 
+    @FXML
+    public GridPane containerGridPane;
 
+    @FXML
     public JFXTextField textFieldLastName;
+    @FXML
     public JFXTextField textFieldFirstName;
+    @FXML
     public JFXTextField textFieldCategory;
+    @FXML
     public JFXTextField textFieldLNickName;
+    @FXML
     public JFXTextField textFieldAddress;
+    @FXML
     public JFXTextField textFieldPhone;
-    public DatePicker datePickerBirth;
+
+    public JFXDatePicker datePickerBirth;
+    @FXML
     public JFXTextField textFieldEmail;
+    @FXML
     public ImageView imageViewProfilIcon;
 
     int posInGlobalList;
@@ -34,6 +47,12 @@ public class EditContactController {
         textFieldLastName.setText(actualPerson.getLastName());
         textFieldFirstName.setText(actualPerson.getFirstName());
         //textFieldCategory.setText(actualPerson.getCategory().get);
+
+        JFXDatePicker datePickerBirth = new JFXDatePicker();
+
+
+        containerGridPane.add(datePickerBirth,1,7);
+
         if (actualPerson.getBirthDate() != null) {
             datePickerBirth.setValue(actualPerson.getBirthDate());
         }
@@ -45,6 +64,11 @@ public class EditContactController {
         imageViewProfilIcon.setImage(image);
 
         this.actualPerson = actualPerson;
+    }
+
+    @FXML
+    public void initialize(){
+
     }
 
     public void setParentController(OneContactController parentController) {

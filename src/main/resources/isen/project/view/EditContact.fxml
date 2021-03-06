@@ -11,10 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import com.jfoenix.controls.JFXDatePicker?>
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.EditContactController">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modification" />
-      <GridPane alignment="CENTER" hgap="10.0" vgap="10.0">
+      <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" fx:id="containerGridPane">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -75,7 +76,7 @@
              <JFXTextField fx:id="textFieldEmail" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
              <JFXTextField fx:id="textFieldCategory" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-             <DatePicker fx:id="datePickerBirth" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
              <ImageView  fx:id="imageViewProfilIcon" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
              <JFXButton buttonType="RAISED" onAction="#handleButtonCancel" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="BOTTOM">
