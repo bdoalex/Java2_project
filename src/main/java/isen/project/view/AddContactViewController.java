@@ -84,7 +84,7 @@ public class AddContactViewController {
                 if (fileProfilIcon != null) nameOfSaveFile = model.SaveFile(fileProfilIcon);
 
                 if (comboBoxCategory.getValue() == null) {
-                    category = categoryDao.getCategory(category.getCategory_name());
+                    category = categoryDao.getCategory(category.getName());
                 } else {
                     category = categoryDao.getCategory(comboBoxCategory.getValue());
                 }

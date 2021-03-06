@@ -96,7 +96,7 @@ public class OneContactController extends ParentController {
 
         name.setText(actualPerson.getFirstName() + " " + actualPerson.getLastName());
         nickName.setText(actualPerson.getNickName());
-        category.setText(actualPerson.getCategory().getCategory_name());
+        category.setText(actualPerson.getCategory().getName());
 
 
 
