@@ -121,13 +121,13 @@ public class OneContactController extends ParentController {
             @Override
             public void handle(ActionEvent event) {
                 PersonDao personDao = new PersonDao();
-                if(personDao.deletePersonById(actualPerson.getPersonId())){
+                if (personDao.deletePersonById(actualPerson.getPersonId())) {
                     homeScreenParentController.reloadFromDb();
                 }
                 App.closeDialog();
                 try {
                     getHomeScreenParentController().changeViewToAllContact();
-                    getHomeScreenParentController().showSuccessSnackBar("Success");
+                    App.showSuccessSnackBar("Success");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

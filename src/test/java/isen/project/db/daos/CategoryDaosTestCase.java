@@ -64,8 +64,8 @@ public class CategoryDaosTestCase {
     @Test
     public void shouldGetCategoryByName() {
         Category category = this.categoryDao.getCategory("Family");
-        Assertions.assertThat(category.getCategory_id()).isEqualTo(2);
-        Assertions.assertThat(category.getCategory_name()).isEqualTo("Family");
+        Assertions.assertThat(category.getId()).isEqualTo(2);
+        Assertions.assertThat(category.getName()).isEqualTo("Family");
     }
 
 }
