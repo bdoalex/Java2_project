@@ -94,7 +94,7 @@ public class PersonDaoTestCase {
         assertThat(resultModifyPerson.getString("email_address")).isEqualTo("moi@moi.fr");
         assertThat(resultModifyPerson.getDate("birth_date")).isEqualTo(java.sql.Date.valueOf((LocalDate.of(2020, 02, 25))));
         assertThat(resultModifyPerson.getString("name_file_icon")).isEqualTo("defaultImage.jpg");
-        assertThat(resultModifyPerson.getInt("category_id")).isEqualTo(1);
+        assertThat(resultModifyPerson.getInt("category_id")).isEqualTo(2);
 
         resultModifyPerson.close();
         statement.close();

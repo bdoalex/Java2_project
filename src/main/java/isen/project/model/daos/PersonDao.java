@@ -122,7 +122,7 @@ public class PersonDao {
                 statement.setString(5,person.getAddress());
                 statement.setString(6,person.getEmailAddress());
                 statement.setDate(7, person.getBirthDate()!=null ? Date.valueOf(person.getBirthDate()) : null);
-                statement.setInt(8,person.getCategory().getCategory_id());
+                statement.setInt(8,person.getCategory().getId());
                 statement.setString(9,person.getNameFileIcon());
                 statement.setInt(10, person.getPersonId());
                 statement.executeUpdate();
