@@ -35,7 +35,7 @@
                   <DropShadow />
                </effect>
             </Circle>
-            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="110.0">
+            <HBox style="-fx-cursor: hand;" onMouseClicked="#handleclickOnEditProfil" alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="110.0">
                <children>
                   <FontIcon iconColor="WHITE" iconLiteral="far-edit" iconSize="16" text="">
                      <HBox.margin>
@@ -103,27 +103,26 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
-                     <children>
-                        <FontIcon iconColor="#4285f4" iconLiteral="fas-birthday-cake" iconSize="18" text="">
-                           <HBox.margin>
-                              <Insets right="8.0" />
-                           </HBox.margin>
-                        </FontIcon>
-                              <Text fx:id="birthDate" strokeType="OUTSIDE" strokeWidth="0.0" text="BIRTH DATE">
-                           <font>
-                              <Font size="18.0" />
-                           </font></Text>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding>
-                  </HBox>
+                   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
+                       <padding>
+                           <Insets bottom="10.0"/>
+                       </padding>
+                       <FontIcon iconColor="#4285f4" iconLiteral="fas-birthday-cake" iconSize="18" text="">
+                          <HBox.margin>
+                              <Insets right="8.0"/>
+                          </HBox.margin>
+                       </FontIcon>
+                       <Text fx:id="birthDate" strokeType="OUTSIDE" strokeWidth="0.0" text="BIRTH DATE">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                       </Text>
+                   </HBox>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <JFXButton onMouseClicked="#handleClickOnTrash" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: red;" text="Delete">
+                  <JFXButton  onMouseClicked="#handleClickOnTrash" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: red; -fx-cursor: hand;" text="Delete">
                      <graphic>
                         <FontIcon iconColor="WHITE" iconLiteral="far-trash-alt" iconSize="16" />
                      </graphic>
@@ -132,7 +131,7 @@
             </VBox>
          </children>
       </AnchorPane>
-        <JFXButton id="buttonBack" fx:id="buttonBack" buttonType="RAISED" graphicTextGap="8.0" onAction="#handleButtonBack" prefHeight="25.0" prefWidth="75.0" text="Back" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <JFXButton style="-fx-cursor: hand;" id="buttonBack" fx:id="buttonBack" buttonType="RAISED" graphicTextGap="8.0" onAction="#handleButtonBack" prefHeight="25.0" prefWidth="75.0" text="Back" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <graphic>
                 <FontIcon fill="WHITE" iconLiteral="fas-long-arrow-alt-left" iconSize="16" wrappingWidth="14.0" />
             </graphic>

@@ -48,16 +48,7 @@ public class Person {
         this.category = category;
     }
 
-    public Person(LocalDate date) {
-        this.lastName = "Coucou";
-        this.firstName = "Coucou";
-        this.nickName = "Coucou";
-        this.phoneNumber = "Coucou";
-        this.phoneNumber = "0612027120";
-        this.address = "coucou";
-        this.emailAddress = "coucou";
-        this.birthDate = date;
-    }
+
 
 
     public int getPersonId() {
@@ -117,7 +108,7 @@ public class Person {
     }
 
     public LocalDate getBirthDate() {
-        return birthDate;
+        return birthDate != null ? birthDate : null;
     }
 
     public void setBirthDate(LocalDate birthDate) {

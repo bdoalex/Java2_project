@@ -25,6 +25,8 @@ public class HomeScreenController {
     @FXML
     private DrawerController drawerController;
 
+
+
     private HomeScreenModel homeScreenModel;
 
     @FXML
@@ -42,14 +44,14 @@ public class HomeScreenController {
         changeView("AddContactView");
     }
 
+
     /**
-     * @param fxml         the name of the file of the view
      * @param actualPerson the person which we want to see the sheet
      * @throws IOException
      */
-    public void changeViewToOneContact(String fxml, Person actualPerson) throws IOException {
+    public void changeViewToOneContact(Person actualPerson) throws IOException {
         containerAnchorPane.getChildren().clear();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/OneContactView.fxml"));
 
 
         Node load = fxmlLoader.load();
@@ -82,6 +84,7 @@ public class HomeScreenController {
 
         containerAnchorPane.getChildren().add(load);
     }
+
 
 
     public void changeView(String fxml) throws IOException {
@@ -122,4 +125,9 @@ public class HomeScreenController {
         bar.getStylesheets().add(css);
         bar.enqueue(new JFXSnackbar.SnackbarEvent(success));
     }
+
+    public HomeScreenModel getHomeScreenModel() {
+        return homeScreenModel;
+    }
+
 }

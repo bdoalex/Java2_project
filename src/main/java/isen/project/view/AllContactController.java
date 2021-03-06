@@ -25,14 +25,17 @@ public class AllContactController extends ParentController {
     AllContactModel allContactModel;
 
 
-    public void setAllContact(ObservableList<Person> allContact){
+    public void setAllContact(ObservableList<Person> allContact) {
         allContactModel = new AllContactModel(allContact);
         contactListView.setItems(allContactModel.getContactShown());
         contactListView.setCellFactory(contactListView -> new PersonListViewCell(this.contactListView));
 
     }
 
-
+    public void modifyOneContact(int index, Person newPerson) {
+        allContactModel.modifyOneContact(index, newPerson);
+        homeScreenParentController.getHomeScreenModel().modifyOneContact(index, newPerson);
+    }
 
     @FXML
     public void initialize() {
@@ -47,7 +50,7 @@ public class AllContactController extends ParentController {
                 if (contactListView.getSelectionModel().getSelectedItem() != null) {
                     Person person = (Person) contactListView.getSelectionModel().getSelectedItem();
                     try {
-                        homeScreenParentController.changeViewToOneContact("OneContactView",person);
+                        homeScreenParentController.changeViewToOneContact(person);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
