@@ -6,10 +6,15 @@ import isen.project.ParentController;
 import isen.project.model.HomeScreenModel;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -25,7 +30,7 @@ public class HomeScreenController {
     @FXML
     private DrawerController drawerController;
 
-
+    private Node lastNode;
 
     private HomeScreenModel homeScreenModel;
 
@@ -50,7 +55,7 @@ public class HomeScreenController {
      * @throws IOException
      */
     public void changeViewToOneContact(Person actualPerson) throws IOException {
-        containerAnchorPane.getChildren().clear();
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/OneContactView.fxml"));
 
 
@@ -62,7 +67,36 @@ public class HomeScreenController {
         controller.setActualPerson(actualPerson);
 
 
+        transition(load);
+    }
+
+
+    public void transition(Node load) {
+        load.translateXProperty().set(containerAnchorPane.getWidth());
         containerAnchorPane.getChildren().add(load);
+
+        Timeline timeline = new Timeline();
+        KeyValue kv1 = new KeyValue(load.translateXProperty(), 0, Interpolator.EASE_BOTH);
+
+
+
+        if (lastNode != null) {
+            KeyValue kv2 = new KeyValue(lastNode.translateXProperty(), -containerAnchorPane.getWidth() , Interpolator.EASE_BOTH);
+
+            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0.40),  kv2));
+
+        }
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0.40),  kv1));
+
+        timeline.setOnFinished(t -> {
+            if (lastNode != null) {
+              containerAnchorPane.getChildren().remove(lastNode);
+            }
+            lastNode = load;
+        });
+        timeline.play();
+
+
     }
 
     public void reloadFromDb() {
@@ -71,7 +105,7 @@ public class HomeScreenController {
 
 
     public void changeViewToAllContact() throws IOException {
-        containerAnchorPane.getChildren().clear();
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/AllContactView.fxml"));
 
 
@@ -81,21 +115,19 @@ public class HomeScreenController {
         AllContactController controller = fxmlLoader.getController();
         controller.setParentController(this);
         controller.setAllContact(homeScreenModel.getAllContact());
-
-        containerAnchorPane.getChildren().add(load);
+        transition(load);
     }
 
 
-
     public void changeView(String fxml) throws IOException {
-        containerAnchorPane.getChildren().clear();
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/" + fxml + ".fxml"));
 
 
         Node load = fxmlLoader.load();
 
 
-        containerAnchorPane.getChildren().add(load);
+        transition(load);
     }
 
 
@@ -124,7 +156,7 @@ public class HomeScreenController {
         JFXSnackbar bar = new JFXSnackbar(containerAnchorPane);
         String css = this.getClass().getResource("/isen/project/css/SnackBarSuccess.css").toExternalForm();
         bar.getStylesheets().add(css);
-       // bar.enqueue(new JFXSnackbar.SnackbarEvent(success));
+        // bar.enqueue(new JFXSnackbar.SnackbarEvent(success));
     }
 
     public HomeScreenModel getHomeScreenModel() {
