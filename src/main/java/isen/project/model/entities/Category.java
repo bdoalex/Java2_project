@@ -9,6 +9,9 @@ public class Category {
     this.category_name = "Unknown";
     }
 
+    public Category(int categoryId) {
+    }
+
     public int getCategory_id() {
         return category_id;
     }

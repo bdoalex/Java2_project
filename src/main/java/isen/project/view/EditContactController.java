@@ -3,6 +3,7 @@ package isen.project.view;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import isen.project.App;
+import isen.project.model.EditContactModel;
 import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
@@ -16,6 +17,9 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Path;
 
 public class EditContactController {
 
@@ -41,15 +45,14 @@ public class EditContactController {
     @FXML
     public ImageView imageViewProfilIcon;
 
-    File fileProfilIcon;
+    EditContactModel model = new EditContactModel();
 
-    int posInGlobalList;
-    Person actualPerson;
-    OneContactController parentController;
+
 
 
     public void setActualPerson(Person actualPerson , int posInGlobalList) {
-        this.posInGlobalList=posInGlobalList;
+        model.setPosInGlobalList(posInGlobalList);
+        model.setActualPerson(actualPerson);
         textFieldLastName.setText(actualPerson.getLastName());
         textFieldFirstName.setText(actualPerson.getFirstName());
         //textFieldCategory.setText(actualPerson.getCategory().get);
@@ -66,7 +69,7 @@ public class EditContactController {
         Image image = new Image("file:\\" + Constant.URL_TO_IMAGE + actualPerson.getNameFileIcon());
         imageViewProfilIcon.setImage(image);
 
-        this.actualPerson = actualPerson;
+
     }
 
     @FXML
@@ -75,7 +78,7 @@ public class EditContactController {
     }
 
     public void setParentController(OneContactController parentController) {
-        this.parentController = parentController;
+      model.setParentController(parentController);
     }
 
 
@@ -84,45 +87,23 @@ public class EditContactController {
     }
 
     public void handleButtonAccept(ActionEvent actionEvent) throws IOException {
-        String nameOfSaveFile = Constant.DEFAULT_IMAGE;
-        System.out.println(actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE));
-        System.out.println(actualPerson.getNameFileIcon());
-        if (fileProfilIcon != null) {
-            if(!actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE)){
-                if(App.deleteProfilIcon(actualPerson.getNameFileIcon())){
-
-                    nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
-                }
-                else{
-                    //todo print red toast
-                    return;
-                }
-            }
-            else{
-                nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
-            }
-
-
-        }
-        Person newPerson = new Person( actualPerson.getPersonId(),textFieldLastName.getText(),textFieldFirstName.getText(),textFieldLNickName.getText(),textFieldPhone.getText(),textFieldAddress.getText(),textFieldEmail.getText(),datePickerBirth.getValue(),nameOfSaveFile,actualPerson.getCategory());
-        parentController.setActualPerson(newPerson);
-        parentController.getHomeScreenParentController().getHomeScreenModel().modifyOneContact(posInGlobalList,newPerson);
-        PersonDao dao = new PersonDao();
-        dao.modifyPerson(newPerson);
-        App.closeDialog();
+        model.handleValidate(textFieldLastName.getText(),textFieldFirstName.getText(),textFieldLNickName.getText(),textFieldPhone.getText(),textFieldAddress.getText(),textFieldEmail.getText(),datePickerBirth.getValue(),1);
     }
 
     public void handleClickOnView(MouseEvent mouseEvent) {
-        FileChooser fc = new FileChooser();
-        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
-
-
-        fc.getExtensionFilters().add(imageFilter);
-        //We open the file Chooser
-        fileProfilIcon = fc.showOpenDialog(null);
-        if (fileProfilIcon != null) {
-            Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
-            imageViewProfilIcon.setImage(imageProfilIcon);
+        Image newImage = model.clickOnImage();
+        if(newImage != null){
+            imageViewProfilIcon.setImage(newImage);
         }
+
+    }
+
+    public void handleButtonDefault(ActionEvent actionEvent) throws MalformedURLException {
+
+        model.buttonDefault();
+        File file = new File(Constant.URL_TO_IMAGE + Constant.DEFAULT_IMAGE);
+
+        Image imageProfilIcon = new Image(file.toURI().toString());
+        imageViewProfilIcon.setImage(imageProfilIcon);
     }
 }
