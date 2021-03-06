@@ -68,7 +68,7 @@ public class PersonDaoTestCase {
         assertThat(person.getAddress()).isEqualTo("La vilette");
         assertThat(person.getBirthDate()).isEqualTo(LocalDate.of(2020, 02, 25));
         assertThat(person.getNameFileIcon()).isEqualTo("defaultImage.jpg");
-        assertThat(person.getCategory().getCategory_id()).isEqualTo(1);
+        assertThat(person.getCategory().getId()).isEqualTo(1);
 
 
 

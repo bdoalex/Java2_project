@@ -26,6 +26,7 @@ public class AllContactController extends ParentController {
 
 
     public void setAllContact(ObservableList<Person> allContact){
+
         allContactModel = new AllContactModel(allContact);
         contactListView.setItems(allContactModel.getContactShown());
         contactListView.setCellFactory(contactListView -> new PersonListViewCell(this.contactListView));
@@ -37,7 +38,7 @@ public class AllContactController extends ParentController {
     @FXML
     public void initialize() {
         textFieldFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-            allContactModel.Filter(observable, oldValue, newValue);
+            allContactModel.filter(newValue);
             contactListView.setItems(allContactModel.getContactShown());
         });
         contactListView.setOnMouseClicked(new EventHandler<MouseEvent>() {

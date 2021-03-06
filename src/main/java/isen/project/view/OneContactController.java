@@ -99,6 +99,7 @@ public class OneContactController extends ParentController {
         category.setText(actualPerson.getCategory().getCategory_name());
 
 
+
         FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/ContactListCell.fxml"));
         mLLoader.setController(this);
         try {
@@ -143,13 +144,13 @@ public class OneContactController extends ParentController {
             @Override
             public void handle(ActionEvent event) {
                 PersonDao personDao = new PersonDao();
-                if(personDao.deletePersonById(actualPerson.getPersonId())){
+                if (personDao.deletePersonById(actualPerson.getPersonId())) {
                     homeScreenParentController.reloadFromDb();
                 }
                 App.closeDialog();
                 try {
                     getHomeScreenParentController().changeViewToAllContact();
-                    getHomeScreenParentController().showSuccessSnackBar("Success");
+                    App.showSuccessSnackBar("Success");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

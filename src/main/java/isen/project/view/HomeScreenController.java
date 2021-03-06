@@ -116,10 +116,5 @@ public class HomeScreenController {
 
     }
 
-    public void showSuccessSnackBar(String success) {
-        JFXSnackbar bar = new JFXSnackbar(containerAnchorPane);
-        String css = this.getClass().getResource("/isen/project/css/SnackBarSuccess.css").toExternalForm();
-        bar.getStylesheets().add(css);
-        bar.enqueue(new JFXSnackbar.SnackbarEvent(success));
-    }
+
 }

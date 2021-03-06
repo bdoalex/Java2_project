@@ -3,6 +3,8 @@ package isen.project;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+
+import com.jfoenix.controls.JFXSnackbar;
 import isen.project.model.daos.DataSourceFactory;
 import isen.project.util.Constant;
 import javafx.application.Application;
@@ -14,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -122,6 +125,20 @@ public class App extends Application {
     public static void closeDialog(){
         dialog.close();
         mainLayout.getChildren().remove(dialog.getDialogContainer());
+    }
+
+    public static void showSuccessSnackBar(String success) throws IOException {
+        JFXSnackbar bar = new JFXSnackbar(mainLayout);
+        String css = App.class.getResource("/isen/project/css/SnackBarSuccess.css").toExternalForm();
+    //    bar.getStylesheets().add(css);
+        JFXDialogLayout layout = new JFXDialogLayout();
+        layout.setBody(new Text("Are you sure you want to delete  from your contacts ? "));
+
+
+
+       JFXSnackbar.SnackbarEvent event = new JFXSnackbar.SnackbarEvent("lol");
+
+        bar.enqueue(event);
     }
 
     public static AnchorPane getMainLayout() {
