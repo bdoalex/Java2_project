@@ -1,31 +1,32 @@
 package isen.project;
 
-import com.jfoenix.controls.JFXButton;
+
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
-
 import com.jfoenix.controls.JFXSnackbar;
 import isen.project.model.daos.DataSourceFactory;
 import isen.project.util.Constant;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * JavaFX App
@@ -39,6 +40,10 @@ public class App extends Application {
 
     private static AnchorPane mainLayout;
 
+    private static AnchorPane containerContent;
+
+    private static StackPane containerDialog;
+
     @Override
     public void start(Stage stage) throws IOException, SQLException {
         Connection connection = DataSourceFactory.getConnection();
@@ -50,9 +55,10 @@ public class App extends Application {
 
         mainLayout = loadFXML("MainLayout");
 
+        containerContent = (AnchorPane) mainLayout.getChildren().get(0);
 
-
-
+        containerDialog=(StackPane) mainLayout.getChildren().get(1);
+        containerDialog.setVisible(false);
 
         scene = new Scene(mainLayout, 850, 500);
 
@@ -68,12 +74,9 @@ public class App extends Application {
         });
 
 
-        stage.heightProperty().addListener((obs, oldVal, newVal) -> {
-            // Do whatever you want
-        });
 
 
-        mainLayout.getChildren().add(loadFXML("LauncherScreen"));
+        containerContent.getChildren().add(loadFXML("LauncherScreen"));
 
 
     }
@@ -90,8 +93,9 @@ public class App extends Application {
             // We can only set the center of a borderPane, not a Parent, so we rely on
             // either an explicit cast or our better generics implementation to convert our
             // scene and modify it.
-            mainLayout.getChildren().clear();
-            mainLayout.getChildren().add(loadFXML(rootElement));
+            containerContent.getChildren().clear();
+            containerContent.getChildren().add(loadFXML(rootElement));
+
         } catch (IOException e) {
             // Chances are that the file is not found. Nothing we can do, really, but as
             // IOException is checked, it would require us to add nasty support all over our
@@ -107,25 +111,21 @@ public class App extends Application {
     }
 
 
-    public static void showDialog(JFXDialogLayout content,List<Button> allActions){
-        StackPane stackPane = new StackPane();
-        AnchorPane.setLeftAnchor(stackPane,0.0);
-        AnchorPane.setRightAnchor(stackPane,0.0);
-        AnchorPane.setTopAnchor(stackPane,0.0);
-        AnchorPane.setBottomAnchor(stackPane,0.0);
+    public static void showDialog(Region layout) {
+        containerDialog.setVisible(true);
 
-        App.getMainLayout().getChildren().add(stackPane);
-        dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
-
-        content.setActions(allActions);
+        dialog = new JFXDialog(containerDialog, layout, JFXDialog.DialogTransition.TOP);
+        dialog.setOnDialogClosed(closeEvent -> {
+            containerDialog.setVisible(false);
+        });
 
         dialog.show();
     }
 
-    public static void closeDialog(){
+    public static void closeDialog() {
         dialog.close();
-        mainLayout.getChildren().remove(dialog.getDialogContainer());
     }
+
 
     public static void showSuccessSnackBar(String success) throws IOException {
         JFXSnackbar bar = new JFXSnackbar(mainLayout);
@@ -136,17 +136,50 @@ public class App extends Application {
 
 
 
-       JFXSnackbar.SnackbarEvent event = new JFXSnackbar.SnackbarEvent("lol");
+      // JFXSnackbar.SnackbarEvent event = new JFXSnackbar.SnackbarEvent("lol");
 
-        bar.enqueue(event);
+       // bar.enqueue(event);
     }
 
     public static AnchorPane getMainLayout() {
         return mainLayout;
     }
 
+
     public static void main(String[] args) {
         launch();
+    }
+
+    public static String saveProfilIcon(File fileProfilIcon) throws IOException {
+        //We load our file into Image
+        Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
+        String fileName = fileProfilIcon.getName();
+        String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, fileProfilIcon.getName().length());
+
+        //We transform our image to saveable file
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageProfilIcon, null);
+        String nameOfSaveFile = java.util.UUID.randomUUID().toString() +"."+fileExtension;
+        //We generate random id
+        File fileToSave = new File(Constant.URL_TO_IMAGE +  nameOfSaveFile);
+        //We save our file into fileIcon
+        ImageIO.write(bufferedImage, "png", fileToSave);
+
+        return nameOfSaveFile;
+
+    }
+
+    public static Boolean deleteProfilIcon(String nameFile) throws IOException {
+        //We load our file into Image
+        File file = new File(Constant.URL_TO_IMAGE + nameFile);
+
+        if(file.delete())
+        {
+          return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

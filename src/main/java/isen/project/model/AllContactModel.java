@@ -1,15 +1,14 @@
 package isen.project.model;
 
-import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Person;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 
 public class AllContactModel {
+
 
 
     private ObservableList<Person> allContact = FXCollections.observableArrayList();
@@ -20,7 +19,6 @@ public class AllContactModel {
         allContact = allPerson;
         contactShown = allPerson;
     }
-
 
     public void filter(String newValue) {
 
@@ -59,5 +57,10 @@ public class AllContactModel {
 
     public ObservableList<Person> getContactShown() {
         return contactShown;
+    }
+
+    public void modifyOneContact(int index, Person newPerson) {
+        allContact.set(index,newPerson);
+        contactShown=allContact;
     }
 }

@@ -5,20 +5,25 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import isen.project.App;
 import isen.project.ParentController;
+import isen.project.model.HomeScreenModel;
 import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -29,6 +34,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 
 public class OneContactController extends ParentController {
@@ -125,7 +132,7 @@ public class OneContactController extends ParentController {
     }
 
 
-    public void handleClickOnTrash(MouseEvent mouseEvent) {
+    public void handleClickOnTrash(MouseEvent mouseEvent) throws IOException {
         JFXDialogLayout content = new JFXDialogLayout();
         content.setBody(new Text("Are you sure you want to delete " + actualPerson.getFirstName() + " " + actualPerson.getLastName() + " from your contacts ? "));
 
@@ -133,11 +140,11 @@ public class OneContactController extends ParentController {
         List<Button> allActions = new ArrayList<>();
 
         JFXButton validate = new JFXButton("YES");
-        validate.setStyle("-jfx-button-type: RAISED; -fx-text-fill: white; -fx-background-color:#4CAF50");
+        validate.setStyle("-jfx-button-type: RAISED; -fx-text-fill: white; -fx-background-color:#4CAF50;-fx-cursor: hand;");
 
 
         JFXButton deny = new JFXButton("NO");
-        deny.setStyle("-jfx-button-type: RAISED; -fx-text-fill: white; -fx-background-color:#f44336");
+        deny.setStyle("-jfx-button-type: RAISED; -fx-text-fill: white; -fx-background-color:#f44336;-fx-cursor: hand;");
 
 
         validate.setOnAction(new EventHandler<ActionEvent>() {
@@ -167,7 +174,31 @@ public class OneContactController extends ParentController {
         allActions.add(validate);
         allActions.add(deny);
 
+        content.setActions(allActions);
+        App.showDialog(content);
+    }
 
-        App.showDialog(content, allActions);
+    public void handleclickOnEditProfil(MouseEvent mouseEvent) throws IOException {
+
+
+
+
+        ObservableList<Person> users= homeScreenParentController.getHomeScreenModel().getAllContact();
+
+        int indexOpt = IntStream.range(0,users.size())
+                .filter(i -> actualPerson.getPersonId() == users.get(i).getPersonId())
+                .findFirst().getAsInt();
+
+        System.out.println(indexOpt);
+
+        FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/EditContact.fxml"));
+        VBox layout = mLLoader.load();
+
+        EditContactController controller = mLLoader.getController();
+
+        controller.setActualPerson(actualPerson,indexOpt);
+        controller.setParentController(this);
+
+        App.showDialog(layout);
     }
 }

@@ -78,7 +78,7 @@ public class PersonDaoTestCase {
     @Test
     public void ShouldModifyPerson() throws SQLException {
         Person modified = new Person(1, "Flavien", "Flavien2", "ElDeus", "06060606", "La vilette", "moi@moi.fr", LocalDate.of(2020, 2, 25), "defaultImage.jpg", categoryDao.getCategory("Friends"));
-        Boolean modifiedPerson = personDao.ModifyPerson(modified);
+        Boolean modifiedPerson = personDao.modifyPerson(modified);
 
         Connection connection = DataSourceFactory.getConnection();
         Statement statement = connection.createStatement();

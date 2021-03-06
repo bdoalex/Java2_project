@@ -1,7 +1,6 @@
 package isen.project.view;
 
 import isen.project.App;
-import isen.project.model.AddContactModel;
 import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Category;
@@ -12,21 +11,18 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.scene.image.ImageView;
 
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class AddContactViewController {
 
     PersonDao personDao = new PersonDao();
     CategoryDao categoryDao = new CategoryDao();
 
-    AddContactModel model = new AddContactModel();
 
     File fileProfilIcon;
 
@@ -81,7 +77,7 @@ public class AddContactViewController {
                 String nameOfSaveFile = Constant.DEFAULT_IMAGE;
                 Category category = new Category();
 
-                if (fileProfilIcon != null) nameOfSaveFile = model.SaveFile(fileProfilIcon);
+                if (fileProfilIcon != null) nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
 
                 if (comboBoxCategory.getValue() == null) {
                     category = categoryDao.getCategory(category.getName());

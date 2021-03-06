@@ -13,6 +13,9 @@ public class HomeScreenModel {
 
     PersonDao personDao = new PersonDao();
 
+    public void modifyOneContact(int index, Person newPerson) {
+        allContact.set(index,newPerson);
+    }
 
     public HomeScreenModel() {
         populateList();

@@ -5,5 +5,10 @@
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500" minWidth="500" prefHeight="0.0" prefWidth="0.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" AnchorPane.bottomAnchor="0"  AnchorPane.topAnchor="0"  AnchorPane.leftAnchor="0"  AnchorPane.rightAnchor="0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
+    </AnchorPane>
+    <StackPane maxHeight="-Infinity" maxWidth="-Infinity" AnchorPane.bottomAnchor="0"  AnchorPane.topAnchor="0"  AnchorPane.leftAnchor="0"  AnchorPane.rightAnchor="0"  xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    </StackPane>
 </AnchorPane>
