@@ -70,17 +70,26 @@ public class HomeScreenController {
         transition(load);
     }
 
-
+    /**
+     * Transition right to left when new part have to be show
+     * @param load => the new node ( can be list of all contact or one contact)
+     */
     public void transition(Node load) {
+        //We set the new node to the right out of the screen
         load.translateXProperty().set(containerAnchorPane.getWidth());
+
+        //We add it to the main container
         containerAnchorPane.getChildren().add(load);
 
         Timeline timeline = new Timeline();
+        //Translate the new node from right to left
         KeyValue kv1 = new KeyValue(load.translateXProperty(), 0, Interpolator.EASE_BOTH);
 
 
 
         if (lastNode != null) {
+            //translete the current position to the left
+            //it make the lastNode out of the screen
             KeyValue kv2 = new KeyValue(lastNode.translateXProperty(), -containerAnchorPane.getWidth() , Interpolator.EASE_BOTH);
 
             timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0.40),  kv2));
@@ -92,6 +101,7 @@ public class HomeScreenController {
             if (lastNode != null) {
               containerAnchorPane.getChildren().remove(lastNode);
             }
+
             lastNode = load;
         });
         timeline.play();
@@ -152,12 +162,6 @@ public class HomeScreenController {
     }
 
 
-    public void showSuccessSnackBar(String success) {
-        JFXSnackbar bar = new JFXSnackbar(containerAnchorPane);
-        String css = this.getClass().getResource("/isen/project/css/SnackBarSuccess.css").toExternalForm();
-        bar.getStylesheets().add(css);
-        // bar.enqueue(new JFXSnackbar.SnackbarEvent(success));
-    }
 
     public HomeScreenModel getHomeScreenModel() {
         return homeScreenModel;

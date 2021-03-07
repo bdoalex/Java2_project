@@ -25,9 +25,24 @@ public class EditContactModel {
 
     OneContactController parentController;
 
+    /**
+     *
+     * @param textFieldLastName => string
+     * @param textFieldFirstName=> string
+     * @param textFieldLNickName=> string
+     * @param textFieldPhone=> string
+     * @param textFieldAddress=> string
+     * @param textFieldEmail=> string
+     * @param datePickerBirth=> date
+     * @param categoryId=> id
+     * @throws IOException
+     */
     public void handleValidate(String textFieldLastName, String textFieldFirstName, String textFieldLNickName, String textFieldPhone, String textFieldAddress, String textFieldEmail, LocalDate datePickerBirth, int categoryId) throws IOException {
         String nameOfSaveFile = actualPerson.getNameFileIcon();
 
+        //if the user change the profil icon
+        //this block check if we have to delete the previous icon
+        //and if the icon is not the default icon we create the profil icon
         if (fileProfilIcon != null  ) {
             if(!actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE)){
                 if(App.deleteProfilIcon(actualPerson.getNameFileIcon())){
@@ -43,6 +58,7 @@ public class EditContactModel {
                 nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
             }
         }
+        //if the new profil icon is the default icon
         else if(setDefaultImage){
             nameOfSaveFile = Constant.DEFAULT_IMAGE;
             if(!actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE)){
@@ -67,8 +83,14 @@ public class EditContactModel {
         App.closeDialog();
     }
 
+    /**
+     *
+     * @return the new image choose by the user
+     */
     public Image clickOnImage(){
+
         FileChooser fc = new FileChooser();
+        //set extension
         FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
 
         fc.getExtensionFilters().add(imageFilter);

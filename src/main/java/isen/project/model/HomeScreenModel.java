@@ -21,6 +21,9 @@ public class HomeScreenModel {
         populateList();
     }
 
+    /**
+     * get the data from the db
+     */
     public void populateList() {
         if (personDao.getPersons() != null) {
             allContact = personDao.getPersons();

@@ -81,9 +81,6 @@ public class DrawerController  extends ParentController {
     }
 
 
-    public void handleAddContact(MouseEvent mouseEvent) throws IOException {
-        homeScreenParentController.HandleAddContact();
-    }
 
     //Allow the drawer to change the content of the main view
     //That's why we need to get the parent

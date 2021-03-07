@@ -87,7 +87,6 @@ public class OneContactController extends ParentController {
             adress.setText(actualPerson.getAddress());
         }
 
-        System.out.println(actualPerson.getEmailAddress());
         if (actualPerson.getEmailAddress().equals("")){
             email.setText("Unknown");
         }else{
@@ -189,7 +188,6 @@ public class OneContactController extends ParentController {
                 .filter(i -> actualPerson.getPersonId() == users.get(i).getPersonId())
                 .findFirst().getAsInt();
 
-        System.out.println(indexOpt);
 
         FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/EditContact.fxml"));
         VBox layout = mLLoader.load();

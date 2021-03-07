@@ -33,13 +33,13 @@ public class AllContactController extends ParentController {
 
     }
 
-    public void modifyOneContact(int index, Person newPerson) {
-        allContactModel.modifyOneContact(index, newPerson);
-        homeScreenParentController.getHomeScreenModel().modifyOneContact(index, newPerson);
-    }
+
 
     @FXML
     public void initialize() {
+        /**
+         * trigger when the user change the textField filter
+         */
         textFieldFilter.textProperty().addListener((observable, oldValue, newValue) -> {
             allContactModel.filter(newValue);
             contactListView.setItems(allContactModel.getContactShown());

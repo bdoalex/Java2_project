@@ -57,12 +57,10 @@ public class IOContacts {
     private void createVcfFile(){
         File myObj = new File("contacts.vcf");
         try {
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            }
+            myObj.createNewFile();
+
         }
         catch (IOException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
@@ -134,7 +132,6 @@ public class IOContacts {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }

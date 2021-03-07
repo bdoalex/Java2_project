@@ -20,10 +20,16 @@ public class AllContactModel {
         contactShown = allPerson;
     }
 
+    /**
+     *
+     * @param newValue => String which come from the textField filter
+     */
     public void filter(String newValue) {
 
-
+        //We create the list with all the data
         FilteredList<Person> filteredData = new FilteredList<>(allContact, p -> true);
+
+        //For each person we check if it correspond to the filter
         filteredData.setPredicate(person -> {
 
             // If filter text is empty, display all persons.

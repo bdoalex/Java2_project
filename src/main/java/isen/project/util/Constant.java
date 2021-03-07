@@ -8,11 +8,12 @@ public  class Constant {
 
     public static  String DEFAULT_IMAGE = "defaultImage.jpg";
 
+
     public static  int MIN_WIDTH = 800;
     public static  int MIN_HEIGHT = 500;
 
     public static  int WIDTH_DRAWER_CLOSE= 50;
     public static  int WIDTH_DRAWER_OPEN= 150;
 
-    public static  int HEIGHT_LIST_CELL= 50;
+
 }
