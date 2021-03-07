@@ -2,20 +2,20 @@ package isen.project;
 
 
 import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXSnackbar;
 import isen.project.model.daos.DataSourceFactory;
 import isen.project.util.Constant;
+import isen.project.view.ToastSuccessController;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -57,7 +57,7 @@ public class App extends Application {
 
         containerContent = (AnchorPane) mainLayout.getChildren().get(0);
 
-        containerDialog=(StackPane) mainLayout.getChildren().get(1);
+        containerDialog = (StackPane) mainLayout.getChildren().get(1);
         containerDialog.setVisible(false);
 
         scene = new Scene(mainLayout, 850, 500);
@@ -72,8 +72,6 @@ public class App extends Application {
         stage.widthProperty().addListener((obs, oldVal, newVal) -> {
             mainLayout.prefWidth((Double) newVal);
         });
-
-
 
 
         containerContent.getChildren().add(loadFXML("LauncherScreen"));
@@ -129,16 +127,26 @@ public class App extends Application {
 
     public static void showSuccessSnackBar(String success) throws IOException {
         JFXSnackbar bar = new JFXSnackbar(mainLayout);
-        String css = App.class.getResource("/isen/project/css/SnackBarSuccess.css").toExternalForm();
-    //    bar.getStylesheets().add(css);
-        JFXDialogLayout layout = new JFXDialogLayout();
-        layout.setBody(new Text("Are you sure you want to delete  from your contacts ? "));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/ToastSuccess.fxml"));
+        Node load =  fxmlLoader.load();
+        ToastSuccessController controller = fxmlLoader.getController();
+        controller.setText(success);
 
+        JFXSnackbar.SnackbarEvent event = new JFXSnackbar.SnackbarEvent(load);
 
+        bar.enqueue(event);
+    }
 
-      // JFXSnackbar.SnackbarEvent event = new JFXSnackbar.SnackbarEvent("lol");
+    public static void showFailureSnackBar(String success) throws IOException {
+        JFXSnackbar bar = new JFXSnackbar(mainLayout);
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/ToastFailure.fxml"));
+        Node load =  fxmlLoader.load();
+        ToastSuccessController controller = fxmlLoader.getController();
+        controller.setText(success);
 
-       // bar.enqueue(event);
+        JFXSnackbar.SnackbarEvent event = new JFXSnackbar.SnackbarEvent(load);
+
+        bar.enqueue(event);
     }
 
     public static AnchorPane getMainLayout() {
@@ -158,9 +166,9 @@ public class App extends Application {
 
         //We transform our image to saveable file
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageProfilIcon, null);
-        String nameOfSaveFile = java.util.UUID.randomUUID().toString() +"."+fileExtension;
+        String nameOfSaveFile = java.util.UUID.randomUUID().toString() + "." + fileExtension;
         //We generate random id
-        File fileToSave = new File(Constant.URL_TO_IMAGE +  nameOfSaveFile);
+        File fileToSave = new File(Constant.URL_TO_IMAGE + nameOfSaveFile);
         //We save our file into fileIcon
         ImageIO.write(bufferedImage, "png", fileToSave);
 
@@ -172,12 +180,9 @@ public class App extends Application {
         //We load our file into Image
         File file = new File(Constant.URL_TO_IMAGE + nameFile);
 
-        if(file.delete())
-        {
-          return true;
-        }
-        else
-        {
+        if (file.delete()) {
+            return true;
+        } else {
             return false;
         }
     }
