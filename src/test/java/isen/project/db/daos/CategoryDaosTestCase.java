@@ -3,14 +3,14 @@ package isen.project.db.daos;
 import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.DataSourceFactory;
 import isen.project.model.entities.Category;
+import isen.project.model.entities.Person;
 import javafx.collections.ObservableList;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
@@ -62,6 +62,8 @@ public class CategoryDaosTestCase {
         statement.close();
         connection.close();
     }
+
+
 
     @Test
     public void shouldGetCategoryByName() {
