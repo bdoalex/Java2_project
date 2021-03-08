@@ -50,7 +50,7 @@ public class EditContactModel {
                     nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
                 }
                 else{
-                    //todo print red toast
+                    App.showFailureSnackBar("Error");
                     return;
                 }
             }
@@ -62,12 +62,8 @@ public class EditContactModel {
         else if(setDefaultImage){
             nameOfSaveFile = Constant.DEFAULT_IMAGE;
             if(!actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE)){
-                if(App.deleteProfilIcon(actualPerson.getNameFileIcon())){
-
-
-                }
-                else{
-                    //todo print red toast
+                if(!App.deleteProfilIcon(actualPerson.getNameFileIcon())) {
+                    App.showFailureSnackBar("Error");
                     return;
                 }
             }

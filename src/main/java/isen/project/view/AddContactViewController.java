@@ -1,5 +1,8 @@
 package isen.project.view;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import isen.project.App;
 import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.PersonDao;
@@ -11,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.scene.image.ImageView;
 
@@ -22,39 +26,40 @@ public class AddContactViewController {
 
     PersonDao personDao = new PersonDao();
     CategoryDao categoryDao = new CategoryDao();
+    Boolean setDefaultImage = false;
 
 
     File fileProfilIcon;
 
     @FXML
-    private ImageView iconProfilImageView;
+    private GridPane containerGridPane;
 
     @FXML
-    private TextField firstNameTextField;
+    private ImageView imageViewProfilIcon;
 
     @FXML
-    private TextField lastNameTextField;
+    private JFXTextField textFieldLastName;
 
     @FXML
-    private TextField nickNameTextField;
+    private JFXTextField textFieldFirstName;
 
     @FXML
-    private TextField addressTextField;
+    private JFXTextField textFieldLNickName;
 
     @FXML
-    private TextField emailTextField;
+    private JFXTextField textFieldAddress;
 
     @FXML
-    private DatePicker birthDatePicker;
+    private JFXTextField textFieldPhone;
 
     @FXML
-    private TextField phoneTextField;
+    private JFXTextField textFieldEmail;
 
     @FXML
-    private Button validateButton;
+    private JFXDatePicker datePickerBirth;
 
     @FXML
-    private ComboBox<String> comboBoxCategory;
+    private JFXComboBox<String> comboBoxCategory;
 
 
     /**
@@ -62,8 +67,12 @@ public class AddContactViewController {
      * delete the form to add a person
      */
     @FXML
-    public void handleValidateButton() {
-        if (lastNameTextField.getText().isEmpty() || firstNameTextField.getText().isEmpty() || nickNameTextField.getText().isEmpty()) {
+    void handleButtonAccept() {
+        Category category = new Category();
+        String nameOfSaveFile = Constant.DEFAULT_IMAGE;
+
+
+        if (textFieldLastName.getText().isEmpty() || textFieldLastName.getText().isEmpty() || textFieldLNickName.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText("Champs manquant");//toDo : gérer en fonction de l'erreur renvoyé
@@ -74,8 +83,9 @@ public class AddContactViewController {
                 //We check if we can create the photo and if we can add it to the databse
                 //if not we throw an exception
 
-                String nameOfSaveFile = Constant.DEFAULT_IMAGE;
-                Category category = new Category();
+
+                System.out.println(comboBoxCategory.getValue());
+                System.out.println(categoryDao.getCategory(category.getName()));
 
                 if (fileProfilIcon != null) nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
 
@@ -86,11 +96,13 @@ public class AddContactViewController {
                 }
 
 
-
-
-
-
-                Person newPerson = new Person(lastNameTextField.getText(), firstNameTextField.getText(), nickNameTextField.getText(), phoneTextField.getText(), addressTextField.getText(), emailTextField.getText(), birthDatePicker.getValue(), nameOfSaveFile, category );
+                Person newPerson = new Person(textFieldLastName.getText(),
+                        textFieldLastName.getText(), textFieldLNickName.getText(),
+                        textFieldPhone.getText(),
+                        textFieldAddress.getText(),
+                        textFieldEmail.getText(),
+                        datePickerBirth.getValue(),
+                        nameOfSaveFile, category );
                 personDao.addPerson(newPerson);
                 App.showView("HomeScreen");
             } catch (Exception e) {
@@ -103,37 +115,46 @@ public class AddContactViewController {
         }
     }
 
-    /**
-     * Display the view to add a contact
-     *
-     * @throws IOException
-     */
     @FXML
-    public void handleBackButton() throws IOException {
-        App.showView("HomeScreen");
+    void handleButtonCancel() {
+        App.showView("Homescreen");
+
+    }
+
+    @FXML
+    void handleButtonDefault() {
+        File file = new File(Constant.URL_TO_IMAGE + Constant.DEFAULT_IMAGE);
+        Image imageProfilIcon = new Image(file.toURI().toString());
+        imageViewProfilIcon.setImage(imageProfilIcon);
+    }
+
+    @FXML
+    void handleClickOnView() {
+        Image newImage = clickOnImage();
+        if(newImage != null){
+            imageViewProfilIcon.setImage(newImage);
+        }
     }
 
     /**
-     * OnClick on button change icon
+     *
+     * @return the new image choose by the user
      */
-    @FXML
-    public void handleChangeIconProfil() {
-        //We create the file Chooser
-        FileChooser fc = new FileChooser();
-        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+    public Image clickOnImage(){
 
+        FileChooser fc = new FileChooser();
+        //set extension
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
 
         fc.getExtensionFilters().add(imageFilter);
         //We open the file Chooser
         fileProfilIcon = fc.showOpenDialog(null);
         if (fileProfilIcon != null) {
+            setDefaultImage = false;
             Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
-            iconProfilImageView.setImage(imageProfilIcon);
+            return imageProfilIcon;
         }
-        //We get the image from the file chooser
-
-        //We display the image
-
+        return null;
     }
 
 
@@ -152,6 +173,9 @@ public class AddContactViewController {
     @FXML
     private void initialize() throws IOException {
         fillComboBoxCategory();
+        File file = new File(Constant.URL_TO_IMAGE + Constant.DEFAULT_IMAGE);
+        Image imageProfilIcon = new Image(file.toURI().toString());
+        imageViewProfilIcon.setImage(imageProfilIcon);
 
     }
 }
