@@ -131,7 +131,7 @@ public class OneContactController extends ParentController {
     }
 
 
-    public void handleClickOnTrash() throws IOException {
+    public void handleClickOnTrash() {
         JFXDialogLayout content = new JFXDialogLayout();
         content.setBody(new Text("Are you sure you want to delete " + actualPerson.getFirstName() + " " + actualPerson.getLastName() + " from your contacts ? "));
 
@@ -146,29 +146,21 @@ public class OneContactController extends ParentController {
         deny.setStyle("-jfx-button-type: RAISED; -fx-text-fill: white; -fx-background-color:#f44336;-fx-cursor: hand;");
 
 
-        validate.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                PersonDao personDao = new PersonDao();
-                if (personDao.deletePersonById(actualPerson.getPersonId())) {
-                    homeScreenParentController.reloadFromDb();
-                }
-                App.closeDialog();
-                try {
-                    getHomeScreenParentController().changeViewToAllContact();
-                    App.showSuccessSnackBar("Success");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        validate.setOnAction(event -> {
+            PersonDao personDao = new PersonDao();
+            if (personDao.deletePersonById(actualPerson.getPersonId())) {
+                homeScreenParentController.reloadFromDb();
+            }
+            App.closeDialog();
+            try {
+                getHomeScreenParentController().changeViewToAllContact();
+                App.showSuccessSnackBar("Success");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 
-        deny.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                App.closeDialog();
-            }
-        });
+        deny.setOnAction(event -> App.closeDialog());
 
         allActions.add(validate);
         allActions.add(deny);
@@ -177,7 +169,7 @@ public class OneContactController extends ParentController {
         App.showDialog(content);
     }
 
-    public void handleClickOnEditProfile(MouseEvent mouseEvent) throws IOException {
+    public void handleClickOnEditProfile() throws IOException {
 
 
 

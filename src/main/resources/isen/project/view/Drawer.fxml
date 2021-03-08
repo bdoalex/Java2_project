@@ -119,6 +119,31 @@
                   </VBox>
                </children>
             </AnchorPane>
+            <AnchorPane onMouseClicked="#backButtonMouseClicked" prefHeight="50.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                     <children>
+                        <FontIcon iconColor="#4285f4" iconLiteral="fas-backspace" iconSize="32">
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin>
+                        </FontIcon>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Launcher" wrappingWidth="93.13671875">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
           </children>
       </VBox>
    </children>

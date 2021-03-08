@@ -1,15 +1,11 @@
 package isen.project.view;
 
 import isen.project.App;
-import isen.project.model.HomeScreenModel;
-import isen.project.util.Constant;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-import java.io.IOException;
 import java.net.URL;
 
 public class CreditViewController {
@@ -32,7 +28,7 @@ public class CreditViewController {
     }
 
     @FXML
-    private void initialize() throws IOException {
+    private void initialize() {
         URL path = getClass().getResource("/isen/project/image/members");
         Image alexImage = new Image(path + "/alexandre.jpg",false);
         Image flavienImage = new Image(path + "/flavien.jpeg",false);

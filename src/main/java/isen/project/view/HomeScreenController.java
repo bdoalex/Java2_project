@@ -1,8 +1,6 @@
 package isen.project.view;
 
-import com.jfoenix.controls.JFXSnackbar;
 import isen.project.App;
-import isen.project.ParentController;
 import isen.project.model.HomeScreenModel;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
@@ -141,15 +139,7 @@ public class HomeScreenController {
     }
 
 
-    /**
-     * Display the view of Launcher Screen
-     *
-     * @throws IOException
-     */
-    @FXML
-    public void handleBackButton() throws IOException {
-        App.showView("LauncherScreen");
-    }
+
 
     @FXML
     private void initialize() throws IOException {

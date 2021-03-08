@@ -9,18 +9,14 @@ import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
-import javafx.stage.FileChooser;
 import javafx.scene.image.ImageView;
-
+import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.io.IOException;
 
 public class AddContactViewController {
 
@@ -32,16 +28,10 @@ public class AddContactViewController {
     File fileProfilIcon;
 
     @FXML
-    private GridPane containerGridPane;
-
-    @FXML
     private ImageView imageViewProfilIcon;
 
     @FXML
     private JFXTextField textFieldLastName;
-
-    @FXML
-    private JFXTextField textFieldFirstName;
 
     @FXML
     private JFXTextField textFieldLNickName;
@@ -151,8 +141,7 @@ public class AddContactViewController {
         fileProfilIcon = fc.showOpenDialog(null);
         if (fileProfilIcon != null) {
             setDefaultImage = false;
-            Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
-            return imageProfilIcon;
+            return new Image(fileProfilIcon.toURI().toString());
         }
         return null;
     }
@@ -162,7 +151,7 @@ public class AddContactViewController {
      * Fill combo box category.
      */
     public void fillComboBoxCategory() {
-        ObservableList<Category> categories = FXCollections.observableArrayList();
+        ObservableList<Category> categories;
         categories = categoryDao.listCategories();
 
         for (Category category : categories) {
@@ -171,7 +160,7 @@ public class AddContactViewController {
     }
 
     @FXML
-    private void initialize() throws IOException {
+    private void initialize() {
         fillComboBoxCategory();
         File file = new File(Constant.URL_TO_IMAGE + Constant.DEFAULT_IMAGE);
         Image imageProfilIcon = new Image(file.toURI().toString());

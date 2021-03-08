@@ -6,25 +6,17 @@ import com.jfoenix.controls.JFXTextField;
 import isen.project.App;
 import isen.project.model.EditContactModel;
 import isen.project.model.daos.CategoryDao;
-import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Path;
 
 public class EditContactController {
 
@@ -119,7 +111,7 @@ public class EditContactController {
      * Fill combo box category.
      */
     public void fillComboBoxCategory() {
-        ObservableList<Category> categories = FXCollections.observableArrayList();
+        ObservableList<Category> categories;
         categories = categoryDao.listCategories();
 
         for (Category category : categories) {

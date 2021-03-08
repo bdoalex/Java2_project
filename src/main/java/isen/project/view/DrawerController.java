@@ -1,5 +1,6 @@
 package isen.project.view;
 
+import isen.project.App;
 import isen.project.ParentController;
 import isen.project.util.Constant;
 import javafx.animation.Interpolator;
@@ -8,7 +9,6 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
@@ -30,7 +30,7 @@ public class DrawerController  extends ParentController {
     /**
      * Animation for the drawer
      * we change the width and the clip ( which correspond to the overflow)
-     * @param newSize
+     * @param newSize of the container
      */
     public void animationChangeWidthContainer(int newSize) {
 
@@ -78,6 +78,15 @@ public class DrawerController  extends ParentController {
     public void addContactMouseClicked() throws IOException {
         homeScreenParentController.changeView("AddContactView");
 
+    }
+
+    /**
+     * Display the view of Launcher Screen
+     *
+     */
+    @FXML
+    public void backButtonMouseClicked() {
+        App.showView("LauncherScreen");
     }
 
 
