@@ -14,8 +14,7 @@ public class Category {
         this.name = "Unknown";
     }
 
-    public Category(int categoryId) {
-    }
+
 
     public Category(int category_id, String category_name) {
         this.id = category_id;

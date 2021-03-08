@@ -6,6 +6,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -13,63 +14,73 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.AddContactViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.AddContactViewController">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADD CONTACT">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Text>
-      <GridPane fx:id="containerGridPane" alignment="CENTER" hgap="20.0" vgap="10.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="50.0" />
-         </rowConstraints>
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
+      <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <JFXComboBox fx:id="comboBoxCategory" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profil Icon" GridPane.halignment="RIGHT" />
-            <ImageView fx:id="imageViewProfilIcon" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#handleClickOnView" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <JFXButton onAction="#handleButtonDefault" prefHeight="0.0" text="Default" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets left="60.0" />
-               </GridPane.margin>
-            </JFXButton>
-            <JFXTextField fx:id="textFieldLastName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <JFXTextField fx:id="textFieldFirstName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-            <JFXTextField fx:id="textFieldLNickName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nick Name" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-            <JFXTextField fx:id="textFieldPhone" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-            <JFXTextField fx:id="textFieldAddress" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
-            <JFXTextField fx:id="textFieldEmail" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <JFXDatePicker fx:id="datePickerBirth" defaultColor="#4285f4" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-            <JFXButton buttonType="RAISED" onAction="#handleButtonAccept" text="Validate" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
-            <JFXButton buttonType="RAISED" onAction="#handleButtonCancel" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADD CONTACT">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <GridPane fx:id="containerGridPane" alignment="CENTER" hgap="20.0" vgap="10.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="50.0" />
+               </rowConstraints>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profil Icon" GridPane.halignment="RIGHT" />
+                  <ImageView fx:id="imageViewProfilIcon" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#handleClickOnView" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                  <JFXButton onAction="#handleButtonDefault" prefHeight="0.0" text="Default" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="60.0" />
+                     </GridPane.margin>
+                  </JFXButton>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                  <JFXComboBox fx:id="comboBoxCategory" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="textFieldFirstName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="textFieldLastName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                  <JFXTextField fx:id="textFieldLNickName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nick Name" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                  <JFXTextField fx:id="textFieldPhone" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <JFXTextField fx:id="textFieldAddress" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+                  <JFXTextField fx:id="textFieldEmail" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <JFXDatePicker fx:id="datePickerBirth" defaultColor="#4285f4" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+                  <JFXButton buttonType="RAISED" onAction="#handleButtonCancel" style="-fx-background-color: #D3D3D3;" text="Cancel" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin></JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#handleButtonAccept" style="-fx-background-color: #4CAF50;" text="Validate" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets left="110.0" />
+                     </GridPane.margin></JFXButton>
+               </children>
+            </GridPane>
          </children>
-      </GridPane>
+         <padding>
+            <Insets bottom="10.0" top="20.0" />
+         </padding>
+      </VBox>
    </children>
-   <padding>
-      <Insets bottom="10.0" top="20.0" />
-   </padding>
-</VBox>
+</AnchorPane>

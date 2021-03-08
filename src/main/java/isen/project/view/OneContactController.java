@@ -120,7 +120,7 @@ public class OneContactController extends ParentController {
 
     }
 
-    public void handleButtonBack(ActionEvent event) {
+    public void handleButtonBack() {
         try {
             homeScreenParentController.changeViewToAllContact();
 
@@ -131,7 +131,7 @@ public class OneContactController extends ParentController {
     }
 
 
-    public void handleClickOnTrash(MouseEvent mouseEvent) throws IOException {
+    public void handleClickOnTrash() throws IOException {
         JFXDialogLayout content = new JFXDialogLayout();
         content.setBody(new Text("Are you sure you want to delete " + actualPerson.getFirstName() + " " + actualPerson.getLastName() + " from your contacts ? "));
 

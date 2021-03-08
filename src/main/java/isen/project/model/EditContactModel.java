@@ -1,6 +1,7 @@
 package isen.project.model;
 
 import isen.project.App;
+import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
@@ -24,6 +25,8 @@ public class EditContactModel {
 
 
     OneContactController parentController;
+    CategoryDao categoryDao = new CategoryDao();
+
 
     /**
      *
@@ -34,10 +37,9 @@ public class EditContactModel {
      * @param textFieldAddress=> string
      * @param textFieldEmail=> string
      * @param datePickerBirth=> date
-     * @param categoryId=> id
      * @throws IOException
      */
-    public void handleValidate(String textFieldLastName, String textFieldFirstName, String textFieldLNickName, String textFieldPhone, String textFieldAddress, String textFieldEmail, LocalDate datePickerBirth, int categoryId) throws IOException {
+    public void handleValidate(String textFieldLastName, String textFieldFirstName, String textFieldLNickName, String textFieldPhone, String textFieldAddress, String textFieldEmail, LocalDate datePickerBirth, String categoryName) throws IOException {
         String nameOfSaveFile = actualPerson.getNameFileIcon();
 
         //if the user change the profil icon
@@ -71,7 +73,7 @@ public class EditContactModel {
                 nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
             }
         }
-        Person newPerson = new Person( actualPerson.getPersonId(),textFieldLastName,textFieldFirstName,textFieldLNickName,textFieldPhone,textFieldAddress,textFieldEmail,datePickerBirth,nameOfSaveFile,new Category(categoryId));
+        Person newPerson = new Person( actualPerson.getPersonId(),textFieldLastName,textFieldFirstName,textFieldLNickName,textFieldPhone,textFieldAddress,textFieldEmail,datePickerBirth,nameOfSaveFile, categoryDao.getCategory(categoryName));
         parentController.setActualPerson(newPerson);
         parentController.getHomeScreenParentController().getHomeScreenModel().modifyOneContact(posInGlobalList,newPerson);
         PersonDao dao = new PersonDao();
