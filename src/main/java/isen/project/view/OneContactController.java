@@ -177,7 +177,7 @@ public class OneContactController extends ParentController {
         App.showDialog(content);
     }
 
-    public void handleclickOnEditProfil(MouseEvent mouseEvent) throws IOException {
+    public void handleClickOnEditProfile(MouseEvent mouseEvent) throws IOException {
 
 
 

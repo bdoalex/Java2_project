@@ -63,6 +63,10 @@ public class AddContactViewController {
      */
     @FXML
     public void handleValidateButton() {
+        Category category = new Category();
+        String nameOfSaveFile = Constant.DEFAULT_IMAGE;
+
+
         if (lastNameTextField.getText().isEmpty() || firstNameTextField.getText().isEmpty() || nickNameTextField.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
@@ -74,8 +78,9 @@ public class AddContactViewController {
                 //We check if we can create the photo and if we can add it to the databse
                 //if not we throw an exception
 
-                String nameOfSaveFile = Constant.DEFAULT_IMAGE;
-                Category category = new Category();
+
+                System.out.println(comboBoxCategory.getValue());
+                System.out.println(categoryDao.getCategory(category.getName()));
 
                 if (fileProfilIcon != null) nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
 

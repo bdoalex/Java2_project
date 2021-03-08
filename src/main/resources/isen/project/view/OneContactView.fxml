@@ -35,7 +35,7 @@
                   <DropShadow />
                </effect>
             </Circle>
-            <HBox style="-fx-cursor: hand;" onMouseClicked="#handleclickOnEditProfil" alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="110.0">
+            <HBox style="-fx-cursor: hand;" onMouseClicked="#handleClickOnEditProfile" alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="110.0">
                <children>
                   <FontIcon iconColor="WHITE" iconLiteral="far-edit" iconSize="16" text="">
                      <HBox.margin>
