@@ -2,6 +2,7 @@ package isen.project.view;
 
 import isen.project.App;
 import isen.project.ParentController;
+import isen.project.model.IOContacts;
 import isen.project.util.Constant;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -89,7 +90,17 @@ public class DrawerController  extends ParentController {
         App.showView("LauncherScreen");
     }
 
+    @FXML
+    public void importClicked(){
+        IOContacts ioContacts = new IOContacts();
+        ioContacts.importData();
+    }
 
+    @FXML
+    public void exportClicked(){
+        IOContacts ioContacts = new IOContacts();
+        ioContacts.exportData();
+    }
 
     //Allow the drawer to change the content of the main view
     //That's why we need to get the parent

@@ -1,19 +1,15 @@
 package isen.project.model;
 
-import isen.project.model.daos.DataSourceFactory;
+import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.PersonDao;
-import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import java.io.File;  // Import the File class
 import java.io.IOException;  // Import the IOException class to handle errors
@@ -23,41 +19,44 @@ import java.util.Scanner; // Import the Scanner class to read text files
 
 public class IOContacts {
 
-    public ObservableList<Person> getData() {
-        ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        try (Connection connection = DataSourceFactory.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM person JOIN category ON person.category_id = category.category_id")) {
-                try (ResultSet results = statement.executeQuery()) {
-                    while (results.next()) {
-                        Category category = new Category(results.getInt("category_id"),results.getString("category_name")) ;
+    PersonDao personDao = new PersonDao();
 
-                        Person person = new Person(
-                                results.getInt("person_id"),
-                                results.getString("lastname"),
-                                results.getString("firstname"),
-                                results.getString("nickname"),
-                                results.getString("phone_number"),
-                                results.getString("address"),
-                                results.getString("email_address"),
-                                results.getDate("birth_date")!=null ? results.getDate("birth_date").toLocalDate() : null,
-                                results.getString("name_file_icon"),
-                                category);
-                        ;
-                        persons.add(person);
-                    }
-                    return persons;
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error", e);
+    private String getFilePath(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("VCARD Files", "*.vcf", "*.vcard"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File file = fileChooser.showOpenDialog(null);
+
+        if(file != null){
+            System.out.println(file.getPath());
+            return file.getPath();
         }
+
+        else
+            return null;
     }
 
-    private void createVcfFile(){
-        File myObj = new File("contacts.vcf");
+    private String getDirectoryPath(){
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Open Resource File");
+        File directory = directoryChooser.showDialog(null);
+
+        if(directory != null){
+            System.out.println(directory.getPath());
+            return directory.getPath();
+        }
+
+        else
+            return null;
+    }
+
+    private void createVcfFile(String path){
+        File file = new File(path);
         try {
-            myObj.createNewFile();
+            file.createNewFile();
 
         }
         catch (IOException e) {
@@ -66,22 +65,73 @@ public class IOContacts {
     }
 
     public void exportData(){
-        createVcfFile();
         try {
-            FileWriter myWriter = new FileWriter("contacts.vcf");
+            FileWriter myWriter = null;
+            String path = getDirectoryPath();
+
+            if(path != null){
+                createVcfFile(path + "\\contacts.vcf");
+                myWriter = new FileWriter(path + "\\contacts.vcf");
+            }
+            else
+                return;
+
+
             PrintWriter printWriter = new PrintWriter(myWriter);
 
-            ObservableList<Person> persons = getData();
+            ObservableList<Person> persons = personDao.getPersons();
 
             for(Person person : persons) {
                 printWriter.println("BEGIN:VCARD");
                 printWriter.println("VERSION:2.1");
                 printWriter.println("N:"+person.getLastName()+";"+person.getFirstName());
                 printWriter.println("FN:"+person.getNickName());
-                printWriter.println("BDAY:"+person.getBirthDate().toString().replace("-",""));
+                if(person.getBirthDate() != null)
+                    printWriter.println("BDAY:"+ person.getBirthDate().toString().replace("-",""));
+                else
+                    printWriter.println("BDAY:"+person.getBirthDate());
                 printWriter.println("ADR:"+person.getAddress());
                 printWriter.println("TEL;PHONE:"+person.getPhoneNumber());
                 printWriter.println("EMAIL:"+person.getEmailAddress());
+                printWriter.println("CAT:"+person.getCategory().getName());
+                printWriter.println("END:VCARD");
+                printWriter.println("");
+            }
+            myWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void exportData(String category){
+        try {
+            FileWriter myWriter = null;
+            String path = getDirectoryPath();
+
+            if(path != null){
+                createVcfFile(path + "\\contacts.vcf");
+                myWriter = new FileWriter(path + "\\contacts.vcf");
+            }
+            else
+                return;
+
+            PrintWriter printWriter = new PrintWriter(myWriter);
+
+            ObservableList<Person> persons = personDao.getPersons();
+
+            for(Person person : persons) {
+                printWriter.println("BEGIN:VCARD");
+                printWriter.println("VERSION:2.1");
+                printWriter.println("N:"+person.getLastName()+";"+person.getFirstName());
+                printWriter.println("FN:"+person.getNickName());
+                if(person.getBirthDate() != null)
+                    printWriter.println("BDAY:"+person.getBirthDate().toString().replace("-",""));
+                else
+                    printWriter.println("BDAY:"+person.getBirthDate());
+                printWriter.println("ADR:"+person.getAddress());
+                printWriter.println("TEL;PHONE:"+person.getPhoneNumber());
+                printWriter.println("EMAIL:"+person.getEmailAddress());
+                printWriter.println("CAT:"+person.getCategory().getName());
                 printWriter.println("END:VCARD");
                 printWriter.println("");
             }
@@ -93,8 +143,14 @@ public class IOContacts {
 
     public void importData(){
         try {
-            File myObj = new File("contacts.vcf");
-            Scanner myReader = new Scanner(myObj);
+            File file = null;
+            String path = getFilePath();
+            if(path != null)
+                file = new File(path);
+            else
+                return;
+
+            Scanner myReader = new Scanner(file);
             PersonDao personDao = new PersonDao();
 
             Person person = null;
@@ -110,20 +166,39 @@ public class IOContacts {
                 }
                 else if (parts[0].equals("FN"))
                     person.setNickName(parts[1]);
-                else if (parts[0].equals("BDAY")){
-                    if(parts[1] != null){
+                else if (parts[0].equals("BDAY"))
+                    try {
                         String date = parts[1];
                         date = date.substring(0,4)+"-"+date.substring(4,6)+"-"+date.substring(6,8);
                         LocalDate newdate = LocalDate.parse(date);
                         person.setBirthDate(newdate);
                     }
-                }
+                    catch (Exception e){
+                        person.setBirthDate(null);
+                    }
                 else if (parts[0].equals("ADR"))
-                    person.setAddress(parts[1]);
+                    try{
+                        person.setAddress(parts[1]);
+                    }
+                    catch (Exception e){
+                        person.setAddress(null);
+                    }
                 else if (parts[0].equals("TEL;PHONE"))
-                    person.setPhoneNumber(parts[1]);
+                    try {
+                        person.setPhoneNumber(parts[1]);
+                    }
+                    catch (Exception e){
+                        person.setPhoneNumber(null);
+                    }
                 else if (parts[0].equals("EMAIL"))
-                    person.setEmailAddress(parts[1]);
+                    try {
+                        person.setEmailAddress(parts[1]);
+                    }
+                    catch (Exception e){
+                        person.setEmailAddress(null);
+                    }
+                else if (parts[0].equals("CAT"))
+                    person.setCategory(new CategoryDao().getCategory(parts[1]));
                 else if (parts[0].equals("END")){
                     person.setNameFileIcon(Constant.DEFAULT_IMAGE);
                     personDao.addPerson(person);
