@@ -46,9 +46,9 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profil Icon" GridPane.halignment="RIGHT" />
             <ImageView fx:id="imageViewProfilIcon" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#handleClickOnView" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
             <JFXButton onAction="#handleButtonDefault" text="Default" GridPane.columnIndex="1">
-               <padding>
+               <GridPane.margin>
                   <Insets left="60.0" />
-               </padding>
+               </GridPane.margin>
             </JFXButton>
             <JFXTextField fx:id="textFieldLastName" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
