@@ -10,14 +10,12 @@ import javafx.collections.ObservableList;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
-
-import java.io.File;  // Import the File class
-import java.io.IOException;  // Import the IOException class to handle errors
-import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.time.LocalDate;
-import java.util.Scanner; // Import the Scanner class to read text files
+import java.util.Scanner;
 
 public class IOContacts {
 
