@@ -5,6 +5,8 @@ import isen.project.model.daos.DataSourceFactory;
 import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,18 +53,27 @@ public class PersonDaoTestCase {
 
         stmt.executeUpdate("INSERT INTO person(person_id,lastname,firstname,nickname,phone_number,address,email_address,birth_date,name_file_icon, category_id) " +
                 "VALUES (2,'Jeannnnin',  'Louis' , 'ElPetou','01020304','Montpellier' ,'toi@toi.fr', '2010-1-25 12:00:00.000' ,'defaultImage.jpg',null )");
-        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (1,'Unknown')");
-        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (2,'Friends')");
-        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (3,'Family')");
-        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (4,'Work')");
+        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (1,'Friends')");
+        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (2,'Family')");
+        stmt.executeUpdate("INSERT INTO category(category_id,category_name) VALUES (3,'Work')");
 
         stmt.close();
         connection.close();
     }
 
+    @Test
+    public void shouldGetPersons(){
+        ObservableList<Person> persons = personDao.getPersons();
+
+        assertThat(persons).hasSize(2);
+        assertThat(persons).extracting("personId","lastName", "firstName", "nickName","phoneNumber", "address","emailAddress", "birthDate", "nameFileIcon","category")
+                .containsOnly(
+                        tuple(1, "Barbo",  "Alexandre" , "ElDeus","06060606","La vilette" ,"moi@moi.fr", LocalDate.of(2020 , 2, 25) ,"defaultImage.jpg",new Category(1, "Friends") ),
+                        tuple(2,"Jeannnnin",  "Louis" , "ElPetou","01020304","Montpellier" ,"toi@toi.fr", LocalDate.of(2010 , 1, 25) ,"defaultImage.jpg",null ));
+    }
 
     @Test
-    public void ShouldGetPersonByID() {
+    public void shouldGetPersonByID() {
         Person person = personDao.getPersonById(1);
 
 
@@ -74,7 +85,7 @@ public class PersonDaoTestCase {
                 "La vilette",
                 "moi@moi.fr",
                 LocalDate.of(2020, 2, 25), "defaultImage.jpg",
-                new Category(1, "Unknown")));
+                new Category(1, "Friends")));
 
          person = personDao.getPersonById(2);
 
@@ -91,7 +102,7 @@ public class PersonDaoTestCase {
 
 
     @Test
-    public void ShouldModifyPerson() throws SQLException {
+    public void shouldModifyPerson() throws SQLException {
         Person modified = new Person(1, "Flavien", "Flavien2", "ElDeus", "06060606", "La vilette", "moi@moi.fr", LocalDate.of(2020, 2, 25), "defaultImage.jpg", categoryDao.getCategory("Friends"));
         Boolean modifiedPerson = personDao.modifyPerson(modified);
 
@@ -107,9 +118,9 @@ public class PersonDaoTestCase {
         assertThat(resultModifyPerson.getString("phone_number")).isEqualTo("06060606");
         assertThat(resultModifyPerson.getString("address")).isEqualTo("La vilette");
         assertThat(resultModifyPerson.getString("email_address")).isEqualTo("moi@moi.fr");
-        assertThat(resultModifyPerson.getDate("birth_date")).isEqualTo(java.sql.Date.valueOf((LocalDate.of(2020, 02, 25))));
+        assertThat(resultModifyPerson.getDate("birth_date")).isEqualTo(java.sql.Date.valueOf((LocalDate.of(2020, 2, 25))));
         assertThat(resultModifyPerson.getString("name_file_icon")).isEqualTo("defaultImage.jpg");
-        assertThat(resultModifyPerson.getInt("category_id")).isEqualTo(2);
+        assertThat(resultModifyPerson.getInt("category_id")).isEqualTo(1);
 
         resultModifyPerson.close();
         statement.close();
@@ -130,5 +141,29 @@ public class PersonDaoTestCase {
         connection.close();
     }
 
+    @Test
+    public void shouldAddPerson() throws SQLException {
+        personDao.addPerson(new Person(1, "Louis", "Vivier", "Lou", "06060606", "Lille", "moi@moi.fr", LocalDate.of(1998, 12, 31), "defaultImage.jpg", categoryDao.getCategory("Friends")));
+
+        Connection connection = DataSourceFactory.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultAddFilm = statement.executeQuery("SELECT * FROM person WHERE nickname='Lou'");
+        assertThat(resultAddFilm.next()).isTrue();
+        assertNotNull(resultAddFilm);
+        assertThat(resultAddFilm.getInt("person_id") == 1);
+        assertThat(resultAddFilm.getString("lastname")).isEqualTo("Louis");
+        assertThat(resultAddFilm.getString("firstname")).isEqualTo("Vivier");
+        assertThat(resultAddFilm.getString("nickname")).isEqualTo("Lou");
+        assertThat(resultAddFilm.getString("phone_number")).isEqualTo("06060606");
+        assertThat(resultAddFilm.getString("address")).isEqualTo("Lille");
+        assertThat(resultAddFilm.getString("email_address")).isEqualTo("moi@moi.fr");
+        assertThat(resultAddFilm.getDate("birth_date")).isEqualTo(java.sql.Date.valueOf((LocalDate.of(1998, 12, 31))));
+        assertThat(resultAddFilm.getString("name_file_icon")).isEqualTo("defaultImage.jpg");
+        assertThat(resultAddFilm.getInt("category_id")).isEqualTo(1);
+
+        resultAddFilm.close();
+        statement.close();
+        connection.close();
+    }
 
 }
