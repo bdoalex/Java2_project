@@ -13,6 +13,10 @@ public class HomeScreenModel {
 
     PersonDao personDao = new PersonDao();
 
+    public void addOneContact(Person newPerson){
+        allContact.add(newPerson);
+    }
+
     public void modifyOneContact(int index, Person newPerson) {
         allContact.set(index,newPerson);
     }

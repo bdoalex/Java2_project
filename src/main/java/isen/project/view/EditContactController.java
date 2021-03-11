@@ -63,7 +63,10 @@ public class EditContactController {
         textFieldPhone.setText(actualPerson.getPhoneNumber());
         Image image = new Image("file:\\" + Constant.URL_TO_IMAGE + actualPerson.getNameFileIcon());
         imageViewProfilIcon.setImage(image);
-        comboBoxCategory.setPromptText(actualPerson.getCategory().getName());
+        if(actualPerson.getCategory() != null){
+            comboBoxCategory.setPromptText(actualPerson.getCategory().getName());
+        }
+
 
 
     }

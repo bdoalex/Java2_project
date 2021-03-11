@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS person
     email_address  VARCHAR(150) NULL,
     birth_date     DATE         NULL,
     name_file_icon VARCHAR(50)  NOT NULL,
-    category_id    INT          NOT NULL
+    category_id    INT          NULL
 
 );
 
@@ -18,3 +18,5 @@ CREATE TABLE IF NOT EXISTS category
     category_id   INTEGER     NOT NULL PRIMARY KEY AUTOINCREMENT,
     category_name VARCHAR(45) NOT NULL
 );
+
+

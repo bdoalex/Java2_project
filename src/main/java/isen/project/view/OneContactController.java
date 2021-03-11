@@ -98,11 +98,15 @@ public class OneContactController extends ParentController {
         }else{
             birthDate.setText(actualPerson.getBirthDate().toString());
         }
+        if (actualPerson.getCategory()==null){
+            category.setText("Unknown");
+        }else{
+            category.setText(actualPerson.getCategory().getName());
 
+        }
 
         name.setText(actualPerson.getFirstName() + " " + actualPerson.getLastName());
         nickName.setText(actualPerson.getNickName());
-        category.setText(actualPerson.getCategory().getName());
 
 
 

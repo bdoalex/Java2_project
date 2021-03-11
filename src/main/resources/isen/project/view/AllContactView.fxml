@@ -8,6 +8,7 @@
             xmlns:fx="http://javafx.com/fxml"
             AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
             AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+            id="allContactView"
             fx:controller="isen.project.view.AllContactController">
     <HBox alignment="CENTER" prefHeight="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
           AnchorPane.topAnchor="0.0">

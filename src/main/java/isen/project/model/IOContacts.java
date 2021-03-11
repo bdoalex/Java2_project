@@ -1,9 +1,11 @@
 package isen.project.model;
 
+import isen.project.App;
 import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
+import isen.project.view.HomeScreenController;
 import javafx.collections.ObservableList;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -141,7 +143,7 @@ public class IOContacts {
         }
     }
 
-    public void importData(){
+    public void importData(HomeScreenController homeSreenController){
         try {
             File file = null;
             String path = getFilePath();
@@ -202,11 +204,15 @@ public class IOContacts {
                 else if (parts[0].equals("END")){
                     person.setNameFileIcon(Constant.DEFAULT_IMAGE);
                     personDao.addPerson(person);
+                    homeSreenController.getHomeScreenModel().addOneContact(person);
                 }
+                App.showSuccessSnackBar("Success");
 
             }
             myReader.close();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

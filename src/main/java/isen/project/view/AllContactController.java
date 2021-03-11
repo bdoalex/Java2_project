@@ -5,6 +5,7 @@ import isen.project.ParentController;
 import isen.project.model.AllContactModel;
 import isen.project.model.entities.Person;
 import isen.project.util.PersonListViewCell;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -24,6 +25,17 @@ public class AllContactController extends ParentController {
 
 
     public void setAllContact(ObservableList<Person> allContact) {
+
+
+
+        allContact.addListener(new ListChangeListener<Person>() {
+            @Override
+            public void onChanged(Change<? extends Person> change) {
+
+                allContactModel.setAllContact((ObservableList<Person>) change.getList());
+            }
+        });
+
         allContactModel = new AllContactModel(allContact);
         contactListView.setItems(allContactModel.getContactShown());
         contactListView.setCellFactory(contactListView -> new PersonListViewCell(this.contactListView));

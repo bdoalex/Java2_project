@@ -2,6 +2,7 @@ package isen.project.model.entities;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Person {
 
@@ -20,6 +21,28 @@ public class Person {
 
     public Person() {
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return personId == person.personId &&
+                Objects.equals(lastName, person.lastName) &&
+                Objects.equals(firstName, person.firstName) &&
+                Objects.equals(nickName, person.nickName) &&
+                Objects.equals(phoneNumber, person.phoneNumber) &&
+                Objects.equals(address, person.address) &&
+                Objects.equals(emailAddress, person.emailAddress) &&
+                Objects.equals(birthDate, person.birthDate) &&
+                Objects.equals(category, person.category) &&
+                Objects.equals(nameFileIcon, person.nameFileIcon);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(personId, lastName, firstName, nickName, phoneNumber, address, emailAddress, birthDate, category, nameFileIcon);
     }
 
     public Person(int personId, String lastName, String firstName, String nickName, String phoneNumber, String address, String emailAddress, LocalDate birthDate, String nameFileIcon, Category category) {

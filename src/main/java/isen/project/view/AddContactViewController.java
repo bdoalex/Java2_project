@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import isen.project.App;
+import isen.project.ParentController;
 import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Category;
@@ -18,7 +19,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 
-public class AddContactViewController {
+public class AddContactViewController extends ParentController {
 
     PersonDao personDao = new PersonDao();
     CategoryDao categoryDao = new CategoryDao();
@@ -74,13 +75,14 @@ public class AddContactViewController {
                 //if not we throw an exception
 
 
-                System.out.println(comboBoxCategory.getValue());
-                System.out.println(categoryDao.getCategory(category.getName()));
 
-                if (fileProfilIcon != null) nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
+
+                if (fileProfilIcon != null) {
+                    nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
+                }
 
                 if (comboBoxCategory.getValue() == null) {
-                    category = categoryDao.getCategory(category.getName());
+                    category = null;
                 } else {
                     category = categoryDao.getCategory(comboBoxCategory.getValue());
                 }
@@ -94,7 +96,9 @@ public class AddContactViewController {
                         datePickerBirth.getValue(),
                         nameOfSaveFile, category );
                 personDao.addPerson(newPerson);
-                App.showView("HomeScreen");
+                homeScreenParentController.getHomeScreenModel().addOneContact(newPerson);
+                App.showSuccessSnackBar("Person added");
+
             } catch (Exception e) {
                 e.printStackTrace();
                 //todo we have to delete the image if we can't add into the database

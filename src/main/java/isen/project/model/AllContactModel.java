@@ -65,8 +65,9 @@ public class AllContactModel {
         return contactShown;
     }
 
-    public void modifyOneContact(int index, Person newPerson) {
-        allContact.set(index,newPerson);
-        contactShown=allContact;
+
+
+    public void setAllContact(ObservableList<Person> allContact) {
+        this.allContact = allContact;
     }
 }

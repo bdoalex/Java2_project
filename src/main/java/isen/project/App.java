@@ -19,13 +19,16 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 
 /**
@@ -43,6 +46,36 @@ public class App extends Application {
     private static AnchorPane containerContent;
 
     private static StackPane containerDialog;
+
+
+    @Override
+    public void init() throws Exception {
+        super.init();
+        Connection connection = DataSourceFactory.getConnection();
+        Statement stmt = connection.createStatement();
+
+
+
+        File f = new File(getClass().getResource("/isen/project/sql/database-creation.sql").getFile()) ;
+
+        System.out.println(f);
+
+        Scanner myReader = new Scanner(f);
+        StringBuilder str = new StringBuilder();
+
+        while (myReader.hasNextLine()) {
+            String data = myReader.nextLine();
+            str.append(data);
+
+            if(data.contains(";")){
+                stmt.executeUpdate(String.valueOf(str));
+                str = new StringBuilder();
+            }
+
+        }
+
+
+    }
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {

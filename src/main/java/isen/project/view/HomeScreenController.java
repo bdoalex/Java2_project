@@ -48,6 +48,7 @@ public class HomeScreenController {
     }
 
 
+
     /**
      * @param actualPerson the person which we want to see the sheet
      * @throws IOException
@@ -105,6 +106,7 @@ public class HomeScreenController {
         timeline.play();
 
 
+
     }
 
     public void reloadFromDb() {
@@ -123,6 +125,20 @@ public class HomeScreenController {
         AllContactController controller = fxmlLoader.getController();
         controller.setParentController(this);
         controller.setAllContact(homeScreenModel.getAllContact());
+        transition(load);
+    }
+
+
+    public void changeViewToAddContact() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/AddContactView.fxml"));
+
+
+        Node load = fxmlLoader.load();
+
+
+        AddContactViewController controller = fxmlLoader.getController();
+        controller.setParentController(this);
         transition(load);
     }
 

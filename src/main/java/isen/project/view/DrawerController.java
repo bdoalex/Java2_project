@@ -77,7 +77,7 @@ public class DrawerController  extends ParentController {
 
     @FXML
     public void addContactMouseClicked() throws IOException {
-        homeScreenParentController.changeView("AddContactView");
+        homeScreenParentController.changeViewToAddContact();
 
     }
 
@@ -91,9 +91,11 @@ public class DrawerController  extends ParentController {
     }
 
     @FXML
-    public void importClicked(){
+    public void importClicked() throws IOException {
         IOContacts ioContacts = new IOContacts();
-        ioContacts.importData();
+
+        ioContacts.importData(homeScreenParentController);
+
     }
 
     @FXML
