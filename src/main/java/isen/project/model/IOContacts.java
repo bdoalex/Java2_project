@@ -95,7 +95,7 @@ public class IOContacts {
                 printWriter.println("ADR:"+person.getAddress());
                 printWriter.println("TEL;PHONE:"+person.getPhoneNumber());
                 printWriter.println("EMAIL:"+person.getEmailAddress());
-                printWriter.println("CAT:"+person.getCategory().getName());
+                printWriter.println("CAT:"+(person.getCategory()==null?null:person.getCategory().getName()));
                 printWriter.println("END:VCARD");
                 printWriter.println("");
             }
@@ -107,7 +107,7 @@ public class IOContacts {
 
     public void exportData(String category){
         try {
-            FileWriter myWriter = null;
+            FileWriter myWriter;
             String path = getDirectoryPath();
 
             if(path != null){
@@ -145,7 +145,7 @@ public class IOContacts {
 
     public void importData(HomeScreenController homeSreenController){
         try {
-            File file = null;
+            File file;
             String path = getFilePath();
             if(path != null)
                 file = new File(path);
@@ -159,59 +159,76 @@ public class IOContacts {
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] parts = data.split(":");
-                if(parts[0].equals("BEGIN"))
-                    person = new Person();
-                else if (parts[0].equals("N")){
-                    parts = parts[1].split(";");
-                    person.setLastName(parts[0]);
-                    person.setFirstName(parts[1]);
-                }
-                else if (parts[0].equals("FN"))
-                    person.setNickName(parts[1]);
-                else if (parts[0].equals("BDAY"))
-                    try {
-                        String date = parts[1];
-                        date = date.substring(0,4)+"-"+date.substring(4,6)+"-"+date.substring(6,8);
-                        LocalDate newdate = LocalDate.parse(date);
-                        person.setBirthDate(newdate);
-                    }
-                    catch (Exception e){
-                        person.setBirthDate(null);
-                    }
-                else if (parts[0].equals("ADR"))
-                    try{
-                        person.setAddress(parts[1]);
-                    }
-                    catch (Exception e){
-                        person.setAddress("");
-                    }
-                else if (parts[0].equals("TEL;PHONE"))
-                    try {
-                        person.setPhoneNumber(parts[1]);
-                    }
-                    catch (Exception e){
-                        person.setPhoneNumber("");
-                    }
-                else if (parts[0].equals("EMAIL"))
-                    try {
-                        person.setEmailAddress(parts[1]);
-                    }
-                    catch (Exception e){
-                        person.setEmailAddress("");
-                    }
-                else if (parts[0].equals("CAT"))
-                    person.setCategory(new CategoryDao().getCategory(parts[1]));
-                else if (parts[0].equals("END")){
-                    person.setNameFileIcon(Constant.DEFAULT_IMAGE);
-                    personDao.addPerson(person);
-                    homeSreenController.getHomeScreenModel().addOneContact(person);
+                switch (parts[0]) {
+                    case "BEGIN":
+                        person = new Person();
+                        break;
+                    case "N":
+                        parts = parts[1].split(";");
+                        assert person != null;
+                        person.setLastName(parts[0]);
+                        person.setFirstName(parts[1]);
+                        break;
+                    case "FN":
+                        assert person != null;
+                        person.setNickName(parts[1]);
+                        break;
+                    case "BDAY":
+                        try {
+                            String date = parts[1];
+                            date = date.substring(0, 4) + "-" + date.substring(4, 6) + "-" + date.substring(6, 8);
+                            LocalDate newdate = LocalDate.parse(date);
+                            assert person != null;
+                            person.setBirthDate(newdate);
+                        } catch (Exception e) {
+                            assert person != null;
+                            person.setBirthDate(null);
+                        }
+                        break;
+                    case "ADR":
+                        try {
+                            assert person != null;
+                            person.setAddress(parts[1]);
+                        } catch (Exception e) {
+                            person.setAddress("");
+                        }
+                        break;
+                    case "TEL;PHONE":
+                        try {
+                            assert person != null;
+                            person.setPhoneNumber(parts[1]);
+                        } catch (Exception e) {
+                            person.setPhoneNumber("");
+                        }
+                        break;
+                    case "EMAIL":
+                        try {
+                            assert person != null;
+                            person.setEmailAddress(parts[1]);
+                        } catch (Exception e) {
+                            person.setEmailAddress("");
+                        }
+                        break;
+                    case "CAT":
+                        if (parts[1].equals("null")) {
+                            assert person != null;
+                            person.setCategory(null);
+                        } else {
+                            assert person != null;
+                            person.setCategory(new CategoryDao().getCategory(parts[1]));
+                        }
+                        break;
+                    case "END":
+                        assert person != null;
+                        person.setNameFileIcon(Constant.DEFAULT_IMAGE);
+                        personDao.addPerson(person);
+                        homeSreenController.getHomeScreenModel().addOneContact(person);
+                        break;
                 }
                 App.showSuccessSnackBar("Success");
 
             }
             myReader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
