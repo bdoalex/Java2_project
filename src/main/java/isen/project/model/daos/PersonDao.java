@@ -26,9 +26,9 @@ public class PersonDao {
                 try (ResultSet results = statement.executeQuery()) {
                     while (results.next()) {
                         Category category = null;
-                        int catId = results.getInt("category_id");
+                        int categoryId = results.getInt("category_id");
                         if (!results.wasNull()) {
-                            category = new Category(catId, results.getString("category_name"));
+                            category = new Category(categoryId, results.getString("category_name"));
                         }
 
                         Person person = new Person(
