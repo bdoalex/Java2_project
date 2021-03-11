@@ -49,11 +49,15 @@ public class AllContactModel {
                 return true; // Filter matches last name.
             } else if (person.getPhoneNumber().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getPhoneNumber().toLowerCase())) {
                 return true;
-            } else if (person.getCategory().getName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getCategory().getName().toLowerCase())) {
-                return true;
-            } else if (person.getAddress().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getAddress().toLowerCase())) {
+            }else if (person.getAddress().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getAddress().toLowerCase())) {
                 return true;
             }
+            if(person.getCategory() != null){
+                 if (person.getCategory().getName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getCategory().getName().toLowerCase())) {
+                    return true;
+                }
+            }
+
             return false; // Does not match.
         });
         contactShown = filteredData;
