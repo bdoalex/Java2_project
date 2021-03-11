@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class DrawerController  extends ParentController {
 
-
+    IOContacts ioContacts = new IOContacts();
 
     @FXML
     VBox container;
@@ -92,13 +92,11 @@ public class DrawerController  extends ParentController {
 
     @FXML
     public void importClicked(){
-        IOContacts ioContacts = new IOContacts();
         ioContacts.importData();
     }
 
     @FXML
     public void exportClicked(){
-        IOContacts ioContacts = new IOContacts();
         ioContacts.exportData();
     }
 
