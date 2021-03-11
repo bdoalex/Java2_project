@@ -51,7 +51,6 @@ public class EditContactController {
         model.setActualPerson(actualPerson);
         textFieldLastName.setText(actualPerson.getLastName());
         textFieldFirstName.setText(actualPerson.getFirstName());
-        //textFieldCategory.setText(actualPerson.getCategory().get);
 
 
         if (actualPerson.getBirthDate() != null) {

@@ -23,25 +23,16 @@ public class AllContactController extends ParentController {
     AllContactModel allContactModel;
 
 
-
     public void setAllContact(ObservableList<Person> allContact) {
 
 
-
-        allContact.addListener(new ListChangeListener<Person>() {
-            @Override
-            public void onChanged(Change<? extends Person> change) {
-
-                allContactModel.setAllContact((ObservableList<Person>) change.getList());
-            }
-        });
+        allContact.addListener((ListChangeListener<Person>) change -> allContactModel.setAllContact((ObservableList<Person>) change.getList()));
 
         allContactModel = new AllContactModel(allContact);
         contactListView.setItems(allContactModel.getContactShown());
-        contactListView.setCellFactory(contactListView -> new PersonListViewCell(this.contactListView));
+        contactListView.setCellFactory(temp -> new PersonListViewCell(this.contactListView));
 
     }
-
 
 
     @FXML

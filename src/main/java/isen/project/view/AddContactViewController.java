@@ -12,12 +12,12 @@ import isen.project.model.entities.Person;
 import isen.project.util.Constant;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.io.IOException;
 
 public class AddContactViewController extends ParentController {
 
@@ -61,16 +61,13 @@ public class AddContactViewController extends ParentController {
      * delete the form to add a person
      */
     @FXML
-    void handleButtonAccept() {
+    void handleButtonAccept() throws IOException {
         Category category;
         String nameOfSaveFile = Constant.DEFAULT_IMAGE;
 
 
-        if (textFieldLastName.getText().isEmpty() || textFieldLastName.getText().isEmpty() || textFieldLNickName.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Champs manquant");//toDo : gérer en fonction de l'erreur renvoyé
-            alert.showAndWait();
+        if (textFieldLastName.getText().isEmpty() || textFieldFirstName.getText().isEmpty() || textFieldLNickName.getText().isEmpty()) {
+           App.showFailureSnackBar("You need to fill all form");
 
         } else {
             try {

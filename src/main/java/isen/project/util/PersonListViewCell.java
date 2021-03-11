@@ -1,7 +1,6 @@
 package isen.project.util;
 
 import isen.project.model.entities.Person;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
@@ -10,10 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 import java.io.IOException;
-import java.net.URL;
 
 
 /**
@@ -22,11 +19,11 @@ import java.net.URL;
  */
 public class PersonListViewCell extends ListCell<Person>{
 
-    private FXMLLoader mLLoader;
+
 
 
     @FXML
-    private ListView parentListView;
+    private final ListView<Person> parentListView;
 
     @FXML
     private AnchorPane anchorPane;
@@ -40,7 +37,7 @@ public class PersonListViewCell extends ListCell<Person>{
     @FXML
     private ImageView imageContact;
 
-    public PersonListViewCell(ListView list) {
+    public PersonListViewCell(ListView<Person> list) {
         parentListView = list;
     }
 
@@ -52,7 +49,7 @@ public class PersonListViewCell extends ListCell<Person>{
     @Override
     protected void updateItem(Person person, boolean empty) {
         super.updateItem(person, empty);
-
+        FXMLLoader mLLoader;
 
 
         if(empty || person==null){
