@@ -63,14 +63,12 @@ public class EditContactController {
         textFieldPhone.setText(actualPerson.getPhoneNumber());
         Image image = new Image("file:\\" + Constant.URL_TO_IMAGE + actualPerson.getNameFileIcon());
         imageViewProfilIcon.setImage(image);
-        if(actualPerson.getCategory() != null){
+        if (actualPerson.getCategory() != null) {
             comboBoxCategory.setPromptText(actualPerson.getCategory().getName());
         }
 
 
-
     }
-
 
 
     public void setParentController(OneContactController parentController) {
@@ -83,6 +81,12 @@ public class EditContactController {
     }
 
     public void handleButtonAccept() throws IOException {
+        Category category;
+        if (comboBoxCategory.getValue() == null) {
+            category = null;
+        } else {
+            category = categoryDao.getCategory(comboBoxCategory.getValue());
+        }
         model.handleValidate(textFieldLastName.getText(),
                 textFieldFirstName.getText(),
                 textFieldLNickName.getText(),
@@ -90,7 +94,7 @@ public class EditContactController {
                 textFieldAddress.getText(),
                 textFieldEmail.getText(),
                 datePickerBirth.getValue(),
-                comboBoxCategory.getValue());
+                category);
     }
 
     public void handleClickOnView() {
@@ -126,7 +130,6 @@ public class EditContactController {
     public void initialize() {
         fillComboBoxCategory();
     }
-
 
 
 }

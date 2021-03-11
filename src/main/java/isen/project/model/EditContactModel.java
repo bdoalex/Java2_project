@@ -39,7 +39,7 @@ public class EditContactModel {
      * @param datePickerBirth=> date
      * @throws IOException
      */
-    public void handleValidate(String textFieldLastName, String textFieldFirstName, String textFieldLNickName, String textFieldPhone, String textFieldAddress, String textFieldEmail, LocalDate datePickerBirth, String categoryName) throws IOException {
+    public void handleValidate(String textFieldLastName, String textFieldFirstName, String textFieldLNickName, String textFieldPhone, String textFieldAddress, String textFieldEmail, LocalDate datePickerBirth, Category category) throws IOException {
         String nameOfSaveFile = actualPerson.getNameFileIcon();
 
         //if the user change the profil icon
@@ -73,7 +73,7 @@ public class EditContactModel {
                 nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
             }
         }
-        Person newPerson = new Person( actualPerson.getPersonId(),textFieldLastName,textFieldFirstName,textFieldLNickName,textFieldPhone,textFieldAddress,textFieldEmail,datePickerBirth,nameOfSaveFile, categoryDao.getCategory(categoryName));
+        Person newPerson = new Person( actualPerson.getPersonId(),textFieldLastName,textFieldFirstName,textFieldLNickName,textFieldPhone,textFieldAddress,textFieldEmail,datePickerBirth,nameOfSaveFile, category==null ? null : categoryDao.getCategory(category.getName()));
         parentController.setActualPerson(newPerson);
         parentController.getHomeScreenParentController().getHomeScreenModel().modifyOneContact(posInGlobalList,newPerson);
         PersonDao dao = new PersonDao();

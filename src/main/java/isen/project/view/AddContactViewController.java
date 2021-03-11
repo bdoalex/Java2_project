@@ -35,6 +35,9 @@ public class AddContactViewController extends ParentController {
     private JFXTextField textFieldLastName;
 
     @FXML
+    private JFXTextField textFieldFirstName;
+
+    @FXML
     private JFXTextField textFieldLNickName;
 
     @FXML
@@ -59,7 +62,7 @@ public class AddContactViewController extends ParentController {
      */
     @FXML
     void handleButtonAccept() {
-        Category category = new Category();
+        Category category;
         String nameOfSaveFile = Constant.DEFAULT_IMAGE;
 
 
@@ -88,8 +91,10 @@ public class AddContactViewController extends ParentController {
                 }
 
 
-                Person newPerson = new Person(textFieldLastName.getText(),
-                        textFieldLastName.getText(), textFieldLNickName.getText(),
+                Person newPerson = new Person(
+                        textFieldLastName.getText(),
+                        textFieldFirstName.getText(),
+                        textFieldLNickName.getText(),
                         textFieldPhone.getText(),
                         textFieldAddress.getText(),
                         textFieldEmail.getText(),
@@ -98,6 +103,7 @@ public class AddContactViewController extends ParentController {
                 personDao.addPerson(newPerson);
                 homeScreenParentController.getHomeScreenModel().addOneContact(newPerson);
                 App.showSuccessSnackBar("Person added");
+                App.showView("Homescreen");
 
             } catch (Exception e) {
                 e.printStackTrace();
