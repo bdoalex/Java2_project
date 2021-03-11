@@ -183,21 +183,21 @@ public class IOContacts {
                         person.setAddress(parts[1]);
                     }
                     catch (Exception e){
-                        person.setAddress(null);
+                        person.setAddress("");
                     }
                 else if (parts[0].equals("TEL;PHONE"))
                     try {
                         person.setPhoneNumber(parts[1]);
                     }
                     catch (Exception e){
-                        person.setPhoneNumber(null);
+                        person.setPhoneNumber("");
                     }
                 else if (parts[0].equals("EMAIL"))
                     try {
                         person.setEmailAddress(parts[1]);
                     }
                     catch (Exception e){
-                        person.setEmailAddress(null);
+                        person.setEmailAddress("");
                     }
                 else if (parts[0].equals("CAT"))
                     person.setCategory(new CategoryDao().getCategory(parts[1]));
