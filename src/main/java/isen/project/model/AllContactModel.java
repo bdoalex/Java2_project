@@ -1,14 +1,11 @@
 package isen.project.model;
 
 import isen.project.model.entities.Person;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 public class AllContactModel {
-
 
 
     private ObservableList<Person> allContact = FXCollections.observableArrayList();
@@ -21,7 +18,6 @@ public class AllContactModel {
     }
 
     /**
-     *
      * @param newValue => String which come from the textField filter
      */
     public void filter(String newValue) {
@@ -42,20 +38,17 @@ public class AllContactModel {
             String lowerCaseFilter = newValue.toLowerCase();
 
 
+            if (person.getFirstName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getFirstName().toLowerCase())
+                    || person.getLastName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getLastName().toLowerCase())
+                    || person.getPhoneNumber().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getPhoneNumber().toLowerCase())
+                    || person.getAddress().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getAddress().toLowerCase())
 
-            if (person.getFirstName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getFirstName().toLowerCase())) {
+            ) {
                 return true; // Filter matches first name.
-            } else if (person.getLastName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getLastName().toLowerCase())) {
-                return true; // Filter matches last name.
-            } else if (person.getPhoneNumber().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getPhoneNumber().toLowerCase())) {
-                return true;
-            }else if (person.getAddress().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getAddress().toLowerCase())) {
-                return true;
             }
-            if(person.getCategory() != null){
-                 if (person.getCategory().getName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getCategory().getName().toLowerCase())) {
-                    return true;
-                }
+            if (person.getCategory() != null && (person.getCategory().getName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getCategory().getName().toLowerCase()))) {
+                return true;
+
             }
 
             return false; // Does not match.
@@ -68,7 +61,6 @@ public class AllContactModel {
     public ObservableList<Person> getContactShown() {
         return contactShown;
     }
-
 
 
     public void setAllContact(ObservableList<Person> allContact) {

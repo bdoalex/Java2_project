@@ -23,10 +23,9 @@ import java.io.IOException;
  */
 public class HomeScreenController {
 
-    public AnchorPane drawer;
 
     @FXML
-    private DrawerController drawerController;
+    private DrawerController drawerController = new DrawerController();
 
     private Node lastNode;
 
@@ -36,16 +35,7 @@ public class HomeScreenController {
     private AnchorPane containerAnchorPane;
 
 
-    /**
-     * Display the view to add a contact
-     *
-     * @throws IOException
-     */
-    @FXML
-    public void HandleAddContact() throws IOException {
 
-        changeView("AddContactView");
-    }
 
 
 
@@ -139,18 +129,6 @@ public class HomeScreenController {
 
         AddContactViewController controller = fxmlLoader.getController();
         controller.setParentController(this);
-        transition(load);
-    }
-
-
-    public void changeView(String fxml) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/" + fxml + ".fxml"));
-
-
-        Node load = fxmlLoader.load();
-
-
         transition(load);
     }
 

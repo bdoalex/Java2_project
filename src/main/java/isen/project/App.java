@@ -23,10 +23,8 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -36,7 +34,7 @@ import java.util.Scanner;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    private Scene scene;
 
     private static JFXDialog dialog;
 
@@ -52,35 +50,35 @@ public class App extends Application {
     public void init() throws Exception {
         super.init();
         Connection connection = DataSourceFactory.getConnection();
+        File f = new File(getClass().getResource("/isen/project/sql/database-creation.sql").getFile());
+
         Statement stmt = connection.createStatement();
+        try(Scanner myReader = new Scanner(f)) {
 
+            StringBuilder str = new StringBuilder();
 
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                str.append(data);
 
-        File f = new File(getClass().getResource("/isen/project/sql/database-creation.sql").getFile()) ;
+                if (data.contains(";")) {
+                    stmt.executeUpdate(String.valueOf(str));
+                    str = new StringBuilder();
+                }
 
-        System.out.println(f);
-
-        Scanner myReader = new Scanner(f);
-        StringBuilder str = new StringBuilder();
-
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            str.append(data);
-
-            if(data.contains(";")){
-                stmt.executeUpdate(String.valueOf(str));
-                str = new StringBuilder();
             }
 
-        }
+        }catch (Exception e){
+            e.printStackTrace();
 
+        }finally {
+            stmt.close();
+        }
 
     }
 
     @Override
-    public void start(Stage stage) throws IOException, SQLException {
-        Connection connection = DataSourceFactory.getConnection();
-        Statement stmt = connection.createStatement();
+    public void start(Stage stage) throws IOException {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 
 
@@ -103,8 +101,10 @@ public class App extends Application {
         stage.setMinWidth(Constant.MIN_WIDTH);
 
         stage.widthProperty().addListener((obs, oldVal, newVal) -> {
-            mainLayout.prefWidth((Double) newVal);
-        });
+                    mainLayout.prefWidth((Double) newVal);
+                }
+
+        );
 
 
         containerContent.getChildren().add(loadFXML("LauncherScreen"));
@@ -147,8 +147,10 @@ public class App extends Application {
 
         dialog = new JFXDialog(containerDialog, layout, JFXDialog.DialogTransition.TOP);
         dialog.setOnDialogClosed(closeEvent -> {
-            containerDialog.setVisible(false);
-        });
+                    containerDialog.setVisible(false);
+                }
+
+        );
 
         dialog.show();
     }
@@ -161,7 +163,7 @@ public class App extends Application {
     public static void showSuccessSnackBar(String success) throws IOException {
         JFXSnackbar bar = new JFXSnackbar(mainLayout);
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/ToastSuccess.fxml"));
-        Node load =  fxmlLoader.load();
+        Node load = fxmlLoader.load();
         ToastSuccessController controller = fxmlLoader.getController();
         controller.setText(success);
 
@@ -173,7 +175,7 @@ public class App extends Application {
     public static void showFailureSnackBar(String success) throws IOException {
         JFXSnackbar bar = new JFXSnackbar(mainLayout);
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/ToastFailure.fxml"));
-        Node load =  fxmlLoader.load();
+        Node load = fxmlLoader.load();
         ToastSuccessController controller = fxmlLoader.getController();
         controller.setText(success);
 
@@ -209,15 +211,11 @@ public class App extends Application {
 
     }
 
-    public static Boolean deleteProfilIcon(String nameFile) throws IOException {
+    public static Boolean deleteProfilIcon(String nameFile) {
         //We load our file into Image
         File file = new File(Constant.URL_TO_IMAGE + nameFile);
 
-        if (file.delete()) {
-            return true;
-        } else {
-            return false;
-        }
+        return file.delete();
     }
 
 }

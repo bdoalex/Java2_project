@@ -23,20 +23,18 @@ public class EditContactModel {
     Boolean setDefaultImage = false;
 
 
-
     OneContactController parentController;
     CategoryDao categoryDao = new CategoryDao();
 
 
     /**
-     *
-     * @param textFieldLastName => string
+     * @param textFieldLastName    => string
      * @param textFieldFirstName=> string
      * @param textFieldLNickName=> string
-     * @param textFieldPhone=> string
-     * @param textFieldAddress=> string
-     * @param textFieldEmail=> string
-     * @param datePickerBirth=> date
+     * @param textFieldPhone=>     string
+     * @param textFieldAddress=>   string
+     * @param textFieldEmail=>     string
+     * @param datePickerBirth=>    date
      * @throws IOException
      */
     public void handleValidate(String textFieldLastName, String textFieldFirstName, String textFieldLNickName, String textFieldPhone, String textFieldAddress, String textFieldEmail, LocalDate datePickerBirth, Category category) throws IOException {
@@ -45,47 +43,43 @@ public class EditContactModel {
         //if the user change the profil icon
         //this block check if we have to delete the previous icon
         //and if the icon is not the default icon we create the profil icon
-        if (fileProfilIcon != null  ) {
-            if(!actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE)){
-                if(App.deleteProfilIcon(actualPerson.getNameFileIcon())){
+        if (fileProfilIcon != null) {
+            if (!actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE)) {
+                if (Boolean.FALSE.equals(App.deleteProfilIcon(actualPerson.getNameFileIcon()))) {
 
                     nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
-                }
-                else{
+                } else {
                     App.showFailureSnackBar("Error");
                     return;
                 }
-            }
-            else{
+            } else {
                 nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
             }
         }
         //if the new profil icon is the default icon
-        else if(setDefaultImage){
+        else if (Boolean.TRUE.equals(setDefaultImage)) {
             nameOfSaveFile = Constant.DEFAULT_IMAGE;
-            if(!actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE)){
-                if(!App.deleteProfilIcon(actualPerson.getNameFileIcon())) {
+            if (!actualPerson.getNameFileIcon().equals(Constant.DEFAULT_IMAGE)) {
+                if (Boolean.FALSE.equals(App.deleteProfilIcon(actualPerson.getNameFileIcon()))) {
                     App.showFailureSnackBar("Error");
                     return;
                 }
-            }
-            else{
+            } else {
                 nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
             }
         }
-        Person newPerson = new Person( actualPerson.getPersonId(),textFieldLastName,textFieldFirstName,textFieldLNickName,textFieldPhone,textFieldAddress,textFieldEmail,datePickerBirth,nameOfSaveFile, category==null ? null : categoryDao.getCategory(category.getName()));
+        Person newPerson = new Person(actualPerson.getPersonId(), textFieldLastName, textFieldFirstName, textFieldLNickName, textFieldPhone, textFieldAddress, textFieldEmail, datePickerBirth, nameOfSaveFile, category == null ? null : categoryDao.getCategory(category.getName()));
         parentController.setActualPerson(newPerson);
-        parentController.getHomeScreenParentController().getHomeScreenModel().modifyOneContact(posInGlobalList,newPerson);
+        parentController.getHomeScreenParentController().getHomeScreenModel().modifyOneContact(posInGlobalList, newPerson);
         PersonDao dao = new PersonDao();
         dao.modifyPerson(newPerson);
         App.closeDialog();
     }
 
     /**
-     *
      * @return the new image choose by the user
      */
-    public Image clickOnImage(){
+    public Image clickOnImage() {
 
         FileChooser fc = new FileChooser();
         //set extension
@@ -96,15 +90,15 @@ public class EditContactModel {
         fileProfilIcon = fc.showOpenDialog(null);
         if (fileProfilIcon != null) {
             setDefaultImage = false;
-            Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
-            return imageProfilIcon;
+            return new Image(fileProfilIcon.toURI().toString());
+
         }
         return null;
     }
 
 
-    public void buttonDefault(){
-        setDefaultImage=true;
+    public void buttonDefault() {
+        setDefaultImage = true;
     }
 
     public OneContactController getParentController() {

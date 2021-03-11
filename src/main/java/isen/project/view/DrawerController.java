@@ -17,7 +17,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class DrawerController  extends ParentController {
+public class DrawerController extends ParentController {
 
     IOContacts ioContacts = new IOContacts();
 
@@ -31,6 +31,7 @@ public class DrawerController  extends ParentController {
     /**
      * Animation for the drawer
      * we change the width and the clip ( which correspond to the overflow)
+     *
      * @param newSize of the container
      */
     public void animationChangeWidthContainer(int newSize) {
@@ -52,7 +53,8 @@ public class DrawerController  extends ParentController {
 
 
         isOpen = !isOpen;
-        if (isOpen) {
+
+        if (Boolean.TRUE.equals(isOpen)) {
             animationChangeWidthContainer(Constant.WIDTH_DRAWER_OPEN);
         } else {
             animationChangeWidthContainer(Constant.WIDTH_DRAWER_CLOSE);
@@ -83,7 +85,6 @@ public class DrawerController  extends ParentController {
 
     /**
      * Display the view of Launcher Screen
-     *
      */
     @FXML
     public void backButtonMouseClicked() {
@@ -92,13 +93,12 @@ public class DrawerController  extends ParentController {
 
     @FXML
 
-    public void importClicked() throws IOException {
-        IOContacts ioContacts = new IOContacts();
-
+    public void importClicked() {
         ioContacts.importData(homeScreenParentController);
-}
+    }
+
     @FXML
-    public void exportClicked(){
+    public void exportClicked() {
         ioContacts.exportData();
     }
 

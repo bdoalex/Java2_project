@@ -33,7 +33,6 @@ public class IOContacts {
         File file = fileChooser.showOpenDialog(null);
 
         if(file != null){
-            System.out.println(file.getPath());
             return file.getPath();
         }
 
@@ -47,7 +46,6 @@ public class IOContacts {
         File directory = directoryChooser.showDialog(null);
 
         if(directory != null){
-            System.out.println(directory.getPath());
             return directory.getPath();
         }
 
