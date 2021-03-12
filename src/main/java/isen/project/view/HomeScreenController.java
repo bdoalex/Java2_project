@@ -118,6 +118,19 @@ public class HomeScreenController {
         transition(load);
     }
 
+    public void changeViewToAllCategories() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/AllCategoriesView.fxml"));
+
+
+        Node load = fxmlLoader.load();
+
+
+        AllCategoriesController controller = fxmlLoader.getController();
+        controller.setParentController(this);
+        controller.setAllCategories(homeScreenModel.getAllCategories());
+        transition(load);
+    }
 
     public void changeViewToAddContact() throws IOException {
 

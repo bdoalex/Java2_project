@@ -10,6 +10,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
@@ -102,7 +103,9 @@ public class DrawerController extends ParentController {
         ioContacts.exportData();
     }
 
-    //Allow the drawer to change the content of the main view
-    //That's why we need to get the parent
+    public void handleGoToAllCategories(MouseEvent mouseEvent) throws IOException {
+        homeScreenParentController.changeViewToAllCategories();
+    }
+
 
 }

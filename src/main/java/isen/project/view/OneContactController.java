@@ -57,8 +57,10 @@ public class OneContactController extends ParentController {
     @FXML
     Text category;
 
+
     public void setActualPerson(Person actualPerson) {
         this.actualPerson = actualPerson;
+
 
         String unk = "Unknown";
         
@@ -140,7 +142,10 @@ public class OneContactController extends ParentController {
         validate.setOnAction(event -> {
             PersonDao personDao = new PersonDao();
             if (Boolean.TRUE.equals(personDao.deletePersonById(actualPerson.getPersonId()))) {
-                homeScreenParentController.reloadFromDb();
+
+
+
+                homeScreenParentController.getHomeScreenModel().deleteOnePerson(actualPerson);
             }
             App.closeDialog();
             try {

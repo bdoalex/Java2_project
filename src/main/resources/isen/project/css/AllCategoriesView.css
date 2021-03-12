@@ -4,17 +4,13 @@
 .list-cell:filled:hover{
     -fx-background-color: #4285f4;
 }
-.list-cell:filled:hover #nameContact ,#telContact {
+.list-cell:filled:hover #nameCategory{
     -fx-fill: white;
 }
 .list-cell:filled:hover{
     -fx-background-color: #4285f4;
 }
 
-.list-cell:filled:hover #iconCaret{
-    iconColor: white;
-    -fx-icon-color: white;
-}
 
 
 .table-row-cell:empty {

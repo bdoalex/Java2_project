@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS person
 CREATE TABLE IF NOT EXISTS category
 (
     category_id   INTEGER     NOT NULL PRIMARY KEY AUTOINCREMENT,
-    category_name VARCHAR(45) NOT NULL
+    category_name VARCHAR(45) NOT NULL  UNIQUE
 );
 
 

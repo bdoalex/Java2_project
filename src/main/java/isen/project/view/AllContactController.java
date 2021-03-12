@@ -25,7 +25,7 @@ public class AllContactController extends ParentController {
 
     public void setAllContact(ObservableList<Person> allContact) {
 
-
+        //Todo is possible that all listener stack , we have to clear properly previous listener
         allContact.addListener((ListChangeListener<Person>) change -> allContactModel.setAllContact((ObservableList<Person>) change.getList()));
 
         allContactModel = new AllContactModel(allContact);

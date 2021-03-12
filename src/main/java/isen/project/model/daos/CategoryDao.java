@@ -38,11 +38,18 @@ public class CategoryDao {
      *
      * @param name
      */
-    public void addCategory(String name) {
+    public Category addCategory(String name) {
         try (Connection cnx = DataSourceFactory.getConnection()) {
             try (PreparedStatement stmt = cnx.prepareStatement("INSERT INTO category(category_name) VALUES( ? )")) {
                 stmt.setString(1, name);
+
                 stmt.executeUpdate();
+
+                try (ResultSet keys = stmt.getGeneratedKeys()) {
+                    keys.next();
+
+                    return new Category(keys.getInt(1), name);
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException("Something went horribly wrong with our DB",

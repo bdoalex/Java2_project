@@ -1,14 +1,13 @@
 package isen.project.model;
 
 import isen.project.model.entities.Person;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 public class AllContactModel {
 
 
-    private ObservableList<Person> allContact = FXCollections.observableArrayList();
+    private ObservableList<Person> allContact;
     private ObservableList<Person> contactShown;
 
 

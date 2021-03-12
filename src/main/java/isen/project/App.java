@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXSnackbar;
 import isen.project.model.daos.DataSourceFactory;
 import isen.project.util.Constant;
+import isen.project.view.ToastFailureController;
 import isen.project.view.ToastSuccessController;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
@@ -176,7 +177,7 @@ public class App extends Application {
         JFXSnackbar bar = new JFXSnackbar(mainLayout);
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/ToastFailure.fxml"));
         Node load = fxmlLoader.load();
-        ToastSuccessController controller = fxmlLoader.getController();
+        ToastFailureController controller = fxmlLoader.getController();
         controller.setText(success);
 
         JFXSnackbar.SnackbarEvent event = new JFXSnackbar.SnackbarEvent(load);
