@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.AddContactViewController">
    <children>
@@ -46,6 +47,11 @@
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profil Icon" GridPane.halignment="RIGHT" />
                   <ImageView fx:id="imageViewProfilIcon" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#handleClickOnView" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                  <FontIcon fx:id="addCategoryIcon" iconColor="#4285f4" iconLiteral="fas-plus-circle" iconSize="16" onMouseClicked="#handleClickOnAddCategory" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="170.0" />
+                     </GridPane.margin>
+                  </FontIcon>
                   <JFXButton onAction="#handleButtonDefault" prefHeight="0.0" text="Default" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="60.0" />

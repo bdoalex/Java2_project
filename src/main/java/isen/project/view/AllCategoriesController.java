@@ -35,15 +35,13 @@ public class AllCategoriesController extends ParentController {
 
     }
 
-
-    public void handleClickOnAddCategory(ActionEvent actionEvent) throws IOException {
+    @FXML
+    public void handleClickOnAddCategory() throws IOException {
         FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/AddCategoryPopUp.fxml"));
         VBox layout = mLLoader.load();
 
         AddCategoryPopUpController controller = mLLoader.getController();
         controller.setParentController(homeScreenParentController);
-
-
         App.showDialog(layout);
     }
 }

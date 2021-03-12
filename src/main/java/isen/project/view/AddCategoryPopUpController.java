@@ -11,13 +11,13 @@ import java.io.IOException;
 public class AddCategoryPopUpController extends ParentController {
 
     @FXML
-    public JFXTextField textFieldLastName;
+    public JFXTextField textFieldCategoryName;
     AddCategoryPopUpModel model = new AddCategoryPopUpModel();
 
 
     public void handleButtonAccept() throws IOException {
 
-        model.handleValidate(textFieldLastName.getText(),homeScreenParentController.getHomeScreenModel());
+        model.handleValidate(textFieldCategoryName.getText(),homeScreenParentController.getHomeScreenModel());
 
     }
 

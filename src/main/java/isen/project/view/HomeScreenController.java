@@ -99,10 +99,6 @@ public class HomeScreenController {
 
     }
 
-    public void reloadFromDb() {
-        homeScreenModel.populateList();
-    }
-
 
     public void changeViewToAllContact() throws IOException {
 
@@ -142,7 +138,9 @@ public class HomeScreenController {
 
         AddContactViewController controller = fxmlLoader.getController();
         controller.setParentController(this);
+        controller.fillComboBoxCategory();
         transition(load);
+
     }
 
 

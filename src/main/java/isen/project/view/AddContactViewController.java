@@ -5,25 +5,32 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import isen.project.App;
 import isen.project.ParentController;
+import isen.project.model.AllCategoriesModel;
 import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class AddContactViewController extends ParentController {
 
     PersonDao personDao = new PersonDao();
     CategoryDao categoryDao = new CategoryDao();
     Boolean setDefaultImage = false;
+    private AllCategoriesModel model = new AllCategoriesModel();
+
 
 
     File fileProfilIcon;
@@ -54,6 +61,9 @@ public class AddContactViewController extends ParentController {
 
     @FXML
     private JFXComboBox<String> comboBoxCategory;
+
+    public JFXTextField textFieldCategoryName;
+
 
 
     /**
@@ -158,20 +168,32 @@ public class AddContactViewController extends ParentController {
      * Fill combo box category.
      */
     public void fillComboBoxCategory() {
-        ObservableList<Category> categories;
-        categories = categoryDao.listCategories();
 
-        for (Category category : categories) {
-            comboBoxCategory.getItems().add(category.getName());
-        }
+        homeScreenParentController.getHomeScreenModel().getAllCategories().addListener((ListChangeListener<Category>) change -> {
+            comboBoxCategory.getItems().addAll(change.getList().stream().map(category -> {return category.getName();}).collect(Collectors.toList()));
+
+        });
+
     }
+
+
+    @FXML
+    public void handleClickOnAddCategory() throws IOException {
+        FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/AddCategoryPopUp.fxml"));
+        VBox layout = mLLoader.load();
+
+        AddCategoryPopUpController controller = mLLoader.getController();
+        controller.setParentController(homeScreenParentController);
+
+
+        App.showDialog(layout);
+    }
+
 
     @FXML
     private void initialize() {
-        fillComboBoxCategory();
         File file = new File(Constant.URL_TO_IMAGE + Constant.DEFAULT_IMAGE);
         Image imageProfilIcon = new Image(file.toURI().toString());
         imageViewProfilIcon.setImage(imageProfilIcon);
-
     }
 }
