@@ -63,40 +63,39 @@ public class OneContactController extends ParentController {
 
 
         String unk = "Unknown";
-        
-        if (actualPerson.getPhoneNumber().equals("")){
+
+        if (actualPerson.getPhoneNumber().equals("")) {
             phoneNumber.setText(unk);
-        }else{
+        } else {
             phoneNumber.setText(actualPerson.getPhoneNumber());
         }
 
-        if (actualPerson.getAddress().equals("")){
+        if (actualPerson.getAddress().equals("")) {
             adress.setText(unk);
-        }else{
+        } else {
             adress.setText(actualPerson.getAddress());
         }
 
-        if (actualPerson.getEmailAddress().equals("")){
+        if (actualPerson.getEmailAddress().equals("")) {
             email.setText(unk);
-        }else{
+        } else {
             email.setText(actualPerson.getEmailAddress());
         }
 
-        if (actualPerson.getBirthDate()==null){
+        if (actualPerson.getBirthDate() == null) {
             birthDate.setText(unk);
-        }else{
+        } else {
             birthDate.setText(actualPerson.getBirthDate().toString());
         }
-        if (actualPerson.getCategory()==null){
+        if (actualPerson.getCategory() == null) {
             category.setText(unk);
-        }else{
+        } else {
             category.setText(actualPerson.getCategory().getName());
 
         }
 
         name.setText(actualPerson.getFirstName() + " " + actualPerson.getLastName());
         nickName.setText(actualPerson.getNickName());
-
 
 
         FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/ContactListCell.fxml"));
@@ -140,20 +139,18 @@ public class OneContactController extends ParentController {
 
 
         validate.setOnAction(event -> {
-            PersonDao personDao = new PersonDao();
-            if (Boolean.TRUE.equals(personDao.deletePersonById(actualPerson.getPersonId()))) {
 
 
-
-                homeScreenParentController.getHomeScreenModel().deleteOnePerson(actualPerson);
+            if (homeScreenParentController.getHomeScreenModel().deleteOnePerson(actualPerson)) {
+                App.closeDialog();
+                try {
+                    getHomeScreenParentController().changeViewToAllContact();
+                    App.showSuccessSnackBar("Success");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            App.closeDialog();
-            try {
-                getHomeScreenParentController().changeViewToAllContact();
-                App.showSuccessSnackBar("Success");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
         });
 
         deny.setOnAction(event -> App.closeDialog());
@@ -168,11 +165,9 @@ public class OneContactController extends ParentController {
     public void handleClickOnEditProfile() throws IOException {
 
 
+        ObservableList<Person> users = homeScreenParentController.getHomeScreenModel().getAllContact();
 
-
-        ObservableList<Person> users= homeScreenParentController.getHomeScreenModel().getAllContact();
-
-        int indexOpt = IntStream.range(0,users.size())
+        int indexOpt = IntStream.range(0, users.size())
                 .filter(i -> actualPerson.getPersonId() == users.get(i).getPersonId())
                 .findFirst().getAsInt();
 
@@ -182,7 +177,7 @@ public class OneContactController extends ParentController {
 
         EditContactController controller = mLLoader.getController();
 
-        controller.setActualPerson(actualPerson,indexOpt);
+        controller.setActualPerson(actualPerson, indexOpt);
         controller.setParentController(this);
 
         App.showDialog(layout);

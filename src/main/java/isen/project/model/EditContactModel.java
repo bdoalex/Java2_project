@@ -64,15 +64,11 @@ public class EditContactModel {
                     App.showFailureSnackBar("Error");
                     return;
                 }
-            } else {
-                nameOfSaveFile = App.saveProfilIcon(fileProfilIcon);
             }
         }
         Person newPerson = new Person(actualPerson.getPersonId(), textFieldLastName, textFieldFirstName, textFieldLNickName, textFieldPhone, textFieldAddress, textFieldEmail, datePickerBirth, nameOfSaveFile, category == null ? null : categoryDao.getCategory(category.getName()));
         parentController.setActualPerson(newPerson);
         parentController.getHomeScreenParentController().getHomeScreenModel().modifyOneContact(posInGlobalList, newPerson);
-        PersonDao dao = new PersonDao();
-        dao.modifyPerson(newPerson);
         App.closeDialog();
     }
 

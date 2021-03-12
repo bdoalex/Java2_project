@@ -96,6 +96,24 @@ public class PersonDao {
         }
     }
 
+    public Boolean setCategoryIdToNull(int id) {
+        try (Connection connection = DataSourceFactory.getConnection()) {
+            String sqlQuery = "UPDATE person SET category_id = NULL WHERE  category_id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(
+                    sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
+                statement.setInt(1, id);
+                statement.execute();
+
+                return true;
+            }
+
+        } catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public Boolean deletePersonById(int id) {
         try (Connection connection = DataSourceFactory.getConnection()) {
             String sqlQuery = "DELETE FROM person WHERE person_id = ?";

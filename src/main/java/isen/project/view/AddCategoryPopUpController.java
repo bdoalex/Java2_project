@@ -18,7 +18,7 @@ public class AddCategoryPopUpController extends ParentController {
     public void handleButtonAccept() throws IOException {
 
         model.handleValidate(textFieldLastName.getText(),homeScreenParentController.getHomeScreenModel());
-        App.closeDialog();
+
     }
 
     public void handleButtonCancel() {

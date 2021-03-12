@@ -1,15 +1,15 @@
 package isen.project.model.daos;
 
 import isen.project.model.entities.Category;
-import isen.project.model.entities.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class CategoryDao {
+
+
 
     /**
      * @return list with categories
@@ -31,6 +31,29 @@ public class CategoryDao {
                     e);
         }
         return categories;
+    }
+
+    public Boolean deleteCategoryById(int id) {
+
+
+        try (Connection connection = DataSourceFactory.getConnection()) {
+            String sqlQuery = "DELETE FROM category WHERE category_id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(
+                    sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
+                statement.setInt(1, id);
+                PersonDao personDao = new PersonDao();
+                personDao.setCategoryIdToNull(id);
+
+                statement.execute();
+
+                return true;
+            }
+
+        } catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**

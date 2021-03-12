@@ -97,7 +97,7 @@ public class AddContactViewController extends ParentController {
                         textFieldEmail.getText(),
                         datePickerBirth.getValue(),
                         nameOfSaveFile, category );
-                personDao.addPerson(newPerson);
+
                 homeScreenParentController.getHomeScreenModel().addOneContact(newPerson);
                 App.showSuccessSnackBar("Person added");
                 App.showView("Homescreen");

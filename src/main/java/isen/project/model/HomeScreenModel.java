@@ -7,9 +7,11 @@ import isen.project.model.entities.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.stream.Collectors;
+
 public class HomeScreenModel {
-
-
+    CategoryDao categoryDao = new CategoryDao();
+    PersonDao personDao = new PersonDao();
     //We store all contact here to avoid multiple call  to the db
     private ObservableList<Person> allContact = FXCollections.observableArrayList();
 
@@ -18,22 +20,47 @@ public class HomeScreenModel {
 
 
     public void addOneContact(Person newPerson) {
+        personDao.addPerson(newPerson);
         allContact.add(newPerson);
     }
 
-    public void addOneCateogry(Category newCategory) {
+    public Category addOneCategory(String name) {
+        Category newCategory = categoryDao.addCategory(name);
         allCategories.add(newCategory);
+        return newCategory;
     }
 
-    public void deleteOnePerson(Person person){
-        allContact.remove(person);
+    public boolean deleteOnePerson(Person person) {
+
+
+        if (Boolean.TRUE.equals(personDao.deletePersonById(person.getPersonId()))) {
+            allContact.remove(person);
+            return true;
+        }
+        return false;
     }
 
-    public void deleteOneCategory(Category category){
-        allCategories.remove(category);
+    public Boolean deleteOneCategory(Category category) {
+
+        if (Boolean.TRUE.equals(categoryDao.deleteCategoryById(category.getId()))) {
+            allCategories.remove(category);
+            allContact = allContact.stream().map(
+                    p ->{
+                        if(p.getCategory() != null && p.getCategory().getId() == category.getId()){
+                            p.setCategory(null);
+                        }
+                        return p;
+                    }
+            ).collect(Collectors.toCollection(FXCollections::observableArrayList));
+            return true;
+        }
+        return false;
+
+
     }
 
     public void modifyOneContact(int index, Person newPerson) {
+        personDao.modifyPerson(newPerson);
         allContact.set(index, newPerson);
     }
 

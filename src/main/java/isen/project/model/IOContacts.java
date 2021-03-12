@@ -217,7 +217,6 @@ public class IOContacts {
                     case "END":
                         assert person != null;
                         person.setNameFileIcon(Constant.DEFAULT_IMAGE);
-                        personDao.addPerson(person);
                         homeSreenController.getHomeScreenModel().addOneContact(person);
                         break;
                 }
