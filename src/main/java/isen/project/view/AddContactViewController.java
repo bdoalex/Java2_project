@@ -170,6 +170,8 @@ public class AddContactViewController extends ParentController {
     public void fillComboBoxCategory() {
 
         homeScreenParentController.getHomeScreenModel().getAllCategories().addListener((ListChangeListener<Category>) change -> {
+            comboBoxCategory.getItems().clear();
+
             comboBoxCategory.getItems().addAll(change.getList().stream().map(category -> {return category.getName();}).collect(Collectors.toList()));
 
         });
@@ -192,6 +194,7 @@ public class AddContactViewController extends ParentController {
 
     @FXML
     private void initialize() {
+        comboBoxCategory.getItems().addAll(categoryDao.listCategories().stream().map(category -> {return category.getName();}).collect(Collectors.toList()));
         File file = new File(Constant.URL_TO_IMAGE + Constant.DEFAULT_IMAGE);
         Image imageProfilIcon = new Image(file.toURI().toString());
         imageViewProfilIcon.setImage(imageProfilIcon);
