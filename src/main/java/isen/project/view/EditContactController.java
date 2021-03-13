@@ -4,21 +4,26 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import isen.project.App;
+import isen.project.ParentController;
 import isen.project.model.EditContactModel;
 import isen.project.model.daos.CategoryDao;
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
-public class EditContactController {
+public class EditContactController extends ParentController {
 
     @FXML
     public GridPane containerGridPane;
@@ -75,10 +80,12 @@ public class EditContactController {
     }
 
 
+    @FXML
     public void handleButtonCancel() {
         App.closeDialog();
     }
 
+    @FXML
     public void handleButtonAccept() throws IOException {
         Category category;
         if (comboBoxCategory.getValue() == null) {
@@ -96,6 +103,7 @@ public class EditContactController {
                 category);
     }
 
+    @FXML
     public void handleClickOnView() {
         Image newImage = model.clickOnImage();
         if (newImage != null) {
@@ -104,6 +112,7 @@ public class EditContactController {
 
     }
 
+    @FXML
     public void handleButtonDefault() {
 
         model.buttonDefault();
@@ -113,21 +122,38 @@ public class EditContactController {
         imageViewProfilIcon.setImage(imageProfilIcon);
     }
 
+
+
+    @FXML
+    public void handleClickOnAddCategory() throws IOException {
+        FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/AddCategoryPopUp.fxml"));
+        VBox layout = mLLoader.load();
+
+        AddCategoryPopUpController controller = mLLoader.getController();
+        controller.setParentController(homeScreenParentController);
+
+
+        App.showDialog(layout);
+    }
+
     /**
      * Fill combo box category.
      */
     public void fillComboBoxCategory() {
-        ObservableList<Category> categories;
-        categories = categoryDao.listCategories();
 
-        for (Category category : categories) {
-            comboBoxCategory.getItems().add(category.getName());
-        }
+        homeScreenParentController.getHomeScreenModel().getAllCategories().addListener((ListChangeListener<Category>) change -> {
+            comboBoxCategory.getItems().clear();
+
+            comboBoxCategory.getItems().addAll(change.getList().stream().map(Category::getName).collect(Collectors.toList()));
+
+        });
+
     }
 
     @FXML
     public void initialize() {
-        fillComboBoxCategory();
+        comboBoxCategory.getItems().addAll(categoryDao.listCategories().stream().map(Category::getName).collect(Collectors.toList()));
+
     }
 
 

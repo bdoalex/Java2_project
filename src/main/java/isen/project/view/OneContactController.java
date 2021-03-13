@@ -178,7 +178,9 @@ public class OneContactController extends ParentController {
         EditContactController controller = mLLoader.getController();
 
         controller.setActualPerson(actualPerson, indexOpt);
-        controller.setParentController(this);
+        controller.setParentController(homeScreenParentController);
+        controller.fillComboBoxCategory();
+
 
         App.showDialog(layout);
     }
