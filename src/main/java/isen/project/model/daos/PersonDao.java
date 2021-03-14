@@ -2,7 +2,6 @@ package isen.project.model.daos;
 
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -45,7 +44,6 @@ public class PersonDao {
                                 results.getDate("birth_date") != null ? results.getDate("birth_date").toLocalDate() : null,
                                 results.getString("name_file_icon"),
                                 category);
-                        ;
                         persons.add(person);
                     }
                     return persons;
@@ -104,9 +102,8 @@ public class PersonDao {
      * Sets category id to null.
      *
      * @param id the id
-     * @return the category id to null
      */
-    public Boolean setCategoryIdToNull(int id) {
+    public void setCategoryIdToNull(int id) {
         try (Connection connection = DataSourceFactory.getConnection()) {
             String sqlQuery = "UPDATE person SET category_id = NULL WHERE  category_id = ?";
             try (PreparedStatement statement = connection.prepareStatement(
@@ -114,13 +111,11 @@ public class PersonDao {
                 statement.setInt(1, id);
                 statement.execute();
 
-                return true;
             }
 
         } catch (SQLException e) {
             // Manage Exception
             e.printStackTrace();
-            return false;
         }
     }
 
@@ -188,9 +183,8 @@ public class PersonDao {
      * Add person person.
      *
      * @param person you want to add to the database
-     * @return the added person with its id
      */
-    public Person addPerson(Person person) {
+    public void addPerson(Person person) {
         try (Connection connection = DataSourceFactory.getConnection()) {
             String sqlQuery = "INSERT INTO person(lastname, firstname, nickname, phone_number, address, email_address, birth_date,name_file_icon, category_id) VALUES(?,?,?,?,?,?,?,?,?)";
             try (PreparedStatement statement = connection.prepareStatement(
@@ -215,7 +209,6 @@ public class PersonDao {
                 try (ResultSet keys = statement.getGeneratedKeys()) {
                     keys.next();
                     person.setPersonId(keys.getInt(1));
-                    return person;
                 }
             }
 
@@ -253,7 +246,6 @@ public class PersonDao {
                                 results.getDate("birth_date") != null ? results.getDate("birth_date").toLocalDate() : null,
                                 results.getString("name_file_icon"),
                                 category);
-                        ;
                         persons.add(person);
                     }
                     return persons;

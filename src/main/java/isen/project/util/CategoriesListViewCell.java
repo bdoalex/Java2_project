@@ -32,7 +32,7 @@ public class CategoriesListViewCell extends ListCell<Category> {
     private final ListView<Category> parentListView;
 
     @FXML
-    private HomeScreenModel homeScreenModel;
+    private final HomeScreenModel homeScreenModel;
 
     @FXML
     private AnchorPane anchorPane;
@@ -82,9 +82,7 @@ public class CategoriesListViewCell extends ListCell<Category> {
             trashIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
 
 
-                long numberContactTouched = homeScreenModel.getAllContact().stream().filter( p -> {
-                    return p.getCategory() != null && p.getCategory().getId() == category.getId();
-                }).count();
+                long numberContactTouched = homeScreenModel.getAllContact().stream().filter( p -> p.getCategory() != null && p.getCategory().getId() == category.getId()).count();
                 JFXDialogLayout content = new JFXDialogLayout();
                 content.setBody(new Text("Are you sure you want to delete " + category.getName() + "? \n" + numberContactTouched + " contact will be concerned"));
 

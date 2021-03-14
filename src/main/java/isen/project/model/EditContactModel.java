@@ -2,7 +2,6 @@ package isen.project.model;
 
 import isen.project.App;
 import isen.project.model.daos.CategoryDao;
-import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
@@ -134,15 +133,6 @@ public class EditContactModel {
      */
     public void buttonDefault() {
         setDefaultImage = true;
-    }
-
-    /**
-     * Gets parent controller.
-     *
-     * @return the parent controller
-     */
-    public OneContactController getParentController() {
-        return parentController;
     }
 
     /**

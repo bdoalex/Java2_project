@@ -5,7 +5,6 @@ import isen.project.App;
 import isen.project.model.IOContacts;
 import isen.project.model.entities.Category;
 import isen.project.util.ParentController;
-import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.util.StringConverter;
 

@@ -1,7 +1,6 @@
 package isen.project.model;
 
 import isen.project.model.entities.Category;
-import isen.project.model.entities.Person;
 import javafx.collections.ObservableList;
 
 /**

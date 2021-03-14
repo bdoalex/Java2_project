@@ -42,12 +42,10 @@ public class HomeScreenModel {
      * Add one category category.
      *
      * @param name the name
-     * @return the category
      */
-    public Category addOneCategory(String name) {
+    public void addOneCategory(String name) {
         Category newCategory = categoryDao.addCategory(name);
         allCategories.add(newCategory);
-        return newCategory;
     }
 
     /**
@@ -76,12 +74,11 @@ public class HomeScreenModel {
 
         if (Boolean.TRUE.equals(categoryDao.deleteCategoryById(category.getId()))) {
             allCategories.remove(category);
-            allContact = allContact.stream().map(
+            allContact = allContact.stream().peek(
                     p ->{
                         if(p.getCategory() != null && p.getCategory().getId() == category.getId()){
                             p.setCategory(null);
                         }
-                        return p;
                     }
             ).collect(Collectors.toCollection(FXCollections::observableArrayList));
             return true;
