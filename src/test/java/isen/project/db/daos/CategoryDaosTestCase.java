@@ -16,10 +16,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
 
+/**
+ * The type Category daos test case.
+ */
 public class CategoryDaosTestCase {
 
     private CategoryDao categoryDao = new CategoryDao();
 
+    /**
+     * Init database.
+     *
+     * @throws Exception the exception
+     */
     @Before
     public void initDatabase() throws Exception {
         Connection connection = DataSourceFactory.getConnection();
@@ -35,6 +43,9 @@ public class CategoryDaosTestCase {
         connection.close();
     }
 
+    /**
+     * Should list categories.
+     */
     @Test
     public void shouldListCategories() {
         ObservableList<Category> categories = categoryDao.listCategories();
@@ -45,6 +56,11 @@ public class CategoryDaosTestCase {
     }
 
 
+    /**
+     * Should add categories.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void shouldAddCategories() throws Exception {
         // WHEN
@@ -63,7 +79,9 @@ public class CategoryDaosTestCase {
     }
 
 
-
+    /**
+     * Should get category by name.
+     */
     @Test
     public void shouldGetCategoryByName() {
         Category category = this.categoryDao.getCategory("Family");
