@@ -84,7 +84,7 @@
         </HBox>
         <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <JFXButton onAction="#handleBackToMenu" style="-fx-background-color: #D3D3D3;" text="Back to menu">
+                <JFXButton onAction="#handleBackToMenu" style="-fx-cursor: hand; -fx-background-color: #D3D3D3;" text="Back to menu">
                     <font>
                         <Font name="Roboto Medium" size="14.0" />
                     </font>

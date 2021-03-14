@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class EditContactController extends ParentController {
      * The Combo box category.
      */
     @FXML
-    public JFXComboBox<String> comboBoxCategory;
+    public JFXComboBox<Category> comboBoxCategory;
     /**
      * The Text field l nick name.
      */
@@ -144,12 +145,7 @@ public class EditContactController extends ParentController {
      */
     @FXML
     public void handleButtonAccept() throws IOException {
-        Category category;
-        if (comboBoxCategory.getValue() == null) {
-            category = null;
-        } else {
-            category = categoryDao.getCategory(comboBoxCategory.getValue());
-        }
+        Category category = comboBoxCategory.getValue();
         model.handleValidate(textFieldLastName.getText(),
                 textFieldFirstName.getText(),
                 textFieldLNickName.getText(),
@@ -211,18 +207,39 @@ public class EditContactController extends ParentController {
         homeScreenParentController.getHomeScreenModel().getAllCategories().addListener((ListChangeListener<Category>) change -> {
             comboBoxCategory.getItems().clear();
 
-            comboBoxCategory.getItems().addAll(change.getList().stream().map(Category::getName).collect(Collectors.toList()));
+            comboBoxCategory.getItems().addAll(homeScreenParentController.getHomeScreenModel().getAllCategories());
 
         });
+        comboBoxCategory.getItems().addAll(homeScreenParentController.getHomeScreenModel().getAllCategories());
 
+        comboBoxCategory.getSelectionModel().select(model.getActualPerson().getCategory());
+
+        comboBoxCategory.setConverter(new StringConverter<Category>() {
+            @Override
+            public String toString(Category category) {
+
+                if(category != null){
+                    return category.getName();
+                }
+                return "";
+
+            }
+
+            @Override
+            public Category fromString(String s) {
+                return null;
+            }
+        });
     }
+
+
 
     /**
      * Initialize.
      */
     @FXML
     public void initialize() {
-        comboBoxCategory.getItems().addAll(categoryDao.listCategories().stream().map(Category::getName).collect(Collectors.toList()));
+
 
     }
 

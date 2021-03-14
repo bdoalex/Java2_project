@@ -12,7 +12,7 @@
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton onAction="#handleLaunchButton" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #4285F4;" text="Launch" textFill="WHITE">
+            <JFXButton onAction="#handleLaunchButton" prefHeight="40.0" prefWidth="120.0" style="-fx-cursor: hand;-fx-background-color: #4285F4;" text="Launch" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="50.0" />
                </VBox.margin>
@@ -20,7 +20,7 @@
                   <Font name="Roboto Medium" size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton onAction="#handleCreditButton" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #4285F4;" text="Credit" textFill="WHITE">
+            <JFXButton onAction="#handleCreditButton" prefHeight="40.0" prefWidth="120.0" style="-fx-cursor: hand;-fx-background-color: #4285F4;" text="Credit" textFill="WHITE">
                <font>
                   <Font name="Roboto Medium" size="20.0" />
                </font>

@@ -47,12 +47,12 @@
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profil Icon" GridPane.halignment="RIGHT" />
                   <ImageView fx:id="imageViewProfilIcon" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#handleClickOnView" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                  <FontIcon fx:id="addCategoryIcon" iconColor="#4285f4" iconLiteral="fas-plus-circle" iconSize="16" onMouseClicked="#handleClickOnAddCategory" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <FontIcon style="-fx-cursor: hand;" fx:id="addCategoryIcon" iconColor="#4285f4" iconLiteral="fas-plus-circle" iconSize="16" onMouseClicked="#handleClickOnAddCategory" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="170.0" />
                      </GridPane.margin>
                   </FontIcon>
-                  <JFXButton onAction="#handleButtonDefault" prefHeight="0.0" text="Default" GridPane.columnIndex="1">
+                  <JFXButton style="-fx-cursor: hand;" onAction="#handleButtonDefault" prefHeight="0.0" text="Default" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="60.0" />
                      </GridPane.margin>
@@ -73,11 +73,11 @@
                   <JFXTextField fx:id="textFieldEmail" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <JFXDatePicker fx:id="datePickerBirth" defaultColor="#4285f4" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-                  <JFXButton buttonType="RAISED" onAction="#handleButtonCancel" style="-fx-background-color: #D3D3D3;" text="Cancel" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+                  <JFXButton buttonType="RAISED" onAction="#handleButtonCancel" style="-fx-cursor: hand;-fx-background-color: #D3D3D3;" text="Cancel" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets right="50.0" />
                      </GridPane.margin></JFXButton>
-                  <JFXButton buttonType="RAISED" onAction="#handleButtonAccept" style="-fx-background-color: #4CAF50;" text="Validate" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9">
+                  <JFXButton buttonType="RAISED" onAction="#handleButtonAccept" style="-fx-cursor: hand;-fx-background-color: #4CAF50;" text="Validate" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="110.0" />
                      </GridPane.margin></JFXButton>

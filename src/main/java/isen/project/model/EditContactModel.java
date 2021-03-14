@@ -28,6 +28,8 @@ public class EditContactModel {
      * The Pos in global list.
      */
     int posInGlobalList;
+
+
     /**
      * The Actual person.
      */
@@ -118,6 +120,14 @@ public class EditContactModel {
         return null;
     }
 
+    /**
+     * Gets actual person.
+     *
+     * @return the actual person
+     */
+    public Person getActualPerson() {
+        return actualPerson;
+    }
 
     /**
      * Button button to choose default image.
