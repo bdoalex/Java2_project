@@ -75,7 +75,7 @@ public class EditContactController extends ParentController {
     }
 
 
-    public void setParentController(OneContactController parentController) {
+    public void setOneContactController(OneContactController parentController) {
         model.setParentController(parentController);
     }
 

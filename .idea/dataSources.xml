@@ -12,16 +12,5 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="sqlite [2]" uuid="1517816d-afb8-460c-835b-65cd96ffe0ef">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\Baloo\Documents\GitHub\Java2_project\sqlite.db</jdbc-url>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.34.0/sqlite-jdbc-3.34.0.jar</url>
-        </library>
-      </libraries>
-    </data-source>
   </component>
 </project>

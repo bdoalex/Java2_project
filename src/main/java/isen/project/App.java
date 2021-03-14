@@ -27,7 +27,10 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Stack;
 
 
 /**
@@ -37,7 +40,8 @@ public class App extends Application {
 
     private Scene scene;
 
-    private static JFXDialog dialog;
+
+    private static Deque<JFXDialog> allDialog = new LinkedList<>();
 
 
     private static AnchorPane mainLayout;
@@ -54,7 +58,7 @@ public class App extends Application {
         File f = new File(getClass().getResource("/isen/project/sql/database-creation.sql").getFile());
 
         Statement stmt = connection.createStatement();
-        try(Scanner myReader = new Scanner(f)) {
+        try (Scanner myReader = new Scanner(f)) {
 
             StringBuilder str = new StringBuilder();
 
@@ -69,10 +73,10 @@ public class App extends Application {
 
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
-        }finally {
+        } finally {
             stmt.close();
         }
 
@@ -146,18 +150,28 @@ public class App extends Application {
     public static void showDialog(Region layout) {
         containerDialog.setVisible(true);
 
-        dialog = new JFXDialog(containerDialog, layout, JFXDialog.DialogTransition.TOP);
-        dialog.setOnDialogClosed(closeEvent -> {
-                    containerDialog.setVisible(false);
+        JFXDialog temp = new JFXDialog(containerDialog, layout, JFXDialog.DialogTransition.TOP);
+
+        allDialog.add(temp);
+
+        temp.setOnDialogClosed(closeEvent -> {
+
+                    allDialog.removeLast();
+                    if (allDialog.isEmpty()) {
+                        containerDialog.setVisible(false);
+                    }
+
                 }
 
         );
 
-        dialog.show();
+        temp.show();
     }
 
     public static void closeDialog() {
-        dialog.close();
+        JFXDialog temp = allDialog.getLast();
+
+        temp.close();
     }
 
 

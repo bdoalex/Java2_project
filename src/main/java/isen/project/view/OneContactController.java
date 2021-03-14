@@ -179,6 +179,7 @@ public class OneContactController extends ParentController {
 
         controller.setActualPerson(actualPerson, indexOpt);
         controller.setParentController(homeScreenParentController);
+        controller.setOneContactController(this);
         controller.fillComboBoxCategory();
 
 

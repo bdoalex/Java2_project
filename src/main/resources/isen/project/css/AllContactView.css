@@ -2,9 +2,10 @@
     -fx-background-color: white;
 }
 .list-cell:filled:hover{
+    -fx-cursor: hand;
     -fx-background-color: #4285f4;
 }
-.list-cell:filled:hover #nameContact ,#telContact {
+.list-cell:filled:hover #nameContact #telContact {
     -fx-fill: white;
 }
 .list-cell:filled:hover{

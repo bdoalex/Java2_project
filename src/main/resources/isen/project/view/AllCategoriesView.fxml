@@ -12,7 +12,7 @@
       <ListView fx:id="categoriesListView" layoutY="85.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0" />
       <HBox alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
          <children>
-            <JFXButton onAction="#handleClickOnAddCategory" alignment="CENTER" buttonType="RAISED" style="-fx-pref-width: 60px; -fx-background-color: #0F9D58; -fx-background-radius: 60px; -fx-min-height: 60px;">
+            <JFXButton onAction="#handleClickOnAddCategory" alignment="CENTER" buttonType="RAISED" style="-fx-cursor: hand;-fx-pref-width: 60px; -fx-background-color: #0F9D58; -fx-background-radius: 60px; -fx-min-height: 60px;">
                <graphic>
                   <FontIcon fill="#ffffffd9" iconLiteral="fas-plus" />
                </graphic>
