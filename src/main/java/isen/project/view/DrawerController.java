@@ -9,6 +9,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -72,18 +73,7 @@ public class DrawerController extends ParentController {
         }
     }
 
-    /**
-     * Initialize.
-     */
-    @FXML
-    public void initialize() {
-        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-        clip = new Rectangle(Constant.WIDTH_DRAWER_CLOSE, screenBounds.getHeight());
-        container.setPrefWidth(Constant.WIDTH_DRAWER_CLOSE);
 
-        container.setClip(clip);
-
-    }
 
     /**
      * Home mouse clicked.
@@ -127,18 +117,38 @@ public class DrawerController extends ParentController {
      * Export clicked.
      */
     @FXML
-    public void exportClicked() {
-        ioContacts.exportData();
+    public void exportClicked() throws IOException {
+        FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/ExportView.fxml"));
+        VBox layout = mLLoader.load();
+
+        ExportViewController controller = mLLoader.getController();
+        controller.setParentController(homeScreenParentController);
+        controller.fillComboBoxCategory();
+
+        App.showDialog(layout);
+
     }
 
     /**
      * Handle go to all categories.
      *
-     * @param mouseEvent the mouse event
      * @throws IOException the io exception
      */
-    public void handleGoToAllCategories(MouseEvent mouseEvent) throws IOException {
+    public void handleGoToAllCategories() throws IOException {
         homeScreenParentController.changeViewToAllCategories();
+    }
+
+    /**
+     * Initialize.
+     */
+    @FXML
+    public void initialize() {
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+        clip = new Rectangle(Constant.WIDTH_DRAWER_CLOSE, screenBounds.getHeight());
+        container.setPrefWidth(Constant.WIDTH_DRAWER_CLOSE);
+
+        container.setClip(clip);
+
     }
 
 

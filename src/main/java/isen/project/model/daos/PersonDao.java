@@ -225,4 +225,43 @@ public class PersonDao {
         }
     }
 
+    public ObservableList<Person> getPersonsFromCategory(Category categorySearch) {
+        ObservableList<Person> persons = FXCollections.observableArrayList();
+
+        try (Connection connection = DataSourceFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM person LEFT JOIN category ON person.category_id = category.category_id WHERE category_name= ?")) {
+                statement.setString(1, categorySearch.getName());
+
+                try (ResultSet results = statement.executeQuery()) {
+
+                    while (results.next()) {
+                        Category category = null;
+                        int categoryId = results.getInt("category_id");
+                        if (!results.wasNull()) {
+                            category = new Category(categoryId, results.getString("category_name"));
+                        }
+
+                        Person person = new Person(
+                                results.getInt("person_id"),
+                                results.getString("lastname"),
+                                results.getString("firstname"),
+                                results.getString("nickname"),
+                                results.getString("phone_number"),
+                                results.getString("address"),
+                                results.getString("email_address"),
+
+                                results.getDate("birth_date") != null ? results.getDate("birth_date").toLocalDate() : null,
+                                results.getString("name_file_icon"),
+                                category);
+                        ;
+                        persons.add(person);
+                    }
+                    return persons;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error", e);
+        }
+    }
+
 }

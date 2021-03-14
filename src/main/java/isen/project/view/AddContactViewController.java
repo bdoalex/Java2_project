@@ -4,13 +4,11 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import isen.project.App;
-import isen.project.util.ParentController;
-import isen.project.model.AllCategoriesModel;
 import isen.project.model.daos.CategoryDao;
-import isen.project.model.daos.PersonDao;
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
+import isen.project.util.ParentController;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,20 +16,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.util.StringConverter;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 /**
  * The type Add contact view controller.
  */
 public class AddContactViewController extends ParentController {
 
-    /**
-     * The Person dao.
-     */
-    PersonDao personDao = new PersonDao();
     /**
      * The Category dao.
      */
@@ -40,7 +34,6 @@ public class AddContactViewController extends ParentController {
      * The Set default image.
      */
     Boolean setDefaultImage = false;
-    private AllCategoriesModel model = new AllCategoriesModel();
 
 
     /**
@@ -73,12 +66,7 @@ public class AddContactViewController extends ParentController {
     private JFXDatePicker datePickerBirth;
 
     @FXML
-    private JFXComboBox<String> comboBoxCategory;
-
-    /**
-     * The Text field category name.
-     */
-    public JFXTextField textFieldCategoryName;
+    private JFXComboBox<Category> comboBoxCategory;
 
 
     /**
@@ -111,7 +99,7 @@ public class AddContactViewController extends ParentController {
                 if (comboBoxCategory.getValue() == null) {
                     category = null;
                 } else {
-                    category = categoryDao.getCategory(comboBoxCategory.getValue());
+                    category = categoryDao.getCategory(comboBoxCategory.getValue().getName());
                 }
 
 
@@ -198,12 +186,30 @@ public class AddContactViewController extends ParentController {
 
         homeScreenParentController.getHomeScreenModel().getAllCategories().addListener((ListChangeListener<Category>) change -> {
             comboBoxCategory.getItems().clear();
-            comboBoxCategory.getItems().addAll(change.getList().stream().map(Category::getName).collect(Collectors.toList()));
+
+            comboBoxCategory.getItems().addAll(homeScreenParentController.getHomeScreenModel().getAllCategories());
 
         });
+        comboBoxCategory.getItems().addAll(homeScreenParentController.getHomeScreenModel().getAllCategories());
 
+
+        comboBoxCategory.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Category category) {
+
+                if (category != null) {
+                    return category.getName();
+                }
+                return "";
+
+            }
+
+            @Override
+            public Category fromString(String s) {
+                return null;
+            }
+        });
     }
-
 
     /**
      * Handle click on add category.
@@ -225,7 +231,6 @@ public class AddContactViewController extends ParentController {
 
     @FXML
     private void initialize() {
-        comboBoxCategory.getItems().addAll(categoryDao.listCategories().stream().map(Category::getName).collect(Collectors.toList()));
         File file = new File(Constant.URL_TO_IMAGE + Constant.DEFAULT_IMAGE);
         Image imageProfilIcon = new Image(file.toURI().toString());
         imageViewProfilIcon.setImage(imageProfilIcon);

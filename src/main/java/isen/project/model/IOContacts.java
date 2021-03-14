@@ -3,6 +3,7 @@ package isen.project.model;
 import isen.project.App;
 import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.PersonDao;
+import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
 import isen.project.view.HomeScreenController;
@@ -73,7 +74,7 @@ public class IOContacts {
      */
     public void exportData(){
         try {
-            FileWriter myWriter = null;
+            FileWriter myWriter;
             String path = getDirectoryPath();
 
             if(path != null){
@@ -115,21 +116,21 @@ public class IOContacts {
      *
      * @param category the category exported
      */
-    public void exportData(String category){
+    public void exportData(Category category){
         try {
             FileWriter myWriter;
             String path = getDirectoryPath();
 
             if(path != null){
-                createVcfFile(path + "\\contacts.vcf");
-                myWriter = new FileWriter(path + "\\contacts.vcf");
+                createVcfFile(path + "\\"+category.getName()+".vcf");
+                myWriter = new FileWriter(path + "\\"+category.getName()+".vcf");
             }
             else
                 return;
 
             PrintWriter printWriter = new PrintWriter(myWriter);
 
-            ObservableList<Person> persons = personDao.getPersons();
+            ObservableList<Person> persons = personDao.getPersonsFromCategory(category);
 
             for(Person person : persons) {
                 printWriter.println("BEGIN:VCARD");
@@ -168,7 +169,6 @@ public class IOContacts {
                 return;
 
             Scanner myReader = new Scanner(file);
-            PersonDao personDao = new PersonDao();
 
             Person person = null;
             while (myReader.hasNextLine()) {
@@ -231,6 +231,7 @@ public class IOContacts {
                         } else {
                             assert person != null;
                             person.setCategory(new CategoryDao().getCategory(parts[1]));
+
                         }
                         break;
                     case "END":
