@@ -9,6 +9,7 @@ public  class Constant {
 
     /**
      * The constant URL_TO_IMAGE.
+     * It works only in development , you have to change for release mode
      */
     public static final  String URL_TO_IMAGE = Paths.get(".").toAbsolutePath().normalize().toAbsolutePath() + "/src/main/resources/isen/project/image/profilIcon/";
 
