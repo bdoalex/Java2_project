@@ -19,4 +19,5 @@ Projet Java réalisé par :
 > A la suppression d'une catégorie l'utilisateur est prévenu du nombre de personnes touchées par cette suppression.3.
 7. Fonction d'exportation, d'importation de contacts
 > Le format d'exportation de contacts est sous la forme de vCard 
+8. Une barre de recherche permet la recherche d'un contact précis 
 8. Interface intuitive, claire, esthétique.
