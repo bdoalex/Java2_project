@@ -7,7 +7,7 @@
 
 <AnchorPane id="allContactView" stylesheets="@../css/AllContactView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.project.view.AllContactController">
     <HBox alignment="CENTER" prefHeight="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <JFXTextField fx:id="textFieldFilter" promptText="Search person by name or category" text="Search person" />
+        <JFXTextField fx:id="textFieldFilter" promptText="Search person" />
     </HBox>
     <ListView fx:id="contactListView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
 </AnchorPane>
