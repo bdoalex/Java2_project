@@ -16,7 +16,7 @@ Projet Java réalisé par :
  4. Suppression des contacts
  5. Ajouter une catégorie
  6. Suppression d'une catégorie
-> A la suppression d'une catégorie l'utilisateur est prévenu du nombre de personne touché par cette suppression.3.
+> A la suppression d'une catégorie l'utilisateur est prévenu du nombre de personnes touchées par cette suppression.3.
 7. Fonction d'exportation, d'importation de contacts
 > Le format d'exportation de contacts est sous la forme de vCard 
 8. Interface intuitive, claire, esthétique.
