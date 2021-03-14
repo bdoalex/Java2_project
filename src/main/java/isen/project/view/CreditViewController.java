@@ -8,6 +8,9 @@ import javafx.scene.shape.Circle;
 
 import java.net.URL;
 
+/**
+ * The type Credit view controller.
+ */
 public class CreditViewController {
     @FXML
     private Circle memberIcon1;
@@ -21,6 +24,9 @@ public class CreditViewController {
     @FXML
     private Circle memberIcon4;
 
+    /**
+     * Handle back to menu.
+     */
     @FXML
     void handleBackToMenu() {
         App.showView("LauncherScreen");

@@ -18,8 +18,8 @@ import java.io.IOException;
 
 
 /**
- * @author Alexandre BARBOSA DE OLIVEIRA
- * Controller de la vue HomScreen
+ * The type Home screen controller.
+ *
  */
 public class HomeScreenController {
 
@@ -35,13 +35,11 @@ public class HomeScreenController {
     private AnchorPane containerAnchorPane;
 
 
-
-
-
-
     /**
+     * Change view to one contact.
+     *
      * @param actualPerson the person which we want to see the sheet
-     * @throws IOException
+     * @throws IOException the io exception
      */
     public void changeViewToOneContact(Person actualPerson) throws IOException {
 
@@ -61,6 +59,7 @@ public class HomeScreenController {
 
     /**
      * Transition right to left when new part have to be show
+     *
      * @param load => the new node ( can be list of all contact or one contact)
      */
     public void transition(Node load) {
@@ -100,6 +99,11 @@ public class HomeScreenController {
     }
 
 
+    /**
+     * Change view to all contact.
+     *
+     * @throws IOException the io exception
+     */
     public void changeViewToAllContact() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/AllContactView.fxml"));
@@ -114,6 +118,11 @@ public class HomeScreenController {
         transition(load);
     }
 
+    /**
+     * Change view to all categories.
+     *
+     * @throws IOException the io exception
+     */
     public void changeViewToAllCategories() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/AllCategoriesView.fxml"));
@@ -128,6 +137,11 @@ public class HomeScreenController {
         transition(load);
     }
 
+    /**
+     * Change view to add contact.
+     *
+     * @throws IOException the io exception
+     */
     public void changeViewToAddContact() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/AddContactView.fxml"));
@@ -157,7 +171,11 @@ public class HomeScreenController {
     }
 
 
-
+    /**
+     * Gets home screen model.
+     *
+     * @return the home screen model
+     */
     public HomeScreenModel getHomeScreenModel() {
         return homeScreenModel;
     }

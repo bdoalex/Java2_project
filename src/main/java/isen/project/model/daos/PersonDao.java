@@ -8,14 +8,16 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
+
 /**
- * @author Alexandre BARBOSA DE OLIVEIRA
- * Data Access class for person
+ * The type Person dao.
  */
 public class PersonDao {
 
 
     /**
+     * Gets persons.
+     *
      * @return the persons in the database
      */
     public ObservableList<Person> getPersons() {
@@ -55,6 +57,8 @@ public class PersonDao {
     }
 
     /**
+     * Gets person by id.
+     *
      * @param id of person in the database
      * @return person in the database
      */
@@ -96,6 +100,12 @@ public class PersonDao {
         }
     }
 
+    /**
+     * Sets category id to null.
+     *
+     * @param id the id
+     * @return the category id to null
+     */
     public Boolean setCategoryIdToNull(int id) {
         try (Connection connection = DataSourceFactory.getConnection()) {
             String sqlQuery = "UPDATE person SET category_id = NULL WHERE  category_id = ?";
@@ -114,6 +124,12 @@ public class PersonDao {
         }
     }
 
+    /**
+     * Delete person by id .
+     *
+     * @param id the id
+     * @return the boolean
+     */
     public Boolean deletePersonById(int id) {
         try (Connection connection = DataSourceFactory.getConnection()) {
             String sqlQuery = "DELETE FROM person WHERE person_id = ?";
@@ -133,8 +149,10 @@ public class PersonDao {
     }
 
     /**
+     * Modify person boolean.
+     *
      * @param person you want to update
-     * @return the if the person was correctly modified
+     * @return if the person was correctly modified
      */
     public Boolean modifyPerson(Person person) {
         try (Connection connection = DataSourceFactory.getConnection()) {
@@ -167,8 +185,10 @@ public class PersonDao {
     }
 
     /**
+     * Add person person.
+     *
      * @param person you want to add to the database
-     * @return the added film with its id
+     * @return the added person with its id
      */
     public Person addPerson(Person person) {
         try (Connection connection = DataSourceFactory.getConnection()) {

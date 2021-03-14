@@ -17,9 +17,15 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * The type Io contacts.
+ */
 public class IOContacts {
 
 
+    /**
+     * The Person dao.
+     */
     PersonDao personDao = new PersonDao();
 
     private String getFilePath(){
@@ -62,6 +68,9 @@ public class IOContacts {
         }
     }
 
+    /**
+     * Export data.
+     */
     public void exportData(){
         try {
             FileWriter myWriter = null;
@@ -101,6 +110,11 @@ public class IOContacts {
         }
     }
 
+    /**
+     * Export data.
+     *
+     * @param category the category exported
+     */
     public void exportData(String category){
         try {
             FileWriter myWriter;
@@ -139,6 +153,11 @@ public class IOContacts {
         }
     }
 
+    /**
+     * Import data.
+     *
+     * @param homeSreenController the home sreen controller
+     */
     public void importData(HomeScreenController homeSreenController){
         try {
             File file;

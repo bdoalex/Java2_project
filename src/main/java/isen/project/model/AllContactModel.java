@@ -4,6 +4,9 @@ import isen.project.model.entities.Person;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
+/**
+ * The type All contact model.
+ */
 public class AllContactModel {
 
 
@@ -11,12 +14,19 @@ public class AllContactModel {
     private ObservableList<Person> contactShown;
 
 
+    /**
+     * Instantiates a new All contact model.
+     *
+     * @param allPerson the all person
+     */
     public AllContactModel(ObservableList<Person> allPerson) {
         allContact = allPerson;
         contactShown = allPerson;
     }
 
     /**
+     * Filter by name and categoru.
+     *
      * @param newValue => String which come from the textField filter
      */
     public void filter(String newValue) {
@@ -57,11 +67,21 @@ public class AllContactModel {
     }
 
 
+    /**
+     * Gets contact shown.
+     *
+     * @return the contact shown
+     */
     public ObservableList<Person> getContactShown() {
         return contactShown;
     }
 
 
+    /**
+     * Sets all contact.
+     *
+     * @param allContact the all contact
+     */
     public void setAllContact(ObservableList<Person> allContact) {
         this.allContact = allContact;
     }

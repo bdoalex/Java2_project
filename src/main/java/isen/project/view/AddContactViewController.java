@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import isen.project.App;
-import isen.project.ParentController;
+import isen.project.util.ParentController;
 import isen.project.model.AllCategoriesModel;
 import isen.project.model.daos.CategoryDao;
 import isen.project.model.daos.PersonDao;
@@ -12,7 +12,6 @@ import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
@@ -24,15 +23,29 @@ import java.io.File;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+/**
+ * The type Add contact view controller.
+ */
 public class AddContactViewController extends ParentController {
 
+    /**
+     * The Person dao.
+     */
     PersonDao personDao = new PersonDao();
+    /**
+     * The Category dao.
+     */
     CategoryDao categoryDao = new CategoryDao();
+    /**
+     * The Set default image.
+     */
     Boolean setDefaultImage = false;
     private AllCategoriesModel model = new AllCategoriesModel();
 
 
-
+    /**
+     * The File profil icon.
+     */
     File fileProfilIcon;
 
     @FXML
@@ -62,13 +75,17 @@ public class AddContactViewController extends ParentController {
     @FXML
     private JFXComboBox<String> comboBoxCategory;
 
+    /**
+     * The Text field category name.
+     */
     public JFXTextField textFieldCategoryName;
-
 
 
     /**
      * Save the person in the DB when you click on the add button
      * delete the form to add a person
+     *
+     * @throws IOException the io exception
      */
     @FXML
     void handleButtonAccept() throws IOException {
@@ -122,12 +139,18 @@ public class AddContactViewController extends ParentController {
         }
     }
 
+    /**
+     * Handle button cancel.
+     */
     @FXML
     void handleButtonCancel() {
         App.showView("Homescreen");
 
     }
 
+    /**
+     * Handle button default.
+     */
     @FXML
     void handleButtonDefault() {
         File file = new File(Constant.URL_TO_IMAGE + Constant.DEFAULT_IMAGE);
@@ -135,6 +158,9 @@ public class AddContactViewController extends ParentController {
         imageViewProfilIcon.setImage(imageProfilIcon);
     }
 
+    /**
+     * Handle click on view.
+     */
     @FXML
     void handleClickOnView() {
         Image newImage = clickOnImage();
@@ -144,6 +170,7 @@ public class AddContactViewController extends ParentController {
     }
 
     /**
+     * Click on image image.
      *
      * @return the new image choose by the user
      */
@@ -178,6 +205,11 @@ public class AddContactViewController extends ParentController {
     }
 
 
+    /**
+     * Handle click on add category.
+     *
+     * @throws IOException the io exception
+     */
     @FXML
     public void handleClickOnAddCategory() throws IOException {
         FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/AddCategoryPopUp.fxml"));

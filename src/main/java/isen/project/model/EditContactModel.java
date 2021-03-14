@@ -14,28 +14,52 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * The type Edit contact model.
+ */
 public class EditContactModel {
 
+    /**
+     * The File profil icon.
+     */
     File fileProfilIcon;
 
+    /**
+     * The Pos in global list.
+     */
     int posInGlobalList;
+    /**
+     * The Actual person.
+     */
     Person actualPerson;
+    /**
+     * The Set default image.
+     */
     Boolean setDefaultImage = false;
 
 
+    /**
+     * The Parent controller.
+     */
     OneContactController parentController;
+    /**
+     * The Category dao.
+     */
     CategoryDao categoryDao = new CategoryDao();
 
 
     /**
-     * @param textFieldLastName    => string
-     * @param textFieldFirstName=> string
-     * @param textFieldLNickName=> string
-     * @param textFieldPhone=>     string
-     * @param textFieldAddress=>   string
-     * @param textFieldEmail=>     string
-     * @param datePickerBirth=>    date
-     * @throws IOException
+     * Handle validate.
+     *
+     * @param textFieldLastName  => string
+     * @param textFieldFirstName => string
+     * @param textFieldLNickName => string
+     * @param textFieldPhone     =>     string
+     * @param textFieldAddress   =>   string
+     * @param textFieldEmail     =>     string
+     * @param datePickerBirth    =>    date
+     * @param category           the category
+     * @throws IOException the io exception
      */
     public void handleValidate(String textFieldLastName, String textFieldFirstName, String textFieldLNickName, String textFieldPhone, String textFieldAddress, String textFieldEmail, LocalDate datePickerBirth, Category category) throws IOException {
         String nameOfSaveFile = actualPerson.getNameFileIcon();
@@ -73,6 +97,8 @@ public class EditContactModel {
     }
 
     /**
+     * Click on image to modify
+     *
      * @return the new image choose by the user
      */
     public Image clickOnImage() {
@@ -93,22 +119,45 @@ public class EditContactModel {
     }
 
 
+    /**
+     * Button button to choose default image.
+     */
     public void buttonDefault() {
         setDefaultImage = true;
     }
 
+    /**
+     * Gets parent controller.
+     *
+     * @return the parent controller
+     */
     public OneContactController getParentController() {
         return parentController;
     }
 
+    /**
+     * Sets parent controller.
+     *
+     * @param parentController the parent controller
+     */
     public void setParentController(OneContactController parentController) {
         this.parentController = parentController;
     }
 
+    /**
+     * Sets pos in global list.
+     *
+     * @param posInGlobalList the pos in global list
+     */
     public void setPosInGlobalList(int posInGlobalList) {
         this.posInGlobalList = posInGlobalList;
     }
 
+    /**
+     * Sets actual person.
+     *
+     * @param actualPerson the actual person
+     */
     public void setActualPerson(Person actualPerson) {
         this.actualPerson = actualPerson;
     }

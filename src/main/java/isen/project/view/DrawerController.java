@@ -1,7 +1,7 @@
 package isen.project.view;
 
 import isen.project.App;
-import isen.project.ParentController;
+import isen.project.util.ParentController;
 import isen.project.model.IOContacts;
 import isen.project.util.Constant;
 import javafx.animation.Interpolator;
@@ -18,10 +18,19 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+/**
+ * The type Drawer controller.
+ */
 public class DrawerController extends ParentController {
 
+    /**
+     * The Io contacts.
+     */
     IOContacts ioContacts = new IOContacts();
 
+    /**
+     * The Container.
+     */
     @FXML
     VBox container;
 
@@ -63,6 +72,9 @@ public class DrawerController extends ParentController {
         }
     }
 
+    /**
+     * Initialize.
+     */
     @FXML
     public void initialize() {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
@@ -73,11 +85,21 @@ public class DrawerController extends ParentController {
 
     }
 
+    /**
+     * Home mouse clicked.
+     *
+     * @throws IOException the io exception
+     */
     @FXML
     public void homeMouseClicked() throws IOException {
         homeScreenParentController.changeViewToAllContact();
     }
 
+    /**
+     * Add contact mouse clicked.
+     *
+     * @throws IOException the io exception
+     */
     @FXML
     public void addContactMouseClicked() throws IOException {
         homeScreenParentController.changeViewToAddContact();
@@ -92,17 +114,29 @@ public class DrawerController extends ParentController {
         App.showView("LauncherScreen");
     }
 
+    /**
+     * Import data when button is clicked.
+     */
     @FXML
 
     public void importClicked() {
         ioContacts.importData(homeScreenParentController);
     }
 
+    /**
+     * Export clicked.
+     */
     @FXML
     public void exportClicked() {
         ioContacts.exportData();
     }
 
+    /**
+     * Handle go to all categories.
+     *
+     * @param mouseEvent the mouse event
+     * @throws IOException the io exception
+     */
     public void handleGoToAllCategories(MouseEvent mouseEvent) throws IOException {
         homeScreenParentController.changeViewToAllCategories();
     }

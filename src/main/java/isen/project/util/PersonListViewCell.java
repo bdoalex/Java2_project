@@ -14,7 +14,8 @@ import java.io.IOException;
 
 
 /**
- * @author Alexandre BARBOSA DE OLIVEIRA & Flavien DESSE
+ * The type Person list view cell.
+ *
  * allows you to customize the display of cells in the listview
  */
 public class PersonListViewCell extends ListCell<Person>{
@@ -37,6 +38,11 @@ public class PersonListViewCell extends ListCell<Person>{
     @FXML
     private ImageView imageContact;
 
+    /**
+     * Instantiates a new Person list view cell.
+     *
+     * @param list the list
+     */
     public PersonListViewCell(ListView<Person> list) {
         parentListView = list;
     }

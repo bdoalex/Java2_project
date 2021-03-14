@@ -3,6 +3,9 @@ package isen.project.view;
 import isen.project.App;
 import javafx.fxml.FXML;
 
+/**
+ * The type Launcher screen controller.
+ */
 public class LauncherScreenController {
 
 

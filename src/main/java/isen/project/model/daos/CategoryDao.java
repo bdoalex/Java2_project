@@ -7,11 +7,15 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 
 
+/**
+ * The type Category dao.
+ */
 public class CategoryDao {
 
 
-
     /**
+     * List categories observable list.
+     *
      * @return list with categories
      */
     public ObservableList<Category> listCategories() {
@@ -33,6 +37,12 @@ public class CategoryDao {
         return categories;
     }
 
+    /**
+     * Delete category by id boolean.
+     *
+     * @param id the id
+     * @return the boolean
+     */
     public Boolean deleteCategoryById(int id) {
 
 
@@ -59,7 +69,8 @@ public class CategoryDao {
     /**
      * adds a new category
      *
-     * @param name
+     * @param name the name
+     * @return the category
      */
     public Category addCategory(String name) {
         try (Connection cnx = DataSourceFactory.getConnection()) {
@@ -80,6 +91,12 @@ public class CategoryDao {
         }
     }
 
+    /**
+     * Gets category.
+     *
+     * @param name the name
+     * @return the category
+     */
     public Category getCategory(String name) {
         try (Connection connection = DataSourceFactory.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM category WHERE category_name = ?")) {

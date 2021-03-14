@@ -3,8 +3,7 @@ package isen.project.view;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialogLayout;
 import isen.project.App;
-import isen.project.ParentController;
-import isen.project.model.daos.PersonDao;
+import isen.project.util.ParentController;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
 import javafx.collections.ObservableList;
@@ -23,41 +22,79 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 
+/**
+ * The type One contact controller.
+ */
 public class OneContactController extends ParentController {
 
 
+    /**
+     * The Actual person.
+     */
     Person actualPerson;
 
+    /**
+     * The Icon profil circle.
+     */
     @FXML
     Circle iconProfilCircle;
 
+    /**
+     * The Button back.
+     */
     @FXML
     JFXButton buttonBack;
 
 
+    /**
+     * The Phone number.
+     */
     @FXML
     Text phoneNumber;
 
+    /**
+     * The Name.
+     */
     @FXML
     Text name;
 
 
+    /**
+     * The Nick name.
+     */
     @FXML
     Text nickName;
 
+    /**
+     * The Adress.
+     */
     @FXML
     Text adress;
 
+    /**
+     * The Email.
+     */
     @FXML
     Text email;
 
+    /**
+     * The Birth date.
+     */
     @FXML
     Text birthDate;
 
+    /**
+     * The Category.
+     */
     @FXML
     Text category;
 
 
+    /**
+     * Sets actual person.
+     *
+     * @param actualPerson the actual person
+     */
     public void setActualPerson(Person actualPerson) {
         this.actualPerson = actualPerson;
 
@@ -112,6 +149,9 @@ public class OneContactController extends ParentController {
 
     }
 
+    /**
+     * Handle button back.
+     */
     public void handleButtonBack() {
         try {
             homeScreenParentController.changeViewToAllContact();
@@ -123,6 +163,9 @@ public class OneContactController extends ParentController {
     }
 
 
+    /**
+     * Handle click on trash.
+     */
     public void handleClickOnTrash() {
         JFXDialogLayout content = new JFXDialogLayout();
         content.setBody(new Text("Are you sure you want to delete " + actualPerson.getFirstName() + " " + actualPerson.getLastName() + " from your contacts ? "));
@@ -162,6 +205,11 @@ public class OneContactController extends ParentController {
         App.showDialog(content);
     }
 
+    /**
+     * Handle click on edit profile.
+     *
+     * @throws IOException the io exception
+     */
     public void handleClickOnEditProfile() throws IOException {
 
 

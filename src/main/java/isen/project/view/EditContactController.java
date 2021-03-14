@@ -4,14 +4,13 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import isen.project.App;
-import isen.project.ParentController;
+import isen.project.util.ParentController;
 import isen.project.model.EditContactModel;
 import isen.project.model.daos.CategoryDao;
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
@@ -23,34 +22,79 @@ import java.io.File;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+/**
+ * The type Edit contact controller.
+ */
 public class EditContactController extends ParentController {
 
+    /**
+     * The Container grid pane.
+     */
     @FXML
     public GridPane containerGridPane;
 
+    /**
+     * The Text field last name.
+     */
     @FXML
     public JFXTextField textFieldLastName;
+    /**
+     * The Text field first name.
+     */
     @FXML
     public JFXTextField textFieldFirstName;
+    /**
+     * The Combo box category.
+     */
     @FXML
     public JFXComboBox<String> comboBoxCategory;
+    /**
+     * The Text field l nick name.
+     */
     @FXML
     public JFXTextField textFieldLNickName;
+    /**
+     * The Text field address.
+     */
     @FXML
     public JFXTextField textFieldAddress;
+    /**
+     * The Text field phone.
+     */
     @FXML
     public JFXTextField textFieldPhone;
+    /**
+     * The Date picker birth.
+     */
     @FXML
     public JFXDatePicker datePickerBirth;
+    /**
+     * The Text field email.
+     */
     @FXML
     public JFXTextField textFieldEmail;
+    /**
+     * The Image view profil icon.
+     */
     @FXML
     public ImageView imageViewProfilIcon;
 
+    /**
+     * The Model.
+     */
     EditContactModel model = new EditContactModel();
+    /**
+     * The Category dao.
+     */
     CategoryDao categoryDao = new CategoryDao();
 
 
+    /**
+     * Sets actual person.
+     *
+     * @param actualPerson    the actual person
+     * @param posInGlobalList the pos in global list
+     */
     public void setActualPerson(Person actualPerson, int posInGlobalList) {
         model.setPosInGlobalList(posInGlobalList);
         model.setActualPerson(actualPerson);
@@ -75,16 +119,29 @@ public class EditContactController extends ParentController {
     }
 
 
+    /**
+     * Sets one contact controller.
+     *
+     * @param parentController the parent controller
+     */
     public void setOneContactController(OneContactController parentController) {
         model.setParentController(parentController);
     }
 
 
+    /**
+     * Handle button cancel.
+     */
     @FXML
     public void handleButtonCancel() {
         App.closeDialog();
     }
 
+    /**
+     * Handle button accept.
+     *
+     * @throws IOException the io exception
+     */
     @FXML
     public void handleButtonAccept() throws IOException {
         Category category;
@@ -103,6 +160,9 @@ public class EditContactController extends ParentController {
                 category);
     }
 
+    /**
+     * set new profil icon.
+     */
     @FXML
     public void handleClickOnView() {
         Image newImage = model.clickOnImage();
@@ -112,6 +172,9 @@ public class EditContactController extends ParentController {
 
     }
 
+    /**
+     * Handle button default.
+     */
     @FXML
     public void handleButtonDefault() {
 
@@ -123,7 +186,11 @@ public class EditContactController extends ParentController {
     }
 
 
-
+    /**
+     * Handle click on add category.
+     *
+     * @throws IOException the io exception
+     */
     @FXML
     public void handleClickOnAddCategory() throws IOException {
         FXMLLoader mLLoader = new FXMLLoader(getClass().getResource("/isen/project/view/AddCategoryPopUp.fxml"));
@@ -150,6 +217,9 @@ public class EditContactController extends ParentController {
 
     }
 
+    /**
+     * Initialize.
+     */
     @FXML
     public void initialize() {
         comboBoxCategory.getItems().addAll(categoryDao.listCategories().stream().map(Category::getName).collect(Collectors.toList()));

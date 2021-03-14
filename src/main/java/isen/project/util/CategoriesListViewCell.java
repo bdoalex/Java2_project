@@ -21,7 +21,8 @@ import java.util.List;
 
 
 /**
- * @author Alexandre BARBOSA DE OLIVEIRA & Flavien DESSE
+ * The type Categories list view cell.
+ *
  * allows you to customize the display of cells in the listview
  */
 public class CategoriesListViewCell extends ListCell<Category> {
@@ -42,6 +43,12 @@ public class CategoriesListViewCell extends ListCell<Category> {
     @FXML
     private FontIcon trashIcon;
 
+    /**
+     * Instantiates a new Categories list view cell.
+     *
+     * @param list            the list
+     * @param homeScreenModel the home screen model
+     */
     public CategoriesListViewCell(ListView<Category> list, HomeScreenModel homeScreenModel) {
         parentListView = list;
         this.homeScreenModel = homeScreenModel;
@@ -89,7 +96,7 @@ public class CategoriesListViewCell extends ListCell<Category> {
 
 
                 JFXButton deny = new JFXButton("NO");
-                deny.setStyle("-jfx-button-type: RAISED; -fx-text-fill: white; -fx-background-color:#f44336;-fx-cursor: hand;");
+                deny.setStyle("-jfx-button-type: RAISED; -fx-text-fill: #ffffff; -fx-background-color:#f44336;-fx-cursor: hand;");
 
 
                 validate.setOnAction(event -> {

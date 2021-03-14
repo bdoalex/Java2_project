@@ -20,7 +20,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -30,7 +29,6 @@ import java.sql.Statement;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.Stack;
 
 
 /**
@@ -38,10 +36,8 @@ import java.util.Stack;
  */
 public class App extends Application {
 
-    private Scene scene;
 
-
-    private static Deque<JFXDialog> allDialog = new LinkedList<>();
+    private static final Deque<JFXDialog> allDialog = new LinkedList<>();
 
 
     private static AnchorPane mainLayout;
@@ -57,8 +53,7 @@ public class App extends Application {
         Connection connection = DataSourceFactory.getConnection();
         File f = new File(getClass().getResource("/isen/project/sql/database-creation.sql").getFile());
 
-        Statement stmt = connection.createStatement();
-        try (Scanner myReader = new Scanner(f)) {
+        try (Statement stmt = connection.createStatement(); Scanner myReader = new Scanner(f)) {
 
             StringBuilder str = new StringBuilder();
 
@@ -76,8 +71,6 @@ public class App extends Application {
         } catch (Exception e) {
             e.printStackTrace();
 
-        } finally {
-            stmt.close();
         }
 
     }
@@ -96,7 +89,7 @@ public class App extends Application {
         containerDialog = (StackPane) mainLayout.getChildren().get(1);
         containerDialog.setVisible(false);
 
-        scene = new Scene(mainLayout, 850, 500);
+        Scene scene = new Scene(mainLayout, 850, 500);
 
         stage.setScene(scene);
         stage.show();
@@ -105,9 +98,7 @@ public class App extends Application {
         stage.setMinHeight(Constant.MIN_HEIGHT);
         stage.setMinWidth(Constant.MIN_WIDTH);
 
-        stage.widthProperty().addListener((obs, oldVal, newVal) -> {
-                    mainLayout.prefWidth((Double) newVal);
-                }
+        stage.widthProperty().addListener((obs, oldVal, newVal) -> mainLayout.prefWidth((Double) newVal)
 
         );
 
@@ -118,35 +109,43 @@ public class App extends Application {
     }
 
 
+    /**
+     * Load fxml t.
+     *
+     * @param <T>  the type parameter
+     * @param fxml the fxml
+     * @return the t
+     * @throws IOException the io exception
+     */
     public static <T> T loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
 
+    /**
+     * Show view.
+     *
+     * @param rootElement the root element
+     */
     public static void showView(String rootElement) {
         try {
-            // We can only set the center of a borderPane, not a Parent, so we rely on
-            // either an explicit cast or our better generics implementation to convert our
-            // scene and modify it.
+
             containerContent.getChildren().clear();
             containerContent.getChildren().add(loadFXML(rootElement));
 
         } catch (IOException e) {
-            // Chances are that the file is not found. Nothing we can do, really, but as
-            // IOException is checked, it would require us to add nasty support all over our
-            // code
-            // Instead, a better practice is to convert this checked exception into an
-            // unchecked exception, and let it bubble up to the main thread, killing the
-            // JVM. We could also close the app, but it would be dangerous, as some
-            // resources could be opened somewhere and not correctly closed...
-            // BEWARE ! you should ALWAYS keep the stacktrace complete. using the original
-            // exception as an argument allows that !
+
             throw new IllegalArgumentException(e);
         }
     }
 
 
+    /**
+     * Show dialog.
+     *
+     * @param layout the layout
+     */
     public static void showDialog(Region layout) {
         containerDialog.setVisible(true);
 
@@ -168,6 +167,9 @@ public class App extends Application {
         temp.show();
     }
 
+    /**
+     * Close dialog.
+     */
     public static void closeDialog() {
         JFXDialog temp = allDialog.getLast();
 
@@ -175,6 +177,12 @@ public class App extends Application {
     }
 
 
+    /**
+     * Show success snack bar.
+     *
+     * @param success the success
+     * @throws IOException the io exception
+     */
     public static void showSuccessSnackBar(String success) throws IOException {
         JFXSnackbar bar = new JFXSnackbar(mainLayout);
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/ToastSuccess.fxml"));
@@ -187,6 +195,12 @@ public class App extends Application {
         bar.enqueue(event);
     }
 
+    /**
+     * Show failure snack bar.
+     *
+     * @param success the success
+     * @throws IOException the io exception
+     */
     public static void showFailureSnackBar(String success) throws IOException {
         JFXSnackbar bar = new JFXSnackbar(mainLayout);
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/isen/project/view/ToastFailure.fxml"));
@@ -199,15 +213,24 @@ public class App extends Application {
         bar.enqueue(event);
     }
 
-    public static AnchorPane getMainLayout() {
-        return mainLayout;
-    }
 
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch();
     }
 
+    /**
+     * Save profil icon string.
+     *
+     * @param fileProfilIcon the file profil icon
+     * @return the string
+     * @throws IOException the io exception
+     */
     public static String saveProfilIcon(File fileProfilIcon) throws IOException {
         //We load our file into Image
         Image imageProfilIcon = new Image(fileProfilIcon.toURI().toString());
@@ -226,6 +249,12 @@ public class App extends Application {
 
     }
 
+    /**
+     * Delete profil icon boolean.
+     *
+     * @param nameFile the name file
+     * @return the boolean
+     */
     public static Boolean deleteProfilIcon(String nameFile) {
         //We load our file into Image
         File file = new File(Constant.URL_TO_IMAGE + nameFile);
