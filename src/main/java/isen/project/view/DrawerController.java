@@ -1,9 +1,9 @@
 package isen.project.view;
 
 import isen.project.App;
+import isen.project.util.ParentController;
 import isen.project.model.IOContacts;
 import isen.project.util.Constant;
-import isen.project.util.ParentController;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -11,6 +11,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;

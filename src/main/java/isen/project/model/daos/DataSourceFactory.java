@@ -1,6 +1,7 @@
 package isen.project.model.daos;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -24,7 +25,8 @@ public class DataSourceFactory {
      * @throws SQLException the sql exception
      */
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:sqlite:sqlite.db");
+        Connection cnx = DriverManager.getConnection("jdbc:sqlite:sqlite.db");
+        return cnx;
     }
 
 }

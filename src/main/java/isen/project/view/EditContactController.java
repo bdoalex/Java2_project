@@ -4,11 +4,12 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import isen.project.App;
+import isen.project.util.ParentController;
 import isen.project.model.EditContactModel;
+import isen.project.model.daos.CategoryDao;
 import isen.project.model.entities.Category;
 import isen.project.model.entities.Person;
 import isen.project.util.Constant;
-import isen.project.util.ParentController;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,7 @@ import javafx.util.StringConverter;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 /**
  * The type Edit contact controller.
@@ -82,6 +84,10 @@ public class EditContactController extends ParentController {
      * The Model.
      */
     EditContactModel model = new EditContactModel();
+    /**
+     * The Category dao.
+     */
+    CategoryDao categoryDao = new CategoryDao();
 
 
     /**
@@ -208,11 +214,11 @@ public class EditContactController extends ParentController {
 
         comboBoxCategory.getSelectionModel().select(model.getActualPerson().getCategory());
 
-        comboBoxCategory.setConverter(new StringConverter<>() {
+        comboBoxCategory.setConverter(new StringConverter<Category>() {
             @Override
             public String toString(Category category) {
 
-                if (category != null) {
+                if(category != null){
                     return category.getName();
                 }
                 return "";

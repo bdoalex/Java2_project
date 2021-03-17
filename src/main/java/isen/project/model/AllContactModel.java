@@ -55,7 +55,12 @@ public class AllContactModel {
             ) {
                 return true; // Filter matches first name.
             }
-            return person.getCategory() != null && (person.getCategory().getName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getCategory().getName().toLowerCase()));// Does not match.
+            if (person.getCategory() != null && (person.getCategory().getName().toLowerCase().contains(lowerCaseFilter) || lowerCaseFilter.contains(person.getCategory().getName().toLowerCase()))) {
+                return true;
+
+            }
+
+            return false; // Does not match.
         });
         contactShown = filteredData;
 

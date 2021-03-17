@@ -25,7 +25,7 @@ public class HomeScreenController {
 
 
     @FXML
-    private final DrawerController drawerController = new DrawerController();
+    private DrawerController drawerController = new DrawerController();
 
     private Node lastNode;
 

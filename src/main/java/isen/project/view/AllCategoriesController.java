@@ -27,7 +27,7 @@ public class AllCategoriesController extends ParentController {
     @FXML
     public ListView categoriesListView;
 
-    private final AllCategoriesModel model = new AllCategoriesModel();
+    private AllCategoriesModel model = new AllCategoriesModel();
 
     /**
      * Sets all categories.
